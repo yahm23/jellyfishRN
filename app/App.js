@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Text, View } from 'react-native';
+import LoginScreen from './components/screens/Login';
 
 export default function App() {
-
-
     
     return (
-        <div>
-            
-        </div>
+        <View>
+            <LoginScreen />
+        </View>
     )
 }
