@@ -1,12 +1,18 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import LoginScreen from './components/screens/Login';
+import NavigatorStack from './navigator'
+import NavigationService from "./navigation-service";
 
 export default function App() {
     
     return (
         <View>
-            <LoginScreen />
+            
+            <NavigatorStack
+                ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                }}
+                />
         </View>
     )
 }
