@@ -19,7 +19,7 @@ export default function App() {
     const [signedIn, setSigned] = useState();
     const [loading, setLoading] = useState(false);
     StatusBar.setBarStyle('light-content', false);
-
+    // const statusBarHeight = StatusBar.h 
     useEffect(() => {
         async function getLoggedData() {
             const value = await AsyncStorage.getItem('LoggedIn')
@@ -34,11 +34,19 @@ export default function App() {
 
     return (
         <NavigationContainer>
+            {Platform.OS ==='android'?
+            <StatusBar
+                backgroundColor={"#1A1A1A"} 
+
+            />
+            :
+            <></>
+            
+            }
+            
             <View>
                 <Spinner
                     visible={loading}
-                // textContent={'Loading...'}
-                // textStyle={styles.spinnerTextStyle}
                 />
             </View>
 
