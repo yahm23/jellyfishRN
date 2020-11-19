@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import logo from '../../images/full.png';
+import { AsyncStorage } from '@react-native-community/async-storage';
 
 export default function Login() {
 
