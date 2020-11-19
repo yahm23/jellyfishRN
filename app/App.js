@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -18,6 +18,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
     const[signedIn,setSigned]=useState();
     const[loading,setLoading]=useState(false);
+    StatusBar.setBarStyle('light-content', false);
 
     useEffect(() => {
         async function getLoggedData(){
