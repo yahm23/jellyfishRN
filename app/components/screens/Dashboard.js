@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import SearchBar from '../SearchBar';
-import PieChart from '../PieChart';
+import PieChartWithCenteredLabels from '../PieChart';
 
 export default function Dashboard(props) {
 
@@ -10,7 +10,7 @@ export default function Dashboard(props) {
             <View style={styles.searchBarContainer}>
                 <SearchBar />
                 <View style={styles.centerBox}>
-                    <PieChart />
+                    <PieChartWithCenteredLabels />
                 </View>
             </View>
         </View>

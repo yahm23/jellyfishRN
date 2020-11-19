@@ -1,24 +1,63 @@
-import React, { useState } from 'react'
-import { StyleSheet, TextInput, Text, View, Image } from 'react-native';
+import React from 'react'
+import { PieChart } from 'react-native-svg-charts'
+import { Text } from 'react-native-svg'
 
-export default function PieChart() {
+class PieChartWithCenteredLabels extends React.PureComponent {
 
-    return (
-        <View style={styles.searchBarContainer}>
-            <Text style={styles.paragraph}>Pie</Text>
-        </View>
-    )
+    render() {
+
+        const data = [
+            {
+                key: 1,
+                amount: 50,
+                svg: { fill: '#F70B5E' },
+            },
+            {
+                key: 2,
+                amount: 50,
+                svg: { fill: '#F70B5E' }
+            },
+            {
+                key: 3,
+                amount: 40,
+                svg: { fill: '#F70B5E' }
+            }
+        ]
+
+        const Labels = ({ slices, height, width }) => {
+            return slices.map((slice, index) => {
+                const { labelCentroid, pieCentroid, data } = slice;
+                return (
+                    <Text
+                        key={index}
+                        x={pieCentroid[ 0 ]}
+                        y={pieCentroid[ 1 ]}
+                        fill={'white'}
+                        textAnchor={'middle'}
+                        alignmentBaseline={'middle'}
+                        fontSize={24}
+                        stroke={'black'}
+                        strokeWidth={0.2}
+                    >
+                        {data.amount}
+                    </Text>
+                )
+            })
+        }
+
+        return (
+            <PieChart
+                style={{ height: 360, width: 360 }}
+                valueAccessor={({ item }) => item.amount}
+                data={data}
+                spacing={0}
+                outerRadius={'70%'}
+            >
+                <Labels/>
+            </PieChart>
+        )
+    }
+
 }
 
-const styles = StyleSheet.create({
-    body: {
-        height: '100%',
-        width: '100%',
-        backgroundColor: '#1A1A1A',
-    },
-    paragraph: {
-        color: 'white',
-        fontSize: 16,
-        textAlign: 'center'
-    }
-})
+export default PieChartWithCenteredLabels;
