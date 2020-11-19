@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import logo from '../../images/full.png';
+import logo from '../images/full.png';
 
 export default function Login() {
 
