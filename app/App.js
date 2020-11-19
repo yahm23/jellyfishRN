@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -16,13 +16,14 @@ import Spinner from 'react-native-loading-spinner-overlay';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-    const[signedIn,setSigned]=useState();
-    const[loading,setLoading]=useState(false);
+    const [signedIn, setSigned] = useState();
+    const [loading, setLoading] = useState(false);
+    StatusBar.setBarStyle('light-content', false);
 
     useEffect(() => {
-        async function getLoggedData(){
+        async function getLoggedData() {
             const value = await AsyncStorage.getItem('LoggedIn')
-            if(value !== null) {
+            if (value !== null) {
                 console.log(value);
                 setSigned(value)
             }
@@ -35,23 +36,23 @@ export default function App() {
         <NavigationContainer>
             <View>
                 <Spinner
-                visible={loading}
+                    visible={loading}
                 // textContent={'Loading...'}
                 // textStyle={styles.spinnerTextStyle}
                 />
             </View>
 
-            {signedIn==="true"?
-            
-            <Tab.Navigator>
-                <Tab.Screen setLoading={setLoading} name="Dashboard" component={Dashboard} />
-                <Tab.Screen name="Appliances" component={Appliances} />
-                <Tab.Screen name="Reports" component={Reports} />
-                <Tab.Screen name="Offers" component={Offers} />
-                <Tab.Screen name="Account" component={Account} />
-            </Tab.Navigator>
-            :
-            <Login setLoading={setLoading}></Login>
+            {signedIn === "true" ?
+
+                <Tab.Navigator>
+                    <Tab.Screen setLoading={setLoading} name="Dashboard" component={Dashboard} />
+                    <Tab.Screen name="Appliances" component={Appliances} />
+                    <Tab.Screen name="Reports" component={Reports} />
+                    <Tab.Screen name="Offers" component={Offers} />
+                    <Tab.Screen name="Account" component={Account} />
+                </Tab.Navigator>
+                :
+                <Login setLoading={setLoading}></Login>
             }
         </NavigationContainer>
     )
