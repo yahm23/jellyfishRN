@@ -1,31 +1,28 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
-import NavigatorStack from './navigator'
-import NavigationService from "./navigation-service";
-import { AsyncStorage } from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import LoginScreen from './components/Login';
+import Dashboard from './components/screens/Dashboard';
+import Appliances from './components/screens/Appliances';
+import Reports from './components/screens/Reports';
+import Offers from './components/screens/Offers';
+import Account from './components/screens/Account';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-    // useEffect(async () => {
-    //     try {
-    //         await AsyncStorage.setItem(
-    //           'LoggedIn',
-    //           'false'
-    //         );
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //     // Error saving data
-    //     }
-        
-    // }, [input])
-    return (
 
+    return (
         <NavigationContainer>
-            <View>
-                
-                <NavigatorStack/>
-            </View>
+            <Tab.Navigator>
+                <Tab.Screen name="Dashboard" component={Dashboard} />
+                <Tab.Screen name="Appliances" component={Appliances} />
+                <Tab.Screen name="Reports" component={Reports} />
+                <Tab.Screen name="Offers" component={Offers} />
+                <Tab.Screen name="Account" component={Account} />
+            </Tab.Navigator>
         </NavigationContainer>
     )
 }
