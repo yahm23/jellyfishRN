@@ -1,12 +1,12 @@
 import React from 'react'
-import {Text, View, StyleSheet, Image} from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import logo from '../../images/Jellyfish-white.png';
 
 export default function Dashboard() {
 
     return (
         <View style={styles.body}>
-            <Image source={logo} style={styles.logo}/>
+            <Image source={logo} style={styles.logo} />
             {/* <Text style={styles.paragraph}>Dashboard</Text> */}
         </View>
     )
