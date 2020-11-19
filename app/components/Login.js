@@ -1,11 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-<<<<<<< HEAD:app/components/screens/Login.js
-import logo from '../../images/full.png';
+// import logo from '../../images/full.png';
 import { AsyncStorage } from '@react-native-community/async-storage';
-=======
 import logo from '../images/full.png';
->>>>>>> 4f0abda59f45237dbc464bb49d08f08e9a2a1f42:app/components/Login.js
 
 export default function Login() {
 
