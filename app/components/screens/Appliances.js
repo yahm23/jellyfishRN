@@ -1,10 +1,12 @@
 import React from 'react'
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
+import JellyLogo from '../../images/Jellyfish-white.png'
 
 export default function Appliances() {
 
     return (
         <View style={styles.body}>
+            <Image source={JellyLogo}/>
             <Text style={styles.paragraph}>Appliances</Text>
         </View>
     )

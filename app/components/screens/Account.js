@@ -1,5 +1,5 @@
 import React from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 

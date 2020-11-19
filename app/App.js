@@ -9,7 +9,7 @@ import Appliances from './components/screens/Appliances';
 import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import Login from './components/Login';
 import Spinner from 'react-native-loading-spinner-overlay';
 

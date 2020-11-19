@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import logo from '../images/full.png';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 
 // Immediately reload the React Native Bundle
