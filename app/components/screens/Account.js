@@ -1,27 +1,18 @@
 import React from 'react'
 import AsyncStorage from '@react-native-community/async-storage';
-import RNRestart from 'react-native-restart'; // Import package from node modules
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
 export default function Account() {
 
-    const LogOut = async () => {
-        // props.setLoading(true)
-        try {
-            await AsyncStorage.setItem('LoggedIn', "false")
-            console.log('setting to false');
-            RNRestart.Restart();
-            
-        } catch (e) {
-            // props.setLoading(false)
-            console.log(e);
-        }
+    const LogOut = () => {
+        AsyncStorage.setItem('LoggedIn', "false", () => {
+            console.log('Set to false');
+        });
     }
 
     return (
         <View style={styles.body}>
             <Text style={styles.paragraph}>Account</Text>
-
             <TouchableOpacity style ={
                     {alignSelf: 'center',
                     alignItems: 'center',
@@ -31,8 +22,8 @@ export default function Account() {
                     borderRadius: 10,
                     backgroundColor: "#F70B5E"}}
                     title='Get Started' onPress={()=>LogOut()}>
-                    <Text >Log Out</Text>
-                </TouchableOpacity>
+                    <Text>Log Out</Text>
+            </TouchableOpacity>
         </View>
     )
 }

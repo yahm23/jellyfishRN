@@ -1,67 +1,53 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChartLine, faChartPie, faChartNetwork, faPoundSign, faUserAstronaut, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 
-import LoginScreen from './components/Login';
 import Dashboard from './components/screens/Dashboard';
 import Appliances from './components/screens/Appliances';
 import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
-import AsyncStorage from '@react-native-community/async-storage';
-import Login from './components/Login';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { createAppContainer } from 'react-navigation';
 
-const Tab = createBottomTabNavigator();
-
-export default function App() {
-    const [signedIn, setSigned] = useState();
-    const [loading, setLoading] = useState(false);
-    StatusBar.setBarStyle('light-content', false);
-    // const statusBarHeight = StatusBar.h 
-    useEffect(() => {
-        async function getLoggedData() {
-            const value = await AsyncStorage.getItem('LoggedIn')
-            if (value !== null) {
-                console.log(value);
-                setSigned(value)
+const TabNavigator = createBottomTabNavigator(
+    {
+        Dashboard: {
+            screen: Dashboard,
+            navigationOptions: {
+                tabBarIcon: () => <FontAwesomeIcon icon={faChartPie} key={'icon_1'}/>
             }
+        },
+        Appliances: {
+            screen: Appliances,
+            navigationOptions: {
+                tabBarIcon: () => <FontAwesomeIcon icon={faProjectDiagram} key={'icon_2'}/>
+            }
+        },
+        Reports: {
+            screen: Reports,
+            navigationOptions: {
+                tabBarIcon: () => <FontAwesomeIcon icon={faChartLine} key={'icon_3'}/>
+            }
+        },
+        Offers: {
+            screen: Offers,
+            navigationOptions: {
+                tabBarIcon: () => <FontAwesomeIcon icon={faPoundSign} key={'icon_4'}/>
+            }
+        },
+        Account: {
+            screen: Account,
+            navigationOptions: {
+                tabBarIcon: () => <FontAwesomeIcon icon={faUserAstronaut} key={'icon_5'}/>
+            }
+        },
+    },
+    {
+        tabBarOptions: {
+            showLabel: false
         }
+    }
+)
 
-        getLoggedData();
-    }, [signedIn])
-
-    return (
-        <NavigationContainer>
-            {Platform.OS ==='android'?
-            <StatusBar
-                backgroundColor={"#1A1A1A"} 
-
-            />
-            :
-            <></>
-            
-            }
-            
-            <View>
-                <Spinner
-                    visible={loading}
-                />
-            </View>
-
-            {signedIn === "true" ?
-
-                <Tab.Navigator>
-                    <Tab.Screen setLoading={setLoading} name="Dashboard" component={Dashboard} />
-                    <Tab.Screen name="Appliances" component={Appliances} />
-                    <Tab.Screen name="Reports" component={Reports} />
-                    <Tab.Screen name="Offers" component={Offers} />
-                    <Tab.Screen name="Account" component={Account} />
-                </Tab.Navigator>
-                :
-                <Login setLoading={setLoading}></Login>
-            }
-        </NavigationContainer>
-    )
-}
+export default createAppContainer(TabNavigator);

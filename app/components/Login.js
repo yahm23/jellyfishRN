@@ -2,21 +2,14 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import logo from '../images/full.png';
 import AsyncStorage from '@react-native-community/async-storage';
-import RNRestart from 'react-native-restart'; // Import package from node modules
 
 // Immediately reload the React Native Bundle
 export default function Login(props) {
 
-    const LogIn = async () => {
-        // props.setLoading(true)
-        try {
-            await AsyncStorage.setItem('LoggedIn', "true")
-            console.log('Setting to true');
-            RNRestart.Restart();
-        } catch (e) {
-            // props.setLoading(false)
-            console.log(e);
-        }
+    const LogIn = () => {
+        AsyncStorage.setItem('LoggedIn', "true", () => {
+            console.log('Set to true');
+        });
     }
 
     return (
@@ -31,7 +24,7 @@ export default function Login(props) {
             </Text>
 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} title='Get Started' onPress={()=>LogIn()}>
+                <TouchableOpacity style={styles.button} title='Get Started' onPress={() => LogIn()}>
                     <Text style={styles.buttonText}>Get Started</Text>
                 </TouchableOpacity>
                 <Text style={styles.paragraph}>Need to order your Jellyfish kit?</Text>
