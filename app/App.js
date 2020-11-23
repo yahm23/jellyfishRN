@@ -9,40 +9,51 @@ import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
 import { createAppContainer } from 'react-navigation';
+import { color } from 'react-native-reanimated';
 
 StatusBar.setBarStyle('light-content', true);
 
 const TabNavigator = createBottomTabNavigator(
-    
+
     {
         Dashboard: {
             screen: Dashboard,
             navigationOptions: {
-                tabBarIcon: () => <FontAwesomeIcon size={25} icon={faChartPie} key={'icon_1'}/>
+                tabBarIcon: () => (
+                    <FontAwesomeIcon size={25} icon={faChartPie} color='black' key={'icon_1'} />
+                )
             }
         },
         Appliances: {
             screen: Appliances,
             navigationOptions: {
-                tabBarIcon: () => <FontAwesomeIcon size={25} icon={faProjectDiagram} key={'icon_2'}/>
+                tabBarIcon: () => (
+                    <FontAwesomeIcon size={25} icon={faProjectDiagram} key={'icon_2'} />
+                )
             }
         },
         Reports: {
             screen: Reports,
             navigationOptions: {
-                tabBarIcon: () => <FontAwesomeIcon size={25} icon={faChartLine} key={'icon_3'}/>
+                tabBarIcon: () => (
+                    <FontAwesomeIcon size={25} icon={faChartLine} key={'icon_3'} />
+                )
             }
         },
         Offers: {
             screen: Offers,
             navigationOptions: {
-                tabBarIcon: () => <FontAwesomeIcon size={25} icon={faPoundSign} key={'icon_4'}/>
+                tabBarIcon: () => (
+                    <FontAwesomeIcon size={25} icon={faPoundSign} key={'icon_4'} />
+                )
             }
         },
         Account: {
             screen: Account,
             navigationOptions: {
-                tabBarIcon: () => <FontAwesomeIcon size={25} icon={faUserAstronaut} key={'icon_5'}/>
+                tabBarIcon: () => (
+                    <FontAwesomeIcon size={25} icon={faUserAstronaut} key={'icon_5'} />
+                )
             }
         },
     },

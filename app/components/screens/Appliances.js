@@ -1,12 +1,11 @@
 import React from 'react'
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import brain from '../brain';
-import SearchBar from '../SearchBar';;
+import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import TileWidget from '../TileWidget';
 
 export default function Appliances() {
-
     return (
         <View style={styles.body}>
             <Image style={styles.logo} source={JellyLogo} />
@@ -16,7 +15,7 @@ export default function Appliances() {
             <ScrollView style={styles.widgetContainer}>
                 {brain.map((room, index) => {
                     return (
-                        <TileWidget name={room.name}/>
+                        <TileWidget name={room.name} key={index}/>
                     )
                 })}
             </ScrollView>
@@ -39,9 +38,6 @@ const styles = StyleSheet.create({
     },
     searchBarContainer: {
         marginTop: 20
-    },
-    searchBar: {
-        borderRadius: 20
     },
     paragraph: {
         color: 'white',
