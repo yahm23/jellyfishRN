@@ -1,24 +1,23 @@
 import React from 'react'
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Image } from 'react-native';
+import brain from '../brain';
 import SearchBar from '../SearchBar';
-
 import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
-import bed_front from '../../images/roomIcons/bed-front.png';
-import bed_side from '../../images/roomIcons/bed-side.png';
-import office_chair from '../../images/roomIcons/office-chair.png';
-import oven from '../../images/roomIcons/oven.png';
-import question_mark from '../../images/roomIcons/question-mark.png';
+import questionMark from '../../images/roomIcons/question-mark.png';
+import findIcon from '../iconGenerator';
 
 export default function Appliances() {
 
-    const rooms = [
-        { image: bed_front, name: "Master Bedroom"},
-        { image: bed_side, name: "Olivia's Bedroom" },
-        { image: office_chair, name: "Kitchen" },
-        { image: oven, name: "Office" },
-        { image: question_mark, name: "Not Categorized" }
-    ]
+    const TileWidget = (props) => {
+        return (
+            <View style={styles.widget}>
+                <Image style={styles.widgetImage} source={findIcon(props.name) !== null ? findIcon(props.name) : questionMark} />
+                <Text style={styles.widgetText}>{props.name}</Text>
+                <Image style={styles.arrow} source={arrowIcon} />
+            </View>
+        )
+    }
 
     return (
         <View style={styles.body}>
@@ -26,18 +25,13 @@ export default function Appliances() {
             <View style={styles.searchBarContainer}>
                 <SearchBar />
             </View>
-
-            <View style={styles.widgetContainer}>
-                {rooms.map(room => {
+            <ScrollView style={styles.widgetContainer}>
+                {brain.map((room, index) => {
                     return (
-                        <View style={styles.widget} >
-                            <Image style={styles.widgetImage} source={room.image} />
-                            <Text style={styles.widgetText}>{room.name}</Text>
-                            <Image style={styles.arrow} source={arrowIcon} />
-                        </View>
+                        <TileWidget name={room.name}/>
                     )
                 })}
-            </View>
+            </ScrollView>
         </View>
     )
 }

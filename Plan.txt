@@ -1,0 +1,28 @@
+Server-side
+
+Data: {
+
+    Rooms: {
+        Room_1: {
+            item_1: {
+                energy_consumption: null,
+                unix_time: null
+            },
+            item_2: {
+                energy_consumption: null,
+                unix_time: null
+            }
+        }
+        Room_2: {
+            item_1: {
+                energy_consumption: null,
+                unix_time: null
+            }
+            item_2: {
+                energy_consumption: null,
+                unix_time: null
+            }
+        }
+    }
+
+}
