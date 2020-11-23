@@ -1,23 +1,21 @@
 import React from 'react'
-import { Text, View, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import brain from '../brain';
-import SearchBar from '../SearchBar';
-import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
+import SearchBar from '../SearchBar';;
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
-import questionMark from '../../images/roomIcons/question-mark.png';
-import findIcon from '../iconGenerator';
+import TileWidget from '../TileWidget';
 
 export default function Appliances() {
 
-    const TileWidget = (props) => {
-        return (
-            <View style={styles.widget}>
-                <Image style={styles.widgetImage} source={findIcon(props.name) !== null ? findIcon(props.name) : questionMark} />
-                <Text style={styles.widgetText}>{props.name}</Text>
-                <Image style={styles.arrow} source={arrowIcon} />
-            </View>
-        )
-    }
+    // const TileWidget = (props) => {
+    //     return (
+    //         <View style={styles.widget}>
+    //             <Image style={styles.widgetImage} source={findIcon(props.name) !== null ? findIcon(props.name) : questionMark} />
+    //             <Text style={styles.widgetText}>{props.name}</Text>
+    //             <Image style={styles.arrow} source={arrowIcon} />
+    //         </View>
+    //     )
+    // }
 
     return (
         <View style={styles.body}>
@@ -62,27 +60,5 @@ const styles = StyleSheet.create({
     },
     widgetContainer: {
         marginTop: 40
-    },
-    widget: {
-        marginBottom: 2,
-        height: 120,
-        width: '100%',
-        backgroundColor: '#141414',
-        justifyContent: 'center'
-    },
-    widgetImage: {
-        marginLeft: 20,
-    },
-    arrow: {
-        position: 'absolute',
-        right: 20,
-        height: 25,
-        width: 25
-    },
-    widgetText: {
-        position: 'absolute',
-        marginLeft: 80,
-        color: 'white',
-        fontSize: 16
     }
 })
