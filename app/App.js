@@ -10,6 +10,7 @@ import Account from './components/screens/Account';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
 StatusBar.setBarStyle('light-content', true);
@@ -23,7 +24,7 @@ const MainTabs = createBottomTabNavigator(
             }
         },
         Appliances: {
-            screen: Appliances,
+            screen: AppliancesStack,
             navigationOptions: {
                 tabBarIcon: ({ tintColor }) => <FontAwesomeIcon size={22} icon={faProjectDiagram} color={tintColor} key={'icon_2'} />
             }
@@ -43,7 +44,7 @@ const MainTabs = createBottomTabNavigator(
         Account: {
             screen: Account,
             navigationOptions: {
-                tabBarIcon: ({tintColor }) => <FontAwesomeIcon size={22} icon={faUserAstronaut} color={tintColor} key={'icon_5'} />
+                tabBarIcon: ({ tintColor }) => <FontAwesomeIcon size={22} icon={faUserAstronaut} color={tintColor} key={'icon_5'} />
             }
         }
     },
@@ -54,11 +55,15 @@ const MainTabs = createBottomTabNavigator(
     }
 );
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#1A1A1A',
-        borderTopWidth: 0
+const AppliancesStack = createStackNavigator(
+    {
+        TileWidget: {
+
+        },
+        TileWidgetPage: {
+            
+        }
     }
-})
+)
 
 export default createAppContainer(MainTabs);
