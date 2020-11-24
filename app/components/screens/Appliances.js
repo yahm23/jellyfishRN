@@ -1,24 +1,69 @@
-import React from 'react'
-import { View, ScrollView, StyleSheet, Image } from 'react-native';
+import React, {useEffect, useState} from 'react'
+import { Animated, View, ScrollView,Dimensions, StyleSheet, Image } from 'react-native';
 import brain from '../brain';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import TileWidget from '../TileWidget';
 
 export default function Appliances() {
+    const[scrollY, setScrollY] = useState(new Animated.Value(0))
+    // const[headerHeight, setHeaderHeight]= useState(300)
+
+
+    const HEADER_EXPANDED_HEIGHT = 100
+    const HEADER_COLLAPSED_HEIGHT = 10
+    const { width: SCREEN_WIDTH } = Dimensions.get('screen')
+
+    // setHeaderHeight(
+    //     scrollY.interpolate({
+    //         inputRange: [0, HEADER_EXPANDED_HEIGHT-HEADER_COLLAPSED_HEIGHT],
+    //         outputRange: [HEADER_EXPANDED_HEIGHT, HEADER_COLLAPSED_HEIGHT],
+    //         extrapolate: 'clamp'
+    //       })
+    // )
+    const headerHeight = scrollY.interpolate({
+      inputRange: [0, HEADER_EXPANDED_HEIGHT-HEADER_COLLAPSED_HEIGHT],
+      outputRange: [HEADER_EXPANDED_HEIGHT, HEADER_COLLAPSED_HEIGHT],
+      extrapolate: 'clamp'
+    })
+    // useEffect(() => {
+        
+        
+    // }, [scrollY])
+
+
     return (
         <View style={styles.body}>
-            <Image style={styles.logo} source={JellyLogo} />
-            <View style={styles.searchBarContainer}>
-                <SearchBar />
-            </View>
-            <ScrollView style={styles.widgetContainer}>
+            
+            <Animated.View 
+            style={{transform: [{ translateY: headerHeight }], position: 'absolute', top: 0, left: 0 }} 
+            >
+                <Image style={styles.logo} source={JellyLogo} />
+                <View style={styles.searchBarContainer}>
+                    <SearchBar />
+                </View>
+            </Animated.View>
+
+            <Animated.ScrollView 
+                style={{paddingTop: HEADER_EXPANDED_HEIGHT}}
+                onScroll={Animated.event(
+                    [{ nativeEvent: {
+                        contentOffset: {
+                            y: scrollY
+                        }
+                    }
+                    }],{useNativeDriver: true}
+                )}
+                scrollEventThrottle={16}
+            >
+
+
                 {brain.map((room, index) => {
                     return (
                         <TileWidget name={room.name} key={index}/>
                     )
                 })}
-            </ScrollView>
+            </Animated.ScrollView>
         </View>
     )
 }
@@ -30,7 +75,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     logo: {
-        marginTop: 80,
+        // marginTop: 80,
         height: 35,
         width: 35,
         resizeMode: 'contain',
@@ -45,6 +90,6 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     widgetContainer: {
-        marginTop: 40
+        // marginTop: 40
     }
 })
