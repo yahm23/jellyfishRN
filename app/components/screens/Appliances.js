@@ -36,7 +36,7 @@ export default function Appliances() {
         <View style={styles.body}>
             
             <Animated.View 
-            style={{transform: [{ translateY: headerHeight }], position: 'absolute', top: 0, left: 0 }} 
+            style={{transform: [{ translateY: headerHeight }] }} 
             >
                 <Image style={styles.logo} source={JellyLogo} />
                 <View style={styles.searchBarContainer}>
