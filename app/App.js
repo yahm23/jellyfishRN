@@ -1,67 +1,52 @@
 import React from 'react';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChartLine, faChartPie, faChartNetwork, faPoundSign, faUserAstronaut, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import Dashboard from './components/screens/Dashboard';
 import Appliances from './components/screens/Appliances';
 import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
-import { createAppContainer } from 'react-navigation';
-import { color } from 'react-native-reanimated';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 StatusBar.setBarStyle('light-content', true);
 
-const TabNavigator = createBottomTabNavigator(
+export default function App() {
+    const Tab = createBottomTabNavigator();
 
-    {
-        Dashboard: {
-            screen: Dashboard,
-            navigationOptions: {
-                tabBarIcon: () => (
-                    <FontAwesomeIcon size={25} icon={faChartPie} color='black' key={'icon_1'} />
-                )
-            }
-        },
-        Appliances: {
-            screen: Appliances,
-            navigationOptions: {
-                tabBarIcon: () => (
-                    <FontAwesomeIcon size={25} icon={faProjectDiagram} key={'icon_2'} />
-                )
-            }
-        },
-        Reports: {
-            screen: Reports,
-            navigationOptions: {
-                tabBarIcon: () => (
-                    <FontAwesomeIcon size={25} icon={faChartLine} key={'icon_3'} />
-                )
-            }
-        },
-        Offers: {
-            screen: Offers,
-            navigationOptions: {
-                tabBarIcon: () => (
-                    <FontAwesomeIcon size={25} icon={faPoundSign} key={'icon_4'} />
-                )
-            }
-        },
-        Account: {
-            screen: Account,
-            navigationOptions: {
-                tabBarIcon: () => (
-                    <FontAwesomeIcon size={25} icon={faUserAstronaut} key={'icon_5'} />
-                )
-            }
-        },
-    },
-    {
-        tabBarOptions: {
-            showLabel: false
-        }
+    return (
+        <NavigationContainer>
+            <Tab.Navigator
+                initialRouteName="Feed"
+                tabBarOptions={{
+                    activeTintColor: '#F70B5E',
+                    style: styles.container
+                }}>
+                <Tab.Screen name="Dashboard" component={Dashboard} options={{
+                    tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faChartPie} color={color} key={'icon_1'} />
+                }} />
+                <Tab.Screen name="Appliances" component={Appliances} options={{
+                    tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faProjectDiagram} color={color} key={'icon_2'} />
+                }} />
+                <Tab.Screen name="Reports" component={Reports} options={{
+                    tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faChartLine} color={color} key={'icon_3'} />
+                }} />
+                <Tab.Screen name="Offers" component={Offers} options={{
+                    tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faPoundSign} color={color} key={'icon_4'} />
+                }} />
+                <Tab.Screen name="Account" component={Account} options={{
+                    tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faUserAstronaut} color={color} key={'icon_5'} />
+                }} />
+            </Tab.Navigator>
+        </NavigationContainer>
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#1A1A1A',
+        borderTopWidth: 0
     }
-)
-
-export default createAppContainer(TabNavigator);
+})
