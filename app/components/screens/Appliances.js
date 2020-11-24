@@ -6,24 +6,49 @@ import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import TileWidget from '../TileWidget';
 
 export default function Appliances() {
-    const [scrollY, setScrollY] = useState(new Animated.Value(0))
-    const HEADER_EXPANDED_HEIGHT = 100
-    const HEADER_COLLAPSED_HEIGHT = 10
+    const[scrollY, setScrollY] = useState(new Animated.Value(0))
+    // const[headerHeight, setHeaderHeight]= useState(300)
+
+
+    const HEADER_EXPANDED_HEIGHT = 20
+    const HEADER_COLLAPSED_HEIGHT = 0
     const { width: SCREEN_WIDTH } = Dimensions.get('screen')
+
+
     const headerHeight = scrollY.interpolate({
         inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
         outputRange: [HEADER_EXPANDED_HEIGHT, HEADER_COLLAPSED_HEIGHT],
         extrapolate: 'clamp'
     })
 
+    const heroTitleOpacity = scrollY.interpolate({
+        inputRange: [0, HEADER_EXPANDED_HEIGHT-HEADER_COLLAPSED_HEIGHT],
+        outputRange: [1, 0.01],
+        extrapolate: 'clamp'
+    });
+
+
     return (
         <View style={styles.body}>
-
-            <Animated.View
-                style={{ transform: [{ translateY: headerHeight }], position: 'absolute', top: 0, left: 0 }}
+            
+            <Animated.View 
+            style={
+                {transform: [{ translateY: headerHeight }],
+                position:"relative",
+                top:0,
+                left:0,
+                right:0,
+                height:150
+        }} 
             >
-                <Image style={styles.logo} source={JellyLogo} />
-                <View style={styles.searchBarContainer}>
+                <Animated.Image 
+                style={[styles.logo, {marginTop: 28,transform: [{ scale: heroTitleOpacity }] } ] } 
+                source={JellyLogo} />
+                <View style={styles.searchBarContainer}> 
+                {console.log("heroTitleOpacity")}
+                {console.log(typeof heroTitleOpacity)}
+                {console.log(heroTitleOpacity)}
+                {/* {console.log(headerHeight)} */}
                     <SearchBar />
                 </View>
             </Animated.View>
@@ -42,6 +67,7 @@ export default function Appliances() {
                 scrollEventThrottle={16}
             >
 
+                <TileWidget name={"room.name"} key={2}/>
 
                 {brain.map((room, index) => {
                     return (
@@ -55,7 +81,9 @@ export default function Appliances() {
 
 const styles = StyleSheet.create({
     body: {
-        height: '100%',
+        // height: '100%',
+        // position:"absolute",
+        // top:0,
         width: '100%',
         backgroundColor: '#1A1A1A'
     },
