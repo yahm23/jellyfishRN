@@ -2,27 +2,17 @@ import React from 'react'
 import { PieChart } from 'react-native-svg-charts'
 import { Text } from 'react-native-svg'
 
-class PieChartWithCenteredLabels extends React.PureComponent {
+function DynamicPieChart({pieData}) {
 
-    render() {
-
-        const data = [
-            {
-                key: 1,
-                amount: 50,
-                svg: { fill: '#F70B5E' }
-            },
-            {
-                key: 2,
-                amount: 50,
-                svg: { fill: '#F70B5E' }
-            },
-            {
-                key: 3,
-                amount: 40,
-                svg: { fill: '#F70B5E' }
-            }
-        ]
+        const data = pieData.map((x, i) => {
+            return (
+                {
+                    key: i,
+                    amount: x["addedValue"],
+                    svg: { fill: '#F70B5E' }
+                }
+            )
+        })
 
         const Labels = ({ slices, height, width }) => {
             return slices.map((slice, index) => {
@@ -58,6 +48,6 @@ class PieChartWithCenteredLabels extends React.PureComponent {
         )
     }
 
-}
 
-export default PieChartWithCenteredLabels;
+
+export default DynamicPieChart;

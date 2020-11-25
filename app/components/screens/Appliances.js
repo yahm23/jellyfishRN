@@ -5,8 +5,8 @@ import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import TileWidget from '../TileWidget';
 
-export default function Appliances() {
-    const [scrollY, setScrollY] = useState(new Animated.Value(0));
+export default function Appliances({ navigation }) {
+    const [scrollY, setScrollY] = useState(new Animated.Value(0))
     const HEADER_EXPANDED_HEIGHT = 20
     const HEADER_COLLAPSED_HEIGHT = 0
 
@@ -24,6 +24,7 @@ export default function Appliances() {
 
     return (
         <View style={styles.body}>
+
             <Animated.View
                 style={
                     {
@@ -37,9 +38,11 @@ export default function Appliances() {
                 }>
                 <Animated.Image
                     style={[styles.logo, { marginTop: 28, transform: [{ scale: heroTitleOpacity }] }]}
-                    source={JellyLogo}
-                />
+                    source={JellyLogo} />
                 <View style={styles.searchBarContainer}>
+                    {console.log("heroTitleOpacity")}
+                    {console.log(typeof heroTitleOpacity)}
+                    {console.log(heroTitleOpacity)}
                     <SearchBar />
                 </View>
             </Animated.View>
@@ -56,10 +59,15 @@ export default function Appliances() {
                     }], { useNativeDriver: true })
                 }
                 scrollEventThrottle={16}>
-                
+
                 {brain.map((room, index) => {
                     return (
-                        <TileWidget name={room.name} key={index} />
+                        <TileWidget name={room.name} key={index} onPress={() => {
+                            navigation.navigate('TileWidgetPage', {
+                                name: room.name,
+                                data: room.data
+                            });
+                        }} />
                     )
                 })}
             </Animated.ScrollView>
