@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
 import questionMark from '../images/roomIcons/question-mark.png';
 import findIcon from '../components/iconGenerator';
-import arrowIcon from '../images/Tab_navigation_icons/right-arrow.png'
+import arrowIcon from '../images/Tab_navigation_icons/right-arrow.png';
 
 const TileWidget = (props) => {
     return (

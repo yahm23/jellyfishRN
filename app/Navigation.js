@@ -8,7 +8,6 @@ import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
 import TileWidgetPage from './components/TileWidget';
-import brain from './components/brain';
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
