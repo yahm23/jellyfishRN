@@ -1,16 +1,18 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import questionMark from '../images/roomIcons/question-mark.png';
 import findIcon from '../components/iconGenerator';
-import arrowIcon from '../images/Tab_navigation_icons/right-arrow.png'
+import arrowIcon from '../images/Tab_navigation_icons/right-arrow.png';
 
 const TileWidget = (props) => {
     return (
-        <View style={styles.widget}>
-            <Image style={styles.widgetImage} source={findIcon(props.name) !== null ? findIcon(props.name) : questionMark} />
-            <Text style={styles.widgetText}>{props.name}</Text>
-            <Image style={styles.arrow} source={arrowIcon} />
-        </View>
+        <TouchableOpacity onPress={props.onPress}>
+            <View style={styles.widget}>
+                <Image style={styles.widgetImage} source={findIcon(props.name) !== null ? findIcon(props.name) : questionMark} />
+                <Text style={styles.widgetText}>{props.name}</Text>
+                <Image style={styles.arrow} source={arrowIcon} />
+            </View>
+        </TouchableOpacity>
     )
 }
 

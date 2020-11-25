@@ -5,11 +5,8 @@ import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import TileWidget from '../TileWidget';
 
-export default function Appliances() {
-    const[scrollY, setScrollY] = useState(new Animated.Value(0))
-    // const[headerHeight, setHeaderHeight]= useState(300)
-
-
+export default function Appliances({ navigation }) {
+    const [scrollY, setScrollY] = useState(new Animated.Value(0))
     const HEADER_EXPANDED_HEIGHT = 20
     const HEADER_COLLAPSED_HEIGHT = 0
 
@@ -27,25 +24,25 @@ export default function Appliances() {
 
     return (
         <View style={styles.body}>
-            
-            <Animated.View 
-            style={
-                {transform: [{ translateY: headerHeight }],
-                position:"relative",
-                top:0,
-                left:0,
-                right:0,
-                height:150
-        }} 
-            >
-                <Animated.Image 
-                style={[styles.logo, {marginTop: 28,transform: [{ scale: heroTitleOpacity }] } ] } 
-                source={JellyLogo} />
-                <View style={styles.searchBarContainer}> 
-                {console.log("heroTitleOpacity")}
-                {console.log(typeof heroTitleOpacity)}
-                {console.log(heroTitleOpacity)}
-                {/* {console.log(headerHeight)} */}
+
+            <Animated.View
+                style={
+                    {
+                        transform: [{ translateY: headerHeight }],
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 150
+                    }
+                }>
+                <Animated.Image
+                    style={[styles.logo, { marginTop: 28, transform: [{ scale: heroTitleOpacity }] }]}
+                    source={JellyLogo} />
+                <View style={styles.searchBarContainer}>
+                    {console.log("heroTitleOpacity")}
+                    {console.log(typeof heroTitleOpacity)}
+                    {console.log(heroTitleOpacity)}
                     <SearchBar />
                 </View>
             </Animated.View>
@@ -62,10 +59,15 @@ export default function Appliances() {
                     }], { useNativeDriver: true })
                 }
                 scrollEventThrottle={16}>
-                
+
                 {brain.map((room, index) => {
                     return (
-                        <TileWidget name={room.name} key={index} />
+                        <TileWidget name={room.name} key={index} onPress={() => {
+                            navigation.navigate('TileWidgetPage', {
+                                name: room.name,
+                                data: room.data
+                            });
+                        }} />
                     )
                 })}
             </Animated.ScrollView>
