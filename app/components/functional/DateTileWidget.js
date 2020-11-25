@@ -9,7 +9,8 @@ export default function DateTileWidget(props) {
                 <Text style={styles.numbers}>£{props.cost}</Text>
                 <Text style={styles.numbers}>{props.kwH}kwH</Text>
             </View>
-            <Text style={styles.widgetText}>{props.month}</Text>
+            <Text style={styles.month}>{props.month}</Text>
+            {/* <Text style={{color:'yellow',fontFamily:'Feather'}}>{props.month}</Text> */}
             <Image style={styles.arrow} source={arrowIcon} />
         </View>
     )
@@ -41,11 +42,11 @@ const styles = StyleSheet.create({
         height: 25,
         width: 25
     },
-    widgetText: {
-        // position: 'absolute',
-
-        marginLeft: 40,
+    month: {
+        // marginLeft: 40,
+        marginLeft: 20,
         color: 'white',
-        fontSize: 40
+        fontSize: 40,
+        fontFamily:'AntDesign',
     }
 });
