@@ -100,5 +100,4 @@ export default function AppContainer(){
         </NavigationContainer>
     )
 }
-// 
-// export default AppContainer
+
