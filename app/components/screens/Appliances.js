@@ -12,8 +12,6 @@ export default function Appliances() {
 
     const HEADER_EXPANDED_HEIGHT = 20
     const HEADER_COLLAPSED_HEIGHT = 0
-    const { width: SCREEN_WIDTH } = Dimensions.get('screen')
-
 
     const headerHeight = scrollY.interpolate({
         inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
@@ -22,11 +20,10 @@ export default function Appliances() {
     })
 
     const heroTitleOpacity = scrollY.interpolate({
-        inputRange: [0, HEADER_EXPANDED_HEIGHT-HEADER_COLLAPSED_HEIGHT],
+        inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
         outputRange: [1, 0.01],
         extrapolate: 'clamp'
     });
-
 
     return (
         <View style={styles.body}>
@@ -62,13 +59,10 @@ export default function Appliances() {
                                 y: scrollY
                             }
                         }
-                    }], { useNativeDriver: true }
-                )}
-                scrollEventThrottle={16}
-            >
-
-                <TileWidget name={"room.name"} key={2}/>
-
+                    }], { useNativeDriver: true })
+                }
+                scrollEventThrottle={16}>
+                
                 {brain.map((room, index) => {
                     return (
                         <TileWidget name={room.name} key={index} />
@@ -81,10 +75,8 @@ export default function Appliances() {
 
 const styles = StyleSheet.create({
     body: {
-        // height: '100%',
-        // position:"absolute",
-        // top:0,
         width: '100%',
+        height: '100%',
         backgroundColor: '#1A1A1A'
     },
     logo: {
