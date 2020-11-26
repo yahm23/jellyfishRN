@@ -6,7 +6,7 @@ import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import TileWidget from '../TileWidget';
 import DateTileWidget from '../functional/DateTileWidget';
 
-export default function Reports() {
+export default function Reports({navigation}) {
     const[scrollY, setScrollY] = useState(new Animated.Value(0))
 
     const HEADER_EXPANDED_HEIGHT = 20
@@ -48,6 +48,7 @@ export default function Reports() {
 
 
     ]
+    
     return (
         <View style={styles.body}>
             
@@ -88,7 +89,12 @@ export default function Reports() {
                 
                 {fakeData.map((singleMonth,index) => {
                     return (
-                        <DateTileWidget key={index} month={singleMonth.month} cost={singleMonth.cost} kwH={singleMonth.kwH}/>
+                        <DateTileWidget key={index} month={singleMonth.month} cost={singleMonth.cost} kwH={singleMonth.kwH} onPress={() => {
+                            navigation.navigate('MonthWidgetPage', {
+                                name: singleMonth.month,
+                                data: singleMonth.cost
+                            });
+                        }}/>
                     )
                 })}
             </Animated.ScrollView>

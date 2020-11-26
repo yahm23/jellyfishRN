@@ -8,11 +8,11 @@ import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
 import TileWidgetPage from './components/TileWidgetPage';
+import MonthWidgetPage from './components/functional/MonthWidgetPage';
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import TileWidget from './components/TileWidget';
 
 StatusBar.setBarStyle('light-content', true);
 const Stack = createStackNavigator();
@@ -48,6 +48,8 @@ const ReportsStack = () => {
             }}
         >
             <Stack.Screen name="Reports" component={Reports} />
+            <Stack.Screen name="MonthWidgetPage" component={MonthWidgetPage} />
+
         </Stack.Navigator>
     )
 }

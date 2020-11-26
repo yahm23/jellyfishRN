@@ -1,9 +1,12 @@
 import React from 'react'
 import { Text, View, Image, StyleSheet, Platform } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png'
 
 export default function DateTileWidget(props) {
     return (
+        <TouchableOpacity onPress={props.onPress}>
+
         <View style={styles.widget}>
             <View style={styles.data}>
                 <Text style={styles.numbers}>£{props.cost}</Text>
@@ -13,6 +16,7 @@ export default function DateTileWidget(props) {
             {/* <Text style={{color:'yellow',fontFamily:'Feather'}}>{props.month}</Text> */}
             <Image style={styles.arrow} source={arrowIcon} />
         </View>
+        </TouchableOpacity>
     )
 }
 
