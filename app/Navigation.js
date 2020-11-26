@@ -81,6 +81,7 @@ const Tab = createBottomTabNavigator();
 export default function AppContainer() {
     return (
         <View style={styles.body}>
+            <StatusBar backgroundColor="#1A1A1A"  />
             <View style={styles.statusBarBackground}></View>
             <NavigationContainer>
                 <Tab.Navigator
@@ -99,7 +100,7 @@ export default function AppContainer() {
                     <Tab.Screen name='Offers' component={OffersStack} options={{
                         tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faPoundSign} color={color} key={'icon_4'} />
                     }} />
-                    <Tab.Screen name='faUserAstronaut' component={AccountStack} options={{
+                    <Tab.Screen name='Account' component={AccountStack} options={{
                         tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faUserAstronaut} color={color} key={'icon_5'} />
                     }} />
                 </Tab.Navigator>
