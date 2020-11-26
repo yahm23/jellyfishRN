@@ -27,7 +27,7 @@ function DynamicPieChart({pieData}) {
                         alignmentBaseline={'middle'}
                         fontSize={24}
                         stroke={'black'}
-                        strokeWidth={0.2}
+                        strokeWidth={0}
                     >
                         {data.amount}
                     </Text>

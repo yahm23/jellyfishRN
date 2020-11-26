@@ -3,6 +3,7 @@ import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png';
 import DynamicPieChart from '../DynamicPieChart';
+import LabelledPieChart from '../LabelledPieChart';
 import brain from '../brain';
 
 export default function Dashboard(props) {
@@ -15,7 +16,7 @@ export default function Dashboard(props) {
             res += room.data[key[i]].energy_consumption;
         }
 
-        return {name: room.name, addedValue: res}
+        return { name: room.name, addedValue: res }
     })
 
     return (
@@ -25,7 +26,8 @@ export default function Dashboard(props) {
                 <SearchBar />
             </View>
             <View style={styles.centerBox}>
-                <DynamicPieChart pieData={pieDataArr}/>
+                <LabelledPieChart />
+                {/* <DynamicPieChart pieData={pieDataArr}/> */}
             </View>
         </View>
     )
@@ -56,7 +58,6 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'center'
     }
 })
