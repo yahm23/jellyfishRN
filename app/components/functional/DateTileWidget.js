@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         color: 'white',
         fontSize: 40,
-        fontFamily:'AntDesign',
+        // fontFamily:'Gotham Rounded Light',
     }
 });

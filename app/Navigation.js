@@ -106,8 +106,6 @@ export default function AppContainer() {
     )
 }
 
-<<<<<<< HEAD
-=======
 const styles = StyleSheet.create({
     body: {
         height: '100%',
@@ -118,4 +116,3 @@ const styles = StyleSheet.create({
         backgroundColor: "#1A1A1A",
     }
 })
->>>>>>> e4c71c18ed87bdc220b993312eb4de7ee9a82eeb
