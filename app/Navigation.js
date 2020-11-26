@@ -86,7 +86,11 @@ export default function AppContainer() {
             <NavigationContainer >
                 <Tab.Navigator
                     tabBarOptions={{
-                        style:{backgroundColor: "#141414"},
+                        style:{
+                            borderTopColor: '#333232',
+                            borderTopWidth:1,
+                            backgroundColor: "#141414"
+                        },
                         activeTintColor: '#F70B5E',
                         inactiveTintColor: 'white'
                     }}>
@@ -118,9 +122,7 @@ const styles = StyleSheet.create({
     },
     statusBarBackground: {
         height: (Platform.OS === 'ios') ? 46 : 0,
-        backgroundColor: "#141414",
+        backgroundColor: "#1A1A1A",
     },
-    tabBackground:{
 
-    }
 })
