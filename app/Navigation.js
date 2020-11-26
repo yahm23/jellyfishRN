@@ -83,10 +83,12 @@ export default function AppContainer() {
         <View style={styles.body}>
             <StatusBar backgroundColor="#1A1A1A"  />
             <View style={styles.statusBarBackground}></View>
-            <NavigationContainer>
+            <NavigationContainer >
                 <Tab.Navigator
                     tabBarOptions={{
-                        activeTintColor: '#F70B5E'
+                        style:{backgroundColor: "#141414"},
+                        activeTintColor: '#F70B5E',
+                        inactiveTintColor: 'white'
                     }}>
                     <Tab.Screen name='Dashboard' component={DashboardStack} options={{
                         tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faChartPie} color={color} key={'icon_1'} />
@@ -116,6 +118,9 @@ const styles = StyleSheet.create({
     },
     statusBarBackground: {
         height: (Platform.OS === 'ios') ? 46 : 0,
-        backgroundColor: "#1A1A1A",
+        backgroundColor: "#141414",
+    },
+    tabBackground:{
+
     }
 })
