@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, Platform } from 'react-native';
 import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png'
 
 export default function DateTileWidget(props) {
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         color: 'white',
         fontSize: 40,
-        // fontFamily:'Gotham Rounded Light',
+        // fontFamily:Platform.OS === 'ios'? 'GothamRounded-Light':'GothamRounded-Bold',
+        fontFamily:'GothamRounded-Medium',
     }
 });
