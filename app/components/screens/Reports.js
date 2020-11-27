@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Animated, View, ScrollView, Dimensions, StyleSheet, Image } from 'react-native';
-// import brain from '../brain';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
-import TileWidget from '../TileWidget';
-import DateTileWidget from '../functional/DateTileWidget';
+import { ReportsTileWidget } from '../TileWidget';
 
-export default function Reports() {
-    const[scrollY, setScrollY] = useState(new Animated.Value(0))
+export default function Reports({ navigation }) {
+    const [scrollY, setScrollY] = useState(new Animated.Value(0))
 
     const HEADER_EXPANDED_HEIGHT = 20
     const HEADER_COLLAPSED_HEIGHT = 0
@@ -26,49 +24,50 @@ export default function Reports() {
 
     const fakeData = [
         {
-            month:"May",
-            kwH:270,
-            cost:300
+            month: "May",
+            kwH: 270,
+            cost: 300
         },
         {
-            month:"June",
-            kwH:260,
-            cost:300
+            month: "June",
+            kwH: 260,
+            cost: 300
         },
         {
-            month:"July",
-            kwH:220,
-            cost:300
+            month: "July",
+            kwH: 220,
+            cost: 300
         },
         {
-            month:"August",
-            kwH:230,
-            cost:300
+            month: "August",
+            kwH: 230,
+            cost: 300
         },
 
 
     ]
     return (
         <View style={styles.body}>
-            
-            <Animated.View 
-            style={
-                {transform: [{ translateY: headerHeight }],
-                position:"relative",
-                top:0,
-                left:0,
-                right:0,
-                height:150
-        }} 
+
+            <Animated.View
+                style={
+                    {
+                        transform: [{ translateY: headerHeight }],
+                        position: "relative",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 150
+                    }}
             >
-                <Animated.Image 
-                style={[styles.logo, {marginTop: 28,transform: [{ scale: heroTitleOpacity }] } ] } 
-                source={JellyLogo} />
-                <View style={styles.searchBarContainer}> 
-                {console.log("heroTitleOpacity")}
-                {console.log(typeof heroTitleOpacity)}
-                {console.log(heroTitleOpacity)}
-                {/* {console.log(headerHeight)} */}
+                <Animated.Image
+                    style={[styles.logo, { marginTop: 20, transform: [{ scale: heroTitleOpacity }] }]}
+                    source={JellyLogo} />
+                <View style={styles.searchBarContainer}>
+                    {console.log("heroTitleOpacity")}
+                    {console.log(typeof heroTitleOpacity)}
+                    {console.log(heroTitleOpacity)}
+                    {/* {console.log(headerHeight)} */}
                     <SearchBar />
                 </View>
             </Animated.View>
@@ -85,10 +84,12 @@ export default function Reports() {
                     }], { useNativeDriver: true })
                 }
                 scrollEventThrottle={16}>
-                
-                {fakeData.map((singleMonth,index) => {
+
+                {fakeData.map((singleMonth, index) => {
                     return (
-                        <DateTileWidget key={index} month={singleMonth.month} cost={singleMonth.cost} kwH={singleMonth.kwH}/>
+                        <ReportsTileWidget key={index} month={singleMonth.month} cost={singleMonth.cost} kwH={singleMonth.kwH} onPress={() => {
+                            navigation.navigate('ReportsStackPage');
+                        }} />
                     )
                 })}
             </Animated.ScrollView>
@@ -103,13 +104,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     logo: {
+        marginTop: 40,
         height: 35,
         width: 35,
         resizeMode: 'contain',
         alignSelf: 'center'
     },
     searchBarContainer: {
-        marginTop: 20
+        marginTop: 40
     },
     paragraph: {
         color: 'white',

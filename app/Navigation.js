@@ -7,12 +7,11 @@ import Appliances from './components/screens/Appliances';
 import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
-import TileWidgetPage from './components/TileWidgetPage';
-
+import AppliancesStackPage from './components/stacks/AppliancesStackPage';
+import ReportsStackPage from './components/stacks/ReportsStackPage';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import TileWidget from './components/TileWidget';
 
 StatusBar.setBarStyle('light-content', true);
 const Stack = createStackNavigator();
@@ -36,7 +35,7 @@ const AppliancesStack = () => {
             }}
         >
             <Stack.Screen name="Appliances" component={Appliances} />
-            <Stack.Screen name="TileWidgetPage" component={TileWidgetPage} />
+            <Stack.Screen name="AppliancesStackPage" component={AppliancesStackPage} />
         </Stack.Navigator>
     )
 }
@@ -48,6 +47,7 @@ const ReportsStack = () => {
             }}
         >
             <Stack.Screen name="Reports" component={Reports} />
+            <Stack.Screen name="ReportsStackPage" component={ReportsStackPage} />
         </Stack.Navigator>
     )
 }
@@ -83,7 +83,13 @@ export default function AppContainer() {
             <NavigationContainer>
                 <Tab.Navigator
                     tabBarOptions={{
-                        activeTintColor: '#F70B5E'
+                        activeTintColor: '#F70B5E',
+                        style: {
+                            backgroundColor: '#141414',
+                            borderTopColor: '#141414',
+                            height: 90,
+                            padding: 10
+                        }
                     }}>
                     <Tab.Screen name='Dashboard' component={DashboardStack} options={{
                         tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faChartPie} color={color} key={'icon_1'} />

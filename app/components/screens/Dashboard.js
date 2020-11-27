@@ -3,7 +3,6 @@ import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png';
 import DynamicPieChart from '../DynamicPieChart';
-import LabelledPieChart from '../LabelledPieChart';
 import brain from '../brain';
 
 export default function Dashboard(props) {
@@ -16,18 +15,19 @@ export default function Dashboard(props) {
             res += room.data[key[i]].energy_consumption;
         }
 
-        return { name: room.name, addedValue: res }
+        return { name: room.name, value: res }
     })
 
     return (
         <View style={styles.body}>
-            <Image style={styles.logo} source={JellyLogo} />
-            <View style={styles.searchBarContainer}>
-                <SearchBar />
+            <View style={styles.topBox}>
+                <Image style={styles.logo} source={JellyLogo} />
+                <View style={styles.searchBarContainer}>
+                    <SearchBar />
+                </View>
             </View>
             <View style={styles.centerBox}>
-                <LabelledPieChart />
-                {/* <DynamicPieChart pieData={pieDataArr}/> */}
+                <DynamicPieChart pieData={pieDataArr}/>
             </View>
         </View>
     )
@@ -39,25 +39,26 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#1A1A1A'
     },
+    topBox: {
+        height: 120
+    },
     logo: {
-        marginTop: 48,
+        marginTop: 40,
         height: 35,
         width: 35,
         resizeMode: 'contain',
         alignSelf: 'center'
     },
     searchBarContainer: {
-        marginTop: 20
+        marginTop: 40
     },
     searchBar: {
         borderRadius: 20
     },
     centerBox: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        justifyContent: 'center'
+        marginBottom: 50,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })

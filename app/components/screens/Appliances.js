@@ -3,7 +3,7 @@ import { Animated, View, ScrollView, Dimensions, StyleSheet, Image } from 'react
 import brain from '../brain';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
-import TileWidget from '../TileWidget';
+import { AppliancesTileWidget } from '../TileWidget';
 
 export default function Appliances({ navigation }) {
     const [scrollY, setScrollY] = useState(new Animated.Value(0))
@@ -18,7 +18,7 @@ export default function Appliances({ navigation }) {
 
     const heroTitleOpacity = scrollY.interpolate({
         inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
-        outputRange: [1, 0.01],
+        outputRange: [1, 0.0],
         extrapolate: 'clamp'
     });
 
@@ -37,7 +37,7 @@ export default function Appliances({ navigation }) {
                     }
                 }>
                 <Animated.Image
-                    style={[styles.logo, { marginTop: 28, transform: [{ scale: heroTitleOpacity }] }]}
+                    style={[styles.logo, { marginTop: 20, transform: [{ scale: heroTitleOpacity }] }]}
                     source={JellyLogo} />
                 <View style={styles.searchBarContainer}>
                     {console.log("heroTitleOpacity")}
@@ -62,8 +62,8 @@ export default function Appliances({ navigation }) {
 
                 {brain.map((room, index) => {
                     return (
-                        <TileWidget name={room.name} key={index} onPress={() => {
-                            navigation.navigate('TileWidgetPage', {
+                        <AppliancesTileWidget name={room.name} key={index} onPress={() => {
+                            navigation.navigate('AppliancesStackPage', {
                                 name: room.name,
                                 data: room.data
                             });
@@ -82,13 +82,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     logo: {
+        marginTop: 40,
         height: 35,
         width: 35,
         resizeMode: 'contain',
         alignSelf: 'center'
     },
     searchBarContainer: {
-        marginTop: 20
+        marginTop: 40
     },
     paragraph: {
         color: 'white',

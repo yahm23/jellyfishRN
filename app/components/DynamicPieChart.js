@@ -1,53 +1,34 @@
-import React from 'react'
-import { PieChart } from 'react-native-svg-charts'
-import { Text } from 'react-native-svg'
+import React from 'react';
+import { View, Text } from 'react-native';
+import { VictoryPie } from 'victory-native';
 
-function DynamicPieChart({pieData}) {
 
-        const data = pieData.map((x, i) => {
-            return (
-                {
-                    key: i,
-                    amount: x["addedValue"],
-                    svg: { fill: '#F70B5E' }
-                }
-            )
-        })
+export default function LabelledPieChart({ pieData }) {
 
-        const Labels = ({ slices, height, width }) => {
-            return slices.map((slice, index) => {
-                const { labelCentroid, pieCentroid, data } = slice;
-                return (
-                    <Text
-                        key={index}
-                        x={pieCentroid[ 0 ]}
-                        y={pieCentroid[ 1 ]}
-                        fill={'white'}
-                        textAnchor={'middle'}
-                        alignmentBaseline={'middle'}
-                        fontSize={24}
-                        stroke={'black'}
-                        strokeWidth={0}
-                    >
-                        {data.amount}
-                    </Text>
-                )
-            })
-        }
-
+    const graphicData = pieData.map(obj => {
         return (
-            <PieChart
-                style={{ height: 360, width: 360 }}
-                valueAccessor={({ item }) => item.amount}
-                data={data}
-                spacing={0}
-                outerRadius={'70%'}
-            >
-                <Labels/>
-            </PieChart>
+            {
+                y: obj.value,
+                x: obj.name
+            }
         )
-    }
+    })
 
-
-
-export default DynamicPieChart;
+    return (
+        <View>
+            <VictoryPie
+                data={graphicData}
+                width={320}
+                height={320}
+                innerRadius={82}
+                padAngle={2}
+                colorScale={['#F70B5E']}
+                style={{
+                    labels: {
+                        fill: 'white', fontSize: 18, padding: 35
+                    },
+                }}
+            />
+        </View>
+    )
+}

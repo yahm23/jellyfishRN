@@ -1,16 +1,15 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import DynamicPieChart from './DynamicPieChart';
-import arrowIcon from '../images/Tab_navigation_icons/right-arrow.png';
-import brain from './brain';
+import DynamicPieChart from '../DynamicPieChart';
+import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
 
-export default function TileWidgetPage({ navigation, route }) {
+export default function AppliancesStackPage({ navigation, route }) {
 
     const data = route.params.data;
     const key = Object.keys(data);
     
     pieDataArr = key.map(key => {
-        return { name: data[key], addedValue: data[key].energy_consumption }
+        return { name: key, value: data[key].energy_consumption }
     })
 
     return (
@@ -62,17 +61,15 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     header: {
-        marginTop: 20,
+        marginTop: 46,
         color: 'white',
-        fontSize: 18,
+        fontSize: 24,
+        fontWeight: 'bold',
         textAlign: 'center'
     },
     centerBox: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        marginBottom: 50,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }
