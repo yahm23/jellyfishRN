@@ -80,6 +80,7 @@ export default function AppContainer() {
     return (
         <View style={styles.body}>
             <View style={styles.statusBarBackground}></View>
+            <StatusBar backgroundColor="#1A1A1A"  />
             <NavigationContainer>
                 <Tab.Navigator
                     tabBarOptions={{
@@ -87,7 +88,7 @@ export default function AppContainer() {
                         style: {
                             backgroundColor: '#141414',
                             borderTopColor: '#141414',
-                            height: 90,
+                            // height: 90,
                             padding: 10
                         }
                     }}>
