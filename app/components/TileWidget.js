@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     header: {
         marginLeft: 40,
         color: 'white',
+        fontFamily:'GothamRounded-Bold',
         fontSize: 24,
-        fontWeight: 'bold'
     }
 });
 
