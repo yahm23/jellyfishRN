@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { VictoryPie } from 'victory-native';
+import findIcon from './iconGenerator';
 
 
 export default function LabelledPieChart({ pieData }) {
@@ -14,6 +15,21 @@ export default function LabelledPieChart({ pieData }) {
         )
     })
 
+    const CustomLabel = (props) => {
+        // const labelName = props.data[1].xName;
+        console.log(props.text);
+        return (
+            <View
+                style={{
+                    position: 'absolute',
+                    top: props.y - 12,
+                    left: props.x - 12
+                }}>
+                <Image resizeMode="contain" style={{ width: 26, height: 26 }} source={findIcon(props.text)} />
+            </View>
+        )
+    };
+
     return (
         <View>
             <VictoryPie
@@ -25,9 +41,10 @@ export default function LabelledPieChart({ pieData }) {
                 colorScale={['#F70B5E']}
                 style={{
                     labels: {
-                        fill: 'white', fontSize: 18, padding: 35
+                        fill: 'white', fontSize: 18, padding: 40
                     },
                 }}
+                labelComponent={<CustomLabel />}
             />
         </View>
     )
