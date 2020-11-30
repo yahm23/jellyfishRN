@@ -4,8 +4,8 @@ import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import { ReportsTileWidget } from '../TileWidget';
 
-export default function Reports({ navigation }) {
-    const [scrollY, setScrollY] = useState(new Animated.Value(0))
+export default function Reports({navigation}) {
+    const[scrollY, setScrollY] = useState(new Animated.Value(0))
 
     const HEADER_EXPANDED_HEIGHT = 20
     const HEADER_COLLAPSED_HEIGHT = 0
@@ -46,6 +46,7 @@ export default function Reports({ navigation }) {
 
 
     ]
+    
     return (
         <View style={styles.body}>
 
