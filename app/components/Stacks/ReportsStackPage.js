@@ -2,8 +2,9 @@ import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
 
-export default function AppliancesStackPage({ navigation, route }) {
-
+export default function ReportsStackPage({ navigation, route }) {
+    const data = route.params.data;
+    
     return (
         <View style={styles.body}>
             <TouchableOpacity style={styles.backContainer} onPress={() => {
@@ -12,6 +13,9 @@ export default function AppliancesStackPage({ navigation, route }) {
                 <Image style={styles.arrow} source={arrowIcon} />
                 <Text style={styles.backText}>Back</Text>
             </TouchableOpacity>
+            <Text>{data}</Text>
+
+
         </View>
     )
 }

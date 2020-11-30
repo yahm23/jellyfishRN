@@ -89,7 +89,9 @@ export default function Reports({navigation}) {
                 {fakeData.map((singleMonth, index) => {
                     return (
                         <ReportsTileWidget key={index} month={singleMonth.month} cost={singleMonth.cost} kwH={singleMonth.kwH} onPress={() => {
-                            navigation.navigate('ReportsStackPage');
+                            navigation.navigate('ReportsStackPage',{
+                                data:'poop'
+                            });
                         }} />
                     )
                 })}
