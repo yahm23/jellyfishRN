@@ -84,6 +84,7 @@ export default function AppContainer() {
             <NavigationContainer>
                 <Tab.Navigator
                     tabBarOptions={{
+                        keyboardHidesTabBar: true,
                         activeTintColor: '#F70B5E',
                         style: {
                             backgroundColor: '#141414',
