@@ -1,5 +1,7 @@
 const imagePath = '../images/roomIcons/';
 
+// Create images for all names (from fontAwesome)
+
 const findIcon = (name) => {
     const nameLowerCase = name.toLowerCase();
 

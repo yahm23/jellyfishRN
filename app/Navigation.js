@@ -12,6 +12,7 @@ import ReportsStackPage from './components/stacks/ReportsStackPage';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import CarouselTest from './components/CarouselTest';
 
 StatusBar.setBarStyle('light-content', true);
 const Stack = createStackNavigator();
@@ -23,7 +24,8 @@ const DashboardStack = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="Dashboard" component={Dashboard} />
+            {/* Change back to dashboard */}
+            <Stack.Screen name="Dashboard" component={CarouselTest} />
         </Stack.Navigator>
     )
 }

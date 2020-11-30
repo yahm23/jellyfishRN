@@ -16,14 +16,13 @@ export default function LabelledPieChart({ pieData }) {
     })
 
     const CustomLabel = (props) => {
-        // const labelName = props.data[1].xName;
-        console.log(props.text);
         return (
             <View
                 style={{
                     position: 'absolute',
-                    top: props.y - 12,
-                    left: props.x - 12
+                    top: props.y - 11,
+                    left: props.x - 11,
+                    opacity: 0.8
                 }}>
                 <Image resizeMode="contain" style={{ width: 26, height: 26 }} source={findIcon(props.text)} />
             </View>
