@@ -1,22 +1,22 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
+import BackButton from '../functional/BackButton';
 
 export default function ReportsStackPage({ navigation, route }) {
     const data = route.params.data;
     
     return (
         <View style={styles.body}>
-            <TouchableOpacity style={styles.backContainer} onPress={() => {
-                navigation.navigate('Reports')
-            }}>
-                <Image style={styles.arrow} source={arrowIcon} />
-                <Text style={styles.backText}>Back</Text>
-            </TouchableOpacity>
-            <Text>{data}</Text>
+            <BackButton onPressNav={()=>navigation.navigate('Reports')}/>
 
+            <View style={styles.contentContainer}>
+
+                <Text>HELLO</Text>
+            </View>
 
         </View>
+        
     )
 }
 
@@ -24,33 +24,20 @@ const styles = StyleSheet.create({
     body: {
         height: '100%',
         width: '100%',
-        backgroundColor: '#1A1A1A'
+        backgroundColor: '#1A1A1A',
     },
     paragraph: {
         color: 'white',
         fontSize: 16,
         textAlign: 'center'
     },
-    backContainer: {
-        marginTop: 20,
-        flexDirection: "row",
-        zIndex: 99
-    },
-    backText: {
-        color: 'white',
-        fontSize: 16,
-        top: 2,
-        left: 10
-    },
-    arrow: {
-        marginLeft: 25,
-        height: 25,
-        width: 25,
-        transform: [{ rotate: '180deg' }]
-    },
+    
     contentContainer: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     header: {
         marginTop: 46,

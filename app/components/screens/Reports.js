@@ -25,23 +25,47 @@ export default function Reports({navigation}) {
     const fakeData = [
         {
             month: "May",
-            kwH: 270,
-            cost: 300
+            total_kwH: 270,
+            total_cost: 300,
+            days:[
+                {kwh:12,cost:10},
+                {kwh:6,cost:5},
+                {kwh:18,cost:15},
+                {kwh:24,cost:20},
+            ]
         },
         {
             month: "June",
-            kwH: 260,
-            cost: 300
+            total_kwH: 260,
+            total_cost: 300,
+            days:[
+                {kwh:12,cost:10},
+                {kwh:6,cost:5},
+                {kwh:18,cost:15},
+                {kwh:24,cost:20},
+            ]
         },
         {
             month: "July",
-            kwH: 220,
-            cost: 300
+            total_kwH: 220,
+            total_cost: 300,
+            days:[
+                {kwh:12,cost:10},
+                {kwh:6,cost:5},
+                {kwh:18,cost:15},
+                {kwh:24,cost:20},
+            ]
         },
         {
             month: "August",
-            kwH: 230,
-            cost: 300
+            total_kwH: 230,
+            total_cost: 300,
+            days:[
+                {kwh:12,cost:10},
+                {kwh:6,cost:5},
+                {kwh:18,cost:15},
+                {kwh:24,cost:20},
+            ]
         },
 
 
@@ -88,7 +112,7 @@ export default function Reports({navigation}) {
 
                 {fakeData.map((singleMonth, index) => {
                     return (
-                        <ReportsTileWidget key={index} month={singleMonth.month} cost={singleMonth.cost} kwH={singleMonth.kwH} onPress={() => {
+                        <ReportsTileWidget key={index} month={singleMonth.month} cost={singleMonth.total_cost} kwH={singleMonth.total_kwH} onPress={() => {
                             navigation.navigate('ReportsStackPage',{
                                 data:'poop'
                             });
