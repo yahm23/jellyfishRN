@@ -21,7 +21,7 @@ export default function LabelledPieChart({ pieData }) {
                 width={320}
                 height={320}
                 innerRadius={82}
-                padAngle={2}
+                padAngle={1}
                 colorScale={['#F70B5E']}
                 style={{
                     labels: {
