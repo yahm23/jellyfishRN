@@ -28,10 +28,10 @@ export default function Reports({navigation}) {
             total_kwH: 270,
             total_cost: 300,
             days:[
-                {kwh:12,cost:10},
-                {kwh:6,cost:5},
-                {kwh:18,cost:15},
-                {kwh:24,cost:20},
+                { date:'1/05/20', kwh:12,cost:10},
+                { date:'2/05/20', kwh:6,cost:5},
+                { date:'3/05/20', kwh:18,cost:15},
+                { date:'4/05/20', kwh:24,cost:20},
             ]
         },
         {
@@ -39,10 +39,10 @@ export default function Reports({navigation}) {
             total_kwH: 260,
             total_cost: 300,
             days:[
-                {kwh:12,cost:10},
-                {kwh:6,cost:5},
-                {kwh:18,cost:15},
-                {kwh:24,cost:20},
+                { date:'1/06/20' ,kwh:12,cost:10},
+                { date:'1/06/20' ,kwh:6,cost:5},
+                { date:'1/06/20' ,kwh:18,cost:15},
+                { date:'1/06/20' ,kwh:24,cost:20},
             ]
         },
         {
@@ -50,10 +50,10 @@ export default function Reports({navigation}) {
             total_kwH: 220,
             total_cost: 300,
             days:[
-                {kwh:12,cost:10},
-                {kwh:6,cost:5},
-                {kwh:18,cost:15},
-                {kwh:24,cost:20},
+                { date:'1/06/20' ,kwh:12,cost:10},
+                { date:'1/06/20' ,kwh:6,cost:5},
+                { date:'1/06/20' ,kwh:18,cost:15},
+                { date:'1/06/20' ,kwh:24,cost:20},
             ]
         },
         {
@@ -61,10 +61,10 @@ export default function Reports({navigation}) {
             total_kwH: 230,
             total_cost: 300,
             days:[
-                {kwh:12,cost:10},
-                {kwh:6,cost:5},
-                {kwh:18,cost:15},
-                {kwh:24,cost:20},
+                { date:'1/06/20' ,kwh:12,cost:10},
+                { date:'1/06/20' ,kwh:6,cost:5},
+                { date:'1/06/20' ,kwh:18,cost:15},
+                { date:'1/06/20' ,kwh:24,cost:20},
             ]
         },
 
@@ -114,7 +114,8 @@ export default function Reports({navigation}) {
                     return (
                         <ReportsTileWidget key={index} month={singleMonth.month} cost={singleMonth.total_cost} kwH={singleMonth.total_kwH} onPress={() => {
                             navigation.navigate('ReportsStackPage',{
-                                data:'poop'
+                                month: singleMonth.month,
+                                days: singleMonth.days
                             });
                         }} />
                     )
