@@ -22,31 +22,19 @@ export default function Dashboard(props) {
         return { name: room.name, value: res }
     })
 
-    const Piechart = () => {
-        return (
-            <View style={styles.body}>
-                <View style={styles.topBox}>
-                    <Image style={styles.logo} source={JellyLogo} />
-                    <View style={styles.searchBarContainer}>
-                        <SearchBar />
-                    </View>
-                </View>
-                <View style={styles.centerBox}>
-                    <DynamicPieChart pieData={pieDataArr} />
-                </View>
-            </View>
-        )
-    }
-
     const [state, setState] = useState({
         activeSlide: 0,
-        carouselItems: ['1', '2', '3', '4']
+        carouselItems: [
+            <DynamicPieChart pieData={pieDataArr} />,
+            <DynamicPieChart pieData={pieDataArr} />,
+            <DynamicPieChart pieData={pieDataArr} />
+        ]
     });
 
     function renderItem({ item, index }) {
         return (
-            <View style={{ backgroundColor: '#1A1A1A', height: '100%', width: '100%' }}>
-                <Text style={{ color: 'black' }}>{item}</Text>
+            <View style={styles.centerBox}>
+                {item}
             </View>
         )
     }
@@ -62,7 +50,7 @@ export default function Dashboard(props) {
                     width: 10,
                     height: 10,
                     borderRadius: 5,
-                    marginHorizontal: 8,
+                    marginHorizontal: 2,
                     backgroundColor: 'rgba(255, 255, 255, 0.92)'
                 }}
                 inactiveDotStyle={{
@@ -75,15 +63,23 @@ export default function Dashboard(props) {
     }
     return (
         <View>
-            <Carousel
-                data={state.carouselItems}
-                renderItem={renderItem}
-                inactiveSlideScale={1}
-                sliderWidth={windowWidth}
-                itemWidth={windowWidth}
-                onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
-            />
-            {getPagination()}
+            <View style={styles.body}>
+                <View style={styles.topBox}>
+                    <Image style={styles.logo} source={JellyLogo} />
+                    <View style={styles.searchBarContainer}>
+                        <SearchBar />
+                    </View>
+                </View>
+                <Carousel
+                    data={state.carouselItems}
+                    renderItem={renderItem}
+                    inactiveSlideScale={1}
+                    sliderWidth={windowWidth}
+                    itemWidth={windowWidth}
+                    onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
+                />
+                {getPagination()}
+            </View>
         </View>
     );
 }
@@ -95,7 +91,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     topBox: {
-        height: 120
+        // height: 120
     },
     logo: {
         marginTop: 40,
@@ -111,7 +107,7 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     centerBox: {
-        marginBottom: 50,
+        marginBottom: 85,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
