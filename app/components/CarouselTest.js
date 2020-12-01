@@ -1,72 +1,58 @@
-import React from 'react';
-import {
-    Text,
-    View,
-    SafeAreaView
-} from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, SafeAreaView, Dimensions } from 'react-native';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 
-import Carousel from 'react-native-snap-carousel';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
-export default class App extends React.Component {
+export default function App() {
 
+    const [state, setState] = useState({
+        activeSlide: 0,
+        carouselItems: ['1', '2', '3', '4']
+    });
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeIndex: 0,
-            carouselItems: [
-                {
-                    title: "Item 1",
-                    text: "Text 1",
-                },
-                {
-                    title: "Item 2",
-                    text: "Text 2",
-                },
-                {
-                    title: "Item 3",
-                    text: "Text 3",
-                },
-                {
-                    title: "Item 4",
-                    text: "Text 4",
-                },
-                {
-                    title: "Item 5",
-                    text: "Text 5",
-                },
-            ]
-        }
-    }
-
-    _renderItem({ item, index }) {
+    function renderItem({ item, index }) {
         return (
-            <View style={{
-                backgroundColor: 'floralwhite',
-                borderRadius: 5,
-                height: '80%'
-            }}>
-                <Text style={{ fontSize: 30 }}>{item.title}</Text>
-                <Text>{item.text}</Text>
+            <View style={{backgroundColor: '#1A1A1A', height: '100%', width: '100%'}}>
+                <Text style={{color: 'black'}}>{item}</Text>
             </View>
-
         )
     }
 
-    render() {
+    function getPagination() {
+        const { carouselItems, activeSlide } = state;
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'rebeccapurple', paddingTop: 50, }}>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                    <Carousel
-                        layout={'stack'}
-                        ref={ref => this.carousel = ref}
-                        data={this.state.carouselItems}
-                        sliderWidth={400}
-                        itemWidth={400}
-                        renderItem={this._renderItem}
-                        onSnapToItem={index => this.setState({ activeIndex: index })} />
-                </View>
-            </SafeAreaView>
+            <Pagination
+                dotsLength={carouselItems.length}
+                activeDotIndex={activeSlide}
+                containerStyle={{ backgroundColor: 'transparent', position: 'absolute', bottom: 0, left: 0, right: 0}}
+                dotStyle={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: 5,
+                    marginHorizontal: 8,
+                    backgroundColor: 'rgba(255, 255, 255, 0.92)'
+                }}
+                inactiveDotStyle={{
+                    // Define styles for inactive dots here
+                }}
+                inactiveDotOpacity={0.4}
+                inactiveDotScale={0.6}
+            />
         );
     }
+    return (
+        <View>
+            <Carousel
+                data={state.carouselItems}
+                renderItem={renderItem}
+                inactiveSlideScale={1}
+                sliderWidth={windowWidth}
+                itemWidth={windowWidth}
+                onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
+            />
+            {getPagination()}
+        </View>
+    );
 }
