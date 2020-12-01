@@ -23,6 +23,7 @@ export default function ReportsStackPage({ navigation, route }) {
     const maxPower = Math.max.apply(Math, dataArray.map(function(day) { return day.y}))
     const maxDays = Math.max.apply(Math, dataArray.map(function(day) { return day.x}))
     const roundedMaxPower = (Math.ceil(maxPower / 10) * 10)
+
     return (
         <View style={styles.body}>
             <BackButton onPressNav={()=>navigation.navigate('Reports')}/>
@@ -39,8 +40,8 @@ export default function ReportsStackPage({ navigation, route }) {
                 >
                 <VerticalAxis tickCount={4} theme={{ labels: {label:{color:'white'}}}} />
                 <HorizontalAxis tickValues={[ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]} theme={{ labels: {label:{color:'white'}}}} />
-                <Area theme={{ gradient: { from: { color: '#ffa502' }, to: { color: '#ffa502', opacity: 0.4 } }}} />
-                <Line theme={{ stroke: { color: '#ffa502', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }} }} />
+                <Area theme={{ gradient: { from: {color: '#F70B5E', opacity: 0.1  }, to: { color: '#1A1A1A', opacity: 0.1 } }}} />
+                <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }} }} />
             </Chart>
 
 
@@ -57,12 +58,7 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         display:'flex',
-        // width: '80%',
         height:200,
-        // alignSelf: 'center',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // height: 200,
         paddingTop: 100 
     },
     paragraph: {
