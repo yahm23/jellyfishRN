@@ -58,9 +58,9 @@ export default function Reports({navigation}) {
             total_cost: 300,
             days:[
                 { date:'1/06/20' ,kwh:12,cost:10},
-                { date:'1/06/20' ,kwh:6,cost:5},
-                { date:'1/06/20' ,kwh:18,cost:15},
-                { date:'1/06/20' ,kwh:24,cost:20},
+                { date:'2/06/20' ,kwh:6,cost:5},
+                { date:'3/06/20' ,kwh:18,cost:15},
+                { date:'4/06/20' ,kwh:24,cost:20},
             ]
         },
         {
