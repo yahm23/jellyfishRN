@@ -25,23 +25,65 @@ export default function Reports({navigation}) {
     const fakeData = [
         {
             month: "May",
-            kwH: 270,
-            cost: 300
+            total_kwH: 270,
+            total_cost: 300,
+            days:[
+                { date:'1/05/20', kwh:12,cost:10},
+                { date:'2/05/20', kwh:6,cost:5},
+                { date:'3/05/20', kwh:18,cost:15},
+                { date:'4/05/20', kwh:24,cost:20},
+                { date:'5/05/20', kwh:24,cost:20},
+                { date:'6/05/20', kwh:18,cost:15},
+                { date:'7/05/20', kwh:24,cost:20},
+                { date:'8/05/20', kwh:18,cost:15},
+                { date:'9/05/20', kwh:13,cost:20},
+                { date:'10/05/20', kwh:2,cost:20},
+                { date:'11/05/20', kwh:5,cost:20},
+                { date:'12/05/20', kwh:21,cost:20},
+                { date:'13/05/20', kwh:23,cost:20},
+                { date:'14/05/20', kwh:16,cost:20},
+                { date:'15/05/20', kwh:18,cost:20},
+                { date:'16/05/20', kwh:12,cost:20},
+                { date:'17/05/20', kwh:21,cost:20},
+                { date:'18/05/20', kwh:4,cost:20},
+                { date:'19/05/20', kwh:5,cost:20},
+                { date:'21/05/20', kwh:13,cost:20},
+                { date:'22/05/20', kwh:15,cost:20},
+                { date:'23/05/20', kwh:23,cost:20},
+            ]
         },
         {
             month: "June",
-            kwH: 260,
-            cost: 300
+            total_kwH: 260,
+            total_cost: 300,
+            days:[
+                { date:'1/06/20' ,kwh:12,cost:10},
+                { date:'2/06/20' ,kwh:6,cost:5},
+                { date:'3/06/20' ,kwh:18,cost:15},
+                { date:'4/06/20' ,kwh:24,cost:20},
+            ]
         },
         {
             month: "July",
-            kwH: 220,
-            cost: 300
+            total_kwH: 220,
+            total_cost: 300,
+            days:[
+                { date:'1/06/20' ,kwh:12,cost:10},
+                { date:'1/06/20' ,kwh:6,cost:5},
+                { date:'1/06/20' ,kwh:18,cost:15},
+                { date:'1/06/20' ,kwh:24,cost:20},
+            ]
         },
         {
             month: "August",
-            kwH: 230,
-            cost: 300
+            total_kwH: 230,
+            total_cost: 300,
+            days:[
+                { date:'1/06/20' ,kwh:12,cost:10},
+                { date:'1/06/20' ,kwh:6,cost:5},
+                { date:'1/06/20' ,kwh:18,cost:15},
+                { date:'1/06/20' ,kwh:24,cost:20},
+            ]
         },
 
 
@@ -88,8 +130,11 @@ export default function Reports({navigation}) {
 
                 {fakeData.map((singleMonth, index) => {
                     return (
-                        <ReportsTileWidget key={index} month={singleMonth.month} cost={singleMonth.cost} kwH={singleMonth.kwH} onPress={() => {
-                            navigation.navigate('ReportsStackPage');
+                        <ReportsTileWidget key={index} month={singleMonth.month} cost={singleMonth.total_cost} kwH={singleMonth.total_kwH} onPress={() => {
+                            navigation.navigate('ReportsStackPage',{
+                                month: singleMonth.month,
+                                days: singleMonth.days
+                            });
                         }} />
                     )
                 })}
