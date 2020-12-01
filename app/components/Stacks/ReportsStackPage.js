@@ -1,47 +1,48 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet,Dimensions } from 'react-native';
 import BackButton from '../functional/BackButton';
-// import {LineChart} from "react-native-chart-kit";
-import { LineChart, Grid, XAxis } from 'react-native-svg-charts'
+import { Chart, Line, Area, HorizontalAxis, VerticalAxis } from 'react-native-responsive-linechart'
+
 
 export default function ReportsStackPage({ navigation, route }) {
     const month = route.params.month;
 
     const days = route.params.days;
+
     const energyArray = days.map(day=>{
         return day.kwh
     })
-    const datesArray = days.map(day=>{
-        return day.date
+    const dataArray = days.map(day=>{
+        return (
+            {
+                x: parseInt(day.date.split('/')[0]),
+                y: day.kwh
+            }
+            )
     })
-    const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
-
-
+    const maxPower = Math.max.apply(Math, dataArray.map(function(day) { return day.y}))
+    const maxDays = Math.max.apply(Math, dataArray.map(function(day) { return day.x}))
+    const roundedMaxPower = (Math.ceil(maxPower / 10) * 10)
     return (
         <View style={styles.body}>
             <BackButton onPressNav={()=>navigation.navigate('Reports')}/>
-            <Text style={styles.paragraph}>{month} in review{console.log(datesArray)}</Text>
-
-            <View style={styles.contentContainer}>
-            {/* <View style={{ height: 200, padding: 20 }}> */}
-                <LineChart
-                    style={{ width:400,height:400 }}
-                    data={data}
-                    gridMin={0}
-                    // contentInset={{ top: 10, bottom: 10 }}
-                    svg={{ stroke: 'rgb(134, 65, 244)' }}
+            {/* {console.log(energyArray)} */}
+            {console.log(dataArray)}
+            <Chart
+                // style={{ height: 200, width: 400 }}
+                style={styles.contentContainer}
+                data={dataArray}
+                padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
+                yDomain={{ min: 0, max: roundedMaxPower }}
+                xDomain={{ min: 1, max: maxDays +1 }}
+                viewport={{ size: { width: 4 } }}
                 >
-                    <Grid />
-                </LineChart>
-                <XAxis
-                    style={{width:400,height:400, marginHorizontal: -10 }}
-                    data={data}
-                    formatLabel={(value, index) => index}
-                    // contentInset={{ left: 10, right: 10 }}
-                    svg={{ fontSize: 10, fill: 'black' }}
-                />
-            {/* </View> */}
-            </View>
+                <VerticalAxis tickCount={4} theme={{ labels: {label:{color:'white'}}}} />
+                <HorizontalAxis tickValues={[ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]} theme={{ labels: {label:{color:'white'}}}} />
+                <Area theme={{ gradient: { from: { color: '#ffa502' }, to: { color: '#ffa502', opacity: 0.4 } }}} />
+                <Line theme={{ stroke: { color: '#ffa502', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }} }} />
+            </Chart>
+
 
         </View>
         
@@ -56,12 +57,12 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         display:'flex',
-        width: '100%',
-        height: '100%',
+        // width: '80%',
+        height:200,
         // alignSelf: 'center',
-        alignItems: 'center',
+        // alignItems: 'center',
         // justifyContent: 'center',
-        height: 200,
+        // height: 200,
         paddingTop: 100 
     },
     paragraph: {
