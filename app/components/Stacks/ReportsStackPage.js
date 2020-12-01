@@ -24,11 +24,25 @@ export default function ReportsStackPage({ navigation, route }) {
     const maxDays = Math.max.apply(Math, dataArray.map(function(day) { return day.x}))
     const roundedMaxPower = (Math.ceil(maxPower / 10) * 10)
 
+    const getOrdinalSuffix = (number) => {
+            if (number> 3 && number< 21) return 'th';
+        switch (number% 10) {
+            case 1:  return "st";
+            case 2:  return "nd";
+            case 3:  return "rd";
+            default: return "th";
+        }
+    };
+    const dayTicks = days.map(day=>{
+        return `${day.date.split('/')[0]}`
+    })
+
+  
+
     return (
         <View style={styles.body}>
             <BackButton onPressNav={()=>navigation.navigate('Reports')}/>
-            {/* {console.log(energyArray)} */}
-            {console.log(dataArray)}
+            <Text style={styles.paragraph}>{month} in Review</Text>
             <Chart
                 // style={{ height: 200, width: 400 }}
                 style={styles.contentContainer}
@@ -38,8 +52,8 @@ export default function ReportsStackPage({ navigation, route }) {
                 xDomain={{ min: 1, max: maxDays +1 }}
                 viewport={{ size: { width: 4 } }}
                 >
-                <VerticalAxis tickCount={4} theme={{ labels: {label:{color:'white'}}}} />
-                <HorizontalAxis tickValues={[ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]} theme={{ labels: {label:{color:'white'}}}} />
+                <VerticalAxis tickCount={4} theme={{ labels: {formatter: (v) => String(v).concat('kWh'), label:{color:'white'}}}} />
+                <HorizontalAxis tickValues={dayTicks} theme={{ labels: {formatter: (v) => String(v).concat(getOrdinalSuffix(v)), label:{color:'white'}}}} />
                 <Area theme={{ gradient: { from: {color: '#F70B5E', opacity: 0.1  }, to: { color: '#1A1A1A', opacity: 0.1 } }}} />
                 <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }} }} />
             </Chart>
