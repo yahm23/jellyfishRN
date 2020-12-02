@@ -2,78 +2,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChartLine, faChartPie, faPoundSign, faUserAstronaut, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 import { StatusBar, View, StyleSheet } from 'react-native';
-import Dashboard from './components/screens/Dashboard';
-import Appliances from './components/screens/Appliances';
-import Reports from './components/screens/Reports';
-import Offers from './components/screens/Offers';
-import Account from './components/screens/Account';
-import AppliancesStackPage from './components/stacks/AppliancesStackPage';
-import ReportsStackPage from './components/stacks/Reports/ReportsStackPage';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { DashboardStack, AppliancesStack, ReportsStack, OffersStack, AccountStack} from './components/functional/StackExporter'
 
 StatusBar.setBarStyle('light-content', true);
-const Stack = createStackNavigator();
 
-const DashboardStack = () => {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            {/* Change back to dashboard */}
-            <Stack.Screen name="Dashboard" component={Dashboard} />
-        </Stack.Navigator>
-    )
-}
-const AppliancesStack = () => {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <Stack.Screen name="Appliances" component={Appliances} />
-            <Stack.Screen name="AppliancesStackPage" component={AppliancesStackPage} />
-        </Stack.Navigator>
-    )
-}
-const ReportsStack = () => {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <Stack.Screen name="Reports" component={Reports} />
-            <Stack.Screen name="ReportsStackPage" component={ReportsStackPage} />
-        </Stack.Navigator>
-    )
-}
-const OffersStack = () => {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <Stack.Screen name="Offers" component={Offers} />
-        </Stack.Navigator>
-    )
-}
-const AccountStack = () => {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <Stack.Screen name="Account" component={Account} />
-        </Stack.Navigator>
-    )
-}
 
 const Tab = createBottomTabNavigator();
 
