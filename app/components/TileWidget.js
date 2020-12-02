@@ -10,7 +10,13 @@ const AppliancesTileWidget = (props) => {
             <View style={styles.widget}>
                 <View style={styles.detailsFlex}>
                     <Image style={styles.widgetImage} source={findIcon(props.name) !== null ? findIcon(props.name) : questionMark} />
-                    <Text style={styles.widgetText}>{props.name}</Text>
+                    <View>
+                        <Text style={styles.widgetText}>{props.name}</Text>
+                        <View style={styles.activeBoxs}>
+                            <Text style={[styles.activityText, styles.active]}>3 active</Text>
+                            <Text style={[styles.activityText, styles.inActive]}>2 inactive</Text>
+                        </View>
+                    </View>
                 </View>
                 <Image style={styles.arrow} source={arrowIcon} />
             </View>
@@ -65,15 +71,48 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     widgetText: {
+        fontFamily:'GothamRounded-Medium',
         marginLeft: 30,
         color: 'white',
-        fontSize: 16
+        fontSize: 18
     },
     header: {
         marginLeft: 40,
         color: 'white',
         fontFamily:'GothamRounded-Bold',
         fontSize: 24,
+    },
+    activityText:{
+        fontFamily:'GothamRounded-Bold',
+        marginLeft: 30,
+        justifyContent:'center',
+        color: 'white',
+        fontSize: 15,
+        width:100,
+        height:40,
+        paddingVertical:10,
+        paddingHorizontal:10,
+        textAlign:'center',
+        borderRadius:8,
+        borderWidth:1,
+        
+    },
+    active:{
+        backgroundColor:'#091D03',
+        borderColor:'#1B6E02',
+        
+    },
+    inActive:{
+        backgroundColor:'#1D1D1D',
+        borderColor:'#404040',
+        marginLeft: 10,
+
+    },
+    activeBoxs:{
+        paddingTop:10,
+        display:'flex',
+        justifyContent:'center',
+        flexDirection:'row'
     }
 });
 
