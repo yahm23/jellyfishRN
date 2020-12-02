@@ -57,7 +57,7 @@ export default function Dashboard(props) {
                     // Define styles for inactive dots here
                 }}
                 inactiveDotOpacity={0.4}
-                inactiveDotScale={0.6}
+                inactiveDotScale={0.4}
             />
         );
     }

@@ -90,8 +90,9 @@ export default function AppContainer() {
                         style: {
                             backgroundColor: '#141414',
                             borderTopColor: '#141414',
-                            // height: 90,
-                            padding: 10
+                            height: (Platform.OS === 'ios') ? 85 : 60,
+                            padding: (Platform.OS === 'ios') ? 10 : 0,
+                            paddingBottom: (Platform.OS === 'ios') ? 30 : 7,
                         }
                     }}>
                     <Tab.Screen name='Dashboard' component={DashboardStack} options={{

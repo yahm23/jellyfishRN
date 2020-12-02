@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import DynamicPieChart from '../DynamicPieChart';
-import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
 import BackButton from '../functional/BackButton';
 
 export default function AppliancesStackPage({ navigation, route }) {

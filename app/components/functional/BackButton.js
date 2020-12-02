@@ -6,7 +6,6 @@ import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
 
 export default function BackButton(props) {
     return (
-        <View style={styles.body}>
             <TouchableOpacity style={styles.backContainer} 
             onPress={() => {
                 props.onPressNav()
@@ -15,23 +14,15 @@ export default function BackButton(props) {
                 <Image style={styles.arrow} source={arrowIcon} />
                 <Text style={styles.backText}>Back</Text>
             </TouchableOpacity>
-        </View>
-
     )
 }
 
 const styles = StyleSheet.create({
-    body: {
-        position:"absolute",
-        zIndex:4,
-        top:0,
-        height: '10%',
-        backgroundColor: '#1A1A1A',
-    },
     backContainer: {
+        height: '10%',
+        zIndex: 99,
         marginTop: 20,
-        flexDirection: "row",
-        zIndex: 99
+        flexDirection: "row"
     },
     backText: {
         color: 'white',
