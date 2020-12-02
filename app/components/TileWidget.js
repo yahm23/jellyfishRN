@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
         width:100,
-        height:40,
         paddingVertical:10,
         paddingHorizontal:10,
         textAlign:'center',
@@ -110,8 +109,9 @@ const styles = StyleSheet.create({
     },
     activeBoxs:{
         paddingTop:10,
-        display:'flex',
+        flex: 0,
         justifyContent:'center',
+        alignContent: 'center',
         flexDirection:'row'
     }
 });
