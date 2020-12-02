@@ -73,11 +73,11 @@ export default function ReportsStackPage({ navigation, route }) {
                     theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}
                     tooltipComponent={<Tooltip theme={{ formatter: ({ x,y }) => String(y).concat('\n\n').concat(String(x)) }} />}    
                 /> */}
-                {/* <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooltip theme={{ labels: {formatter: ({V}) => String(V.y).concat(String(V.x))  }}} />}/> */}
-                <Line onTooltipSelect={(value)=>daySetter(value)} theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooly/>}/>
+                {/* <Line onTooltipSelect={(value)=>daySetter(value)} theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooly/>}/> */}
+                <Line onTooltipSelect={(value)=>daySetter(value)} theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}} />
             </Chart>
 
-            <Text style={styles.header}>{ordinalDay} is the day</Text>
+            <Text style={styles.header}>{ordinalDay} is the day with total energy of </Text>
         </View>
         
     )
