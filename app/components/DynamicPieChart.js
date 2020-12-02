@@ -48,6 +48,7 @@ export default function LabelledPieChart({ pieData }) {
                     }}
                     labelComponent={<CustomLabel />}
                 />
+                <Text style={styles.innerText}>Hello</Text>
             </View>
         </View>
     )
@@ -61,10 +62,13 @@ const styles = StyleSheet.create({
         borderRadius: 200,
         justifyContent: 'center', alignItems: 'center',
         marginTop: (Platform.OS === 'ios') ? 120 : 70,
-
         shadowColor: '#F70B5E',
         shadowRadius: 10,
-        shadowOpacity: 0.6,
-
+        shadowOpacity: 0.6
+    },
+    innerText: {
+        position: 'absolute',
+        color: 'white',
+        fontSize: 24
     }
 })
