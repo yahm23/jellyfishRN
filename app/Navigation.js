@@ -8,7 +8,7 @@ import Reports from './components/screens/Reports';
 import Offers from './components/screens/Offers';
 import Account from './components/screens/Account';
 import AppliancesStackPage from './components/stacks/AppliancesStackPage';
-import ReportsStackPage from './components/stacks/ReportsStackPage';
+import ReportsStackPage from './components/stacks/Reports/ReportsStackPage';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';

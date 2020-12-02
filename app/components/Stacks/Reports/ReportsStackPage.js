@@ -1,7 +1,8 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet,Dimensions } from 'react-native';
-import BackButton from '../functional/BackButton';
-import { Chart, Line, Area, HorizontalAxis, VerticalAxis } from 'react-native-responsive-linechart'
+import BackButton from '../../functional/BackButton';
+import { Chart, Line, Area, HorizontalAxis, VerticalAxis, Tooltip } from 'react-native-responsive-linechart'
+import { values } from '../../brain';
 
 
 export default function ReportsStackPage({ navigation, route }) {
@@ -25,7 +26,7 @@ export default function ReportsStackPage({ navigation, route }) {
     const roundedMaxPower = (Math.ceil(maxPower / 10) * 10)
 
     const getOrdinalSuffix = (number) => {
-            if (number> 3 && number< 21) return 'th';
+        if (number> 3 && number< 21) return 'th';
         switch (number% 10) {
             case 1:  return "st";
             case 2:  return "nd";
@@ -37,12 +38,19 @@ export default function ReportsStackPage({ navigation, route }) {
         return `${day.date.split('/')[0]}`
     })
 
+    const Tooly = (props) => {
+        return(
+            <View >
+                <Text style={styles.toolText}>{props.value.y}kWh - {props.value.x}{getOrdinalSuffix(props.value.x)} of {month}</Text>
+            </View>
+        )
+    }
   
 
     return (
         <View style={styles.body}>
             <BackButton onPressNav={()=>navigation.navigate('Reports')}/>
-            <Text style={styles.paragraph}>{month} in Review</Text>
+            <Text style={styles.month}>{month} in Review</Text>
             <Chart
                 // style={{ height: 200, width: 400 }}
                 style={styles.contentContainer}
@@ -55,7 +63,12 @@ export default function ReportsStackPage({ navigation, route }) {
                 <VerticalAxis tickCount={4} theme={{ labels: {formatter: (v) => String(v).concat('kWh'), label:{color:'white'}}}} />
                 <HorizontalAxis tickValues={dayTicks} theme={{ labels: {formatter: (v) => String(v).concat(getOrdinalSuffix(v)), label:{color:'white'}}}} />
                 <Area theme={{ gradient: { from: {color: '#F70B5E', opacity: 0.1  }, to: { color: '#1A1A1A', opacity: 0.1 } }}} />
-                <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }} }} />
+                {/* <Line 
+                    theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}
+                    tooltipComponent={<Tooltip theme={{ formatter: ({ x,y }) => String(y).concat('\n\n').concat(String(x)) }} />}    
+                /> */}
+                {/* <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooltip theme={{ labels: {formatter: ({V}) => String(V.y).concat(String(V.x))  }}} />}/> */}
+                <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooly/>}/>
             </Chart>
 
 
@@ -67,15 +80,16 @@ export default function ReportsStackPage({ navigation, route }) {
 const styles = StyleSheet.create({
     body: {
         height: '100%',
+        paddingTop:100,
         width: '100%',
         backgroundColor: '#1A1A1A',
     },
     contentContainer: {
         display:'flex',
         height:200,
-        paddingTop: 100 
+        paddingTop: 10 
     },
-    paragraph: {
+    month: {
         color: 'white',
         fontSize: 16,
         textAlign: 'center'
@@ -94,5 +108,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    tooltip:{
+        position:'absolute',
+        backgroundColor:'white',
+        zIndex:3,
+        alignSelf:'center',
+        width:100,
+        height:100
+    },
+    toolText:{
+        color:'white',
+        textAlign:'center'
     }
 })
