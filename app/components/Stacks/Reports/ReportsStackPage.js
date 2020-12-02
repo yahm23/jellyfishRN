@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet,Dimensions } from 'react-native';
 import BackButton from '../../functional/BackButton';
 import { Chart, Line, Area, HorizontalAxis, VerticalAxis, Tooltip } from 'react-native-responsive-linechart'
@@ -6,6 +6,8 @@ import { values } from '../../brain';
 
 
 export default function ReportsStackPage({ navigation, route }) {
+    const[ordinalDay,setOrdinalDay] = useState(null)
+
     const month = route.params.month;
 
     const days = route.params.days;
@@ -37,7 +39,11 @@ export default function ReportsStackPage({ navigation, route }) {
     const dayTicks = days.map(day=>{
         return `${day.date.split('/')[0]}`
     })
-
+    const daySetter = (input)=>{
+        var suffix = getOrdinalSuffix(input.x)
+        var newOrdinalDate = input.x
+        setOrdinalDay(String(newOrdinalDate).concat(suffix))
+    }
     const Tooly = (props) => {
         return(
             <View >
@@ -68,10 +74,10 @@ export default function ReportsStackPage({ navigation, route }) {
                     tooltipComponent={<Tooltip theme={{ formatter: ({ x,y }) => String(y).concat('\n\n').concat(String(x)) }} />}    
                 /> */}
                 {/* <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooltip theme={{ labels: {formatter: ({V}) => String(V.y).concat(String(V.x))  }}} />}/> */}
-                <Line theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooly/>}/>
+                <Line onTooltipSelect={(value)=>daySetter(value)} theme={{ stroke: { color: '#F70B5E', width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }}}}  tooltipComponent={<Tooly/>}/>
             </Chart>
 
-
+            <Text style={styles.header}>{ordinalDay} is the day</Text>
         </View>
         
     )
