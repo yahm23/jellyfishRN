@@ -30,7 +30,7 @@ export default function LabelledPieChart({ pieData }) {
     };
 
     return (
-        <View>
+        <View style={{alignSelf: 'center', marginTop: 80}}>
             <VictoryPie
                 data={graphicData}
                 width={320}

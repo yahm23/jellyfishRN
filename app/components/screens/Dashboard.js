@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, Image, Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, Image, Dimensions, TouchableOpacity, StyleSheet, YellowBox } from 'react-native';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png';
 import DynamicPieChart from '../DynamicPieChart';
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     topBox: {
-        // height: 120
+        height: 180
     },
     logo: {
         marginTop: 40,
@@ -107,9 +107,6 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     centerBox: {
-        marginBottom: 85,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        flex: 1
     }
 })
