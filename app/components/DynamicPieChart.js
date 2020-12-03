@@ -3,10 +3,6 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { VictoryPie } from 'victory-native';
 import findIcon from './iconGenerator';
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCoffee } from '@fortawesome/pro-duotone-svg-icons';
-
-
 export default function LabelledPieChart({ pieData }) {
 
     const graphicData = pieData.map(obj => {
@@ -25,10 +21,9 @@ export default function LabelledPieChart({ pieData }) {
                     position: 'absolute',
                     top: props.y - 11,
                     left: props.x - 11,
-                    opacity: 0.8,
-                    touchAction: "none"
+                    opacity: 0.8
                 }}>
-                {findIcon(props.text)}
+                    {findIcon(props.text)}
             </View>
         )
     };
