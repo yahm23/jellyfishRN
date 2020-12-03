@@ -3,6 +3,9 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { VictoryPie } from 'victory-native';
 import findIcon from './iconGenerator';
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCoffee } from '@fortawesome/pro-duotone-svg-icons';
+
 
 export default function LabelledPieChart({ pieData }) {
 
@@ -24,7 +27,7 @@ export default function LabelledPieChart({ pieData }) {
                     left: props.x - 11,
                     opacity: 0.8
                 }}>
-                <Image resizeMode="contain" style={{ width: 26, height: 26 }} source={findIcon(props.text)} />
+                {findIcon(props.text)}
             </View>
         )
     };

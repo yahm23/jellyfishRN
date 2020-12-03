@@ -13,16 +13,9 @@ export default function Account() {
     return (
         <View style={styles.body}>
             <Text style={styles.paragraph}>Account</Text>
-            <TouchableOpacity style ={
-                    {alignSelf: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: 80,
-                    width: '92%',
-                    borderRadius: 10,
-                    backgroundColor: "#F70B5E"}}
+            <TouchableOpacity style = {styles.logoutButton}
                     title='Get Started' onPress={()=>LogOut()}>
-                    <Text>Log Out</Text>
+                    <Text style={styles.buttonText}>Log Out</Text>
             </TouchableOpacity>
         </View>
     )
@@ -39,6 +32,23 @@ const styles = StyleSheet.create({
     paragraph: {
         color: 'white',
         fontSize: 16,
+        textAlign: 'center'
+    },
+    logoutButton: {
+        position: 'absolute',
+        bottom: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 60,
+        width: '92%',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#F70B5E'
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
         textAlign: 'center'
     }
 })

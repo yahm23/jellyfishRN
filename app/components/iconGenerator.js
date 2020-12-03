@@ -1,18 +1,20 @@
+import React from 'react';
 const imagePath = '../images/roomIcons/';
 
-// Create images for all names (from fontAwesome)
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCoffee } from '@fortawesome/pro-duotone-svg-icons';
 
 const findIcon = (name) => {
     const nameLowerCase = name.toLowerCase();
 
     if (nameLowerCase.includes('bedroom')) {
-        return require(`${imagePath}bed-front.png`);
+        return <FontAwesomeIcon icon={faCoffee} color={'white'}/>
     }
     else if (nameLowerCase.includes('kitchen')) {
-        return require(`${imagePath}oven.png`);
+        return <FontAwesomeIcon icon={faCoffee} color={'white'}/>
     }
     else if (nameLowerCase.includes('office')) {
-        return require(`${imagePath}office-chair.png`);
+        return <FontAwesomeIcon icon={faCoffee} color={'white'}/>
     }
     else {
         return null;
