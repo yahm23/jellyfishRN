@@ -9,7 +9,7 @@ const AppliancesTileWidget = (props) => {
         <TouchableOpacity onPress={props.onPress}>
             <View style={styles.widget}>
                 <View style={styles.detailsFlex}>
-                    <Image style={styles.widgetImage} source={findIcon(props.name) !== null ? findIcon(props.name) : questionMark} />
+                    {findIcon(props.name)}
                     <View>
                         <Text style={styles.widgetText}>{props.name}</Text>
                         <View style={styles.activeBoxs}>
