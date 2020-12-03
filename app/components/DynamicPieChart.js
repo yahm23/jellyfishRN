@@ -25,7 +25,8 @@ export default function LabelledPieChart({ pieData }) {
                     position: 'absolute',
                     top: props.y - 11,
                     left: props.x - 11,
-                    opacity: 0.8
+                    opacity: 0.8,
+                    touchAction: "none"
                 }}>
                 {findIcon(props.text)}
             </View>
