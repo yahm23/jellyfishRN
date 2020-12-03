@@ -5,6 +5,7 @@ import { StatusBar, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DashboardStack, AppliancesStack, ReportsStack, OffersStack, AccountStack} from './components/functional/StackExporter'
+import NetInfo from "@react-native-community/netinfo";
 
 StatusBar.setBarStyle('light-content', true);
 
