@@ -27,7 +27,7 @@ export default function Dashboard(props) {
         carouselItems: [
             <DynamicPieChart pieData={pieDataArr} />,
             <DynamicPieChart pieData={pieDataArr} />,
-            <DynamicPieChart pieData={pieDataArr} />
+            <DynamicPieChart pieData={pieDataArr} />,
         ]
     });
 
