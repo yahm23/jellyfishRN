@@ -55,15 +55,17 @@ export default function LabelledPieChart({ pieData }) {
 
 const styles = StyleSheet.create({
     outerCircle: {
-        height: 220,
-        width: 220,
+        height: (Platform.OS === 'ios') ? 220 : 230,
+        width: (Platform.OS === 'ios') ? 220 : 230,
         backgroundColor: '#272727',
         borderRadius: 200,
         justifyContent: 'center', alignItems: 'center',
-        marginTop: (Platform.OS === 'ios') ? 120 : 70,
+        marginTop: (Platform.OS === 'ios') ? 120 : 100,
         shadowColor: '#F70B5E',
         shadowRadius: 10,
-        shadowOpacity: 0.6
+        shadowOpacity: 0.6,
+        borderWidth: (Platform.OS === 'ios') ? 0 : 6,
+        borderColor: 'rgba(247,11,94,0.18)'
     },
     innerText: {
         position: 'absolute',

@@ -1,15 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import logo from '../images/full.png';
+import logo from '../images/brand/full.png';
 import AsyncStorage from '@react-native-community/async-storage';
 
 // Immediately reload the React Native Bundle
-export default function Login(props) {
+export default function LoginScreen(props) {
 
     const LogIn = () => {
-        AsyncStorage.setItem('LoggedIn', "true", () => {
-            console.log('Set to true');
-        });
+        AsyncStorage.setItem('LoggedIn', "true");
     }
 
     return (
@@ -62,7 +60,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         position: 'absolute',
         alignSelf: 'center',
-        bottom: 0,
+        bottom: (Platform.OS === 'ios') ? 50 : 0,
         height: 80,
         width: '100%',
         marginBottom: 100
