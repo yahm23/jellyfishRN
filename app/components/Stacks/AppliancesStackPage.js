@@ -1,8 +1,9 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import DynamicPieChart from '../DynamicPieChart';
-// import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
 import BackButton from '../functional/BackButton';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCog } from '@fortawesome/pro-light-svg-icons';
 
 export default function AppliancesStackPage({ navigation, route }) {
 
@@ -16,6 +17,7 @@ export default function AppliancesStackPage({ navigation, route }) {
     return (
         <View style={styles.body}>
             <BackButton onPressNav={()=>navigation.navigate('Appliances')}/>
+            <FontAwesomeIcon icon={faCog} size={30} color={'white'} style={styles.addIcon} />
             <Text style={styles.header}>{route.params.name}</Text>
             <View style={styles.centerBox}>
                 <DynamicPieChart pieData={pieDataArr} />
@@ -51,5 +53,10 @@ const styles = StyleSheet.create({
     },
     centerBox: {
         flex: 1
+    },
+    addIcon: {
+        position: 'absolute',
+        right: 20,
+        top: 20
     }
 })

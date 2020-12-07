@@ -31,7 +31,7 @@ export default function LoginScreen({ navigation }) {
                     </View>
                     <Text style={styles.paragraph}>
                         Real-time, simple trend insights.
-            </Text>
+                    </Text>
 
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button} title='Get Started' onPress={() => LogIn()}>

@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     searchBarContainer: {
-        marginTop: 40
+        marginTop: 30
     },
     paragraph: {
         color: 'white',
