@@ -1,23 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AsyncStorage from '@react-native-community/async-storage';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import LoadingScreen from '../LoadingScreen';
 
 export default function Account({ navigation }) {
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const LogOut = () => {
+        setIsLoading(true);
         AsyncStorage.setItem('LoggedIn', "false", () => {
-            console.log('Set to false');
+            setTimeout(() => {
+                navigation.navigate('Login');
+                setIsLoading(false);
+            }, 1000);
         });
-        navigation.navigate('Login');
     }
 
     return (
-        <View style={styles.body}>
-            <Text style={styles.paragraph}>Account</Text>
-            <TouchableOpacity style={styles.logoutButton}
-                title='Get Started' onPress={() => LogOut()}>
-                <Text style={styles.buttonText}>Log Out</Text>
-            </TouchableOpacity>
+        <View>
+            {isLoading ?
+                <LoadingScreen /> :
+                <View style={styles.body}>
+                    <Text style={styles.paragraph}>Account</Text>
+                    <TouchableOpacity style={styles.logoutButton}
+                        title='Get Started' onPress={() => LogOut()}>
+                        <Text style={styles.buttonText}>Log Out</Text>
+                    </TouchableOpacity>
+                </View>
+            }
         </View>
     )
 }

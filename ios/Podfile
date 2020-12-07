@@ -13,6 +13,8 @@ target 'jellyfishRN' do
 
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'jellyfishRNTests' do
     inherit! :complete
     # Pods for testing

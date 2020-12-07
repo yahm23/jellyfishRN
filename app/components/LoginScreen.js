@@ -1,33 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import logo from '../images/brand/full.png';
 import AsyncStorage from '@react-native-community/async-storage';
+import LoadingScreen from './LoadingScreen';
 
 // Immediately reload the React Native Bundle
 export default function LoginScreen({ navigation }) {
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const LogIn = () => {
-        AsyncStorage.setItem('LoggedIn', "true");
-        navigation.navigate('AppContainer');
+        setIsLoading(true);
+        AsyncStorage.setItem('LoggedIn', "true", () => {
+            setTimeout(() => {
+                navigation.navigate('AppContainer');
+                setIsLoading(false);
+            }, 1000);
+        });
     }
 
     return (
-        <View style={styles.body}>
-            <Image source={logo} style={styles.logo} />
-            <View style={styles.headerContainer}>
-                <Text style={styles.header}>Understand your</Text>
-                <Text style={styles.header}>home energy</Text>
-            </View>
-            <Text style={styles.paragraph}>
-                Real-time, simple trend insights.
+        <View>
+            {isLoading ?
+                <LoadingScreen /> :
+                <View style={styles.body}>
+                    <Image source={logo} style={styles.logo} />
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.header}>Understand your</Text>
+                        <Text style={styles.header}>home energy</Text>
+                    </View>
+                    <Text style={styles.paragraph}>
+                        Real-time, simple trend insights.
             </Text>
 
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} title='Get Started' onPress={() => LogIn()}>
-                    <Text style={styles.buttonText}>Get Started</Text>
-                </TouchableOpacity>
-                <Text style={styles.paragraph}>Need to order your Jellyfish kit?</Text>
-            </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.button} title='Get Started' onPress={() => LogIn()}>
+                            <Text style={styles.buttonText}>Get Started</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.paragraph}>Need to order your Jellyfish kit?</Text>
+                    </View>
+                </View>
+            }
         </View>
     )
 }
