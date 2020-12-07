@@ -4,10 +4,11 @@ import logo from '../images/brand/full.png';
 import AsyncStorage from '@react-native-community/async-storage';
 
 // Immediately reload the React Native Bundle
-export default function LoginScreen(props) {
+export default function LoginScreen({ navigation }) {
 
     const LogIn = () => {
         AsyncStorage.setItem('LoggedIn', "true");
+        navigation.navigate('AppContainer');
     }
 
     return (
