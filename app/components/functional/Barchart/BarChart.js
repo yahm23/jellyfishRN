@@ -18,10 +18,10 @@ export default function BarChart() {
         <View style={styles.body}>
             <ScrollView horizontal={true}>
 
-                <Text>Poop</Text>
-                <VictoryChart width={350} theme={VictoryTheme.grayscale}>
+                    <Text>Poop</Text>
+                {/* <VictoryChart width={350} theme={VictoryTheme.grayscale}>
                     <VictoryBar data={data} x="quarter" y="earnings" />
-                </VictoryChart>
+                </VictoryChart> */}
             </ScrollView>
         </View>
     )

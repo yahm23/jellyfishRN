@@ -17,6 +17,7 @@ export default function BarScreenScreen(props) {
     const[entireData,setEntireData]=useState(null)
     const[timeFrame,setTimeFrame]=useState('Day')
     const[maxKWH,setMaxKWH]=useState(null)
+
     const times = ['Hour','Day','Month','Year']
     
     useEffect(() => {
@@ -29,7 +30,7 @@ export default function BarScreenScreen(props) {
     
     
 
-    // const Dots = ()=>{
+    // const Barchart = ()=>{
     //     return(
     //         <View style={styles.dotsContainer}>
     //             {times.map((value)=>{
@@ -74,9 +75,12 @@ export default function BarScreenScreen(props) {
                         <SearchBar />
                     </View>
                 </View>
-                <View style={styles.parentNav}>
-                    {/* <Dots/> */}
-                    <DotsLabels/>
+
+                <View >
+                    <View style={styles.barchartContainer}>
+                         <BarChart timeFrame={timeFrame}/> 
+                         </View>
+                    <View style={styles.parentNav}><DotsLabels/></View>
                 </View>
                 
             </View>
@@ -138,6 +142,12 @@ const styles = StyleSheet.create({
     },
     activeLabel:{
         color:'white'
+    },
+    barchartContainer:{
+        alignSelf:'center',
+        height:windowHeight*0.35,
+        width:windowWidth*0.8,
+        backgroundColor:'beige'
     }
     
 })
