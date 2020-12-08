@@ -3,6 +3,9 @@ import { Animated, View, ScrollView, Dimensions, StyleSheet, Image } from 'react
 import brain from '../brain';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPlus } from '@fortawesome/pro-light-svg-icons';
+
 import { AppliancesTileWidget } from '../TileWidget';
 
 export default function Appliances({ navigation }) {
@@ -39,6 +42,7 @@ export default function Appliances({ navigation }) {
                 <Animated.Image
                     style={[styles.logo, { marginTop: 20, transform: [{ scale: heroTitleOpacity }] }]}
                     source={JellyLogo} />
+                <FontAwesomeIcon icon={faPlus} size={30} color={'white'} style={styles.addIcon} />
                 <View style={styles.searchBarContainer}>
                     {console.log("heroTitleOpacity")}
                     {console.log(typeof heroTitleOpacity)}
@@ -95,5 +99,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         textAlign: 'center'
+    },
+    addIcon: {
+        position: 'absolute',
+        right: 20,
+        top: 20
     }
 })

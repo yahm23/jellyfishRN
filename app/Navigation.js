@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faChartLine, faChartPie, faPoundSign, faUserAstronaut, faProjectDiagram } from '@fortawesome/pro-duotone-svg-icons';
+import { faAnalytics, faChartPie, faPoundSign, faUserAstronaut, faChartNetwork } from '@fortawesome/pro-duotone-svg-icons';
 import { StatusBar, View, StyleSheet, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DashboardStack, AppliancesStack, ReportsStack, OffersStack, AccountStack } from './components/functional/StackExporter';
@@ -33,7 +33,8 @@ export default function AppContainer() {
                 <Tab.Navigator
                     tabBarOptions={{
                         keyboardHidesTabBar: true,
-                        activeTintColor: '#F70B5E',
+                        activeTintColor: '#f82a72',
+                        inactiveTintColor: 'rgba(255, 255, 255, 0.8)',
                         style: {
                             backgroundColor: '#141414',
                             borderTopColor: '#141414',
@@ -46,10 +47,10 @@ export default function AppContainer() {
                         tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faChartPie} color={color} key={'icon_1'} />
                     }} />
                     <Tab.Screen name='Appliances' component={AppliancesStack} options={{
-                        tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faProjectDiagram} color={color} key={'icon_2'} />
+                        tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faChartNetwork} color={color} key={'icon_2'} />
                     }} />
                     <Tab.Screen name='Reports' component={ReportsStack} options={{
-                        tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faChartLine} color={color} key={'icon_3'} />
+                        tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faAnalytics} color={color} key={'icon_3'} />
                     }} />
                     <Tab.Screen name='Offers' component={OffersStack} options={{
                         tabBarIcon: ({ color, size }) => <FontAwesomeIcon size={size} icon={faPoundSign} color={color} key={'icon_4'} />
