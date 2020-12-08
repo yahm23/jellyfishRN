@@ -1,33 +1,26 @@
 import React, { useState } from 'react'
 import { Text, View, Image, Dimensions, TouchableOpacity, StyleSheet, YellowBox } from 'react-native';
-import SearchBar from '../functional/SearchBar';
-import JellyLogo from '../../images/brand/Jellyfish-white.png';
-import DynamicPieChart from '../DynamicPieChart';
-import brain from '../fakeData/brain';
+// import SearchBar from '../../SearchBar';
+import SearchBar from '../SearchBar'
+import JellyLogo from '../../../images/brand/Jellyfish-white.png';
+// import DynamicPieChart from '../DynamicPieChart';
+// import brain from '../fakeData/brain';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import BarChart from './BarChart';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default function Dashboard(props) {
+export default function BarScreenScreen(props) {
 
-    const pieDataArr = brain.map((room, index) => {
-        const key = Object.keys(room.data);
-        let res = 0;
 
-        for (let i = 0; i < key.length; i++) {
-            res += room.data[key[i]].energy_consumption;
-        }
-
-        return { name: room.name, value: res }
-    })
 
     const [state, setState] = useState({
         activeSlide: 0,
         carouselItems: [
-            <DynamicPieChart pieData={pieDataArr} />,
-            <DynamicPieChart pieData={pieDataArr} />,
-            <DynamicPieChart pieData={pieDataArr} />,
+            <BarChart/>,
+            <BarChart/>,
+            <BarChart/>
         ]
     });
 

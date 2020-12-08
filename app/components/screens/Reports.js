@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Animated, View, ScrollView, Dimensions, StyleSheet, Image } from 'react-native';
-import SearchBar from '../SearchBar';
+import SearchBar from '../functional/SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import { ReportsTileWidget } from '../TileWidget';
 

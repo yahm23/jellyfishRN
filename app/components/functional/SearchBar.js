@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TextInput, View, Image, StyleSheet } from 'react-native';
-import searchIcon from '../images/search.png';
+import searchIcon from '../../images/search.png';
 
 export default function SearchBar() {
     const [search, setSearch] = useState('');

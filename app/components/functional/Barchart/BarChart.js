@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
-import data from '../../../fakeData/reportsData'
+import { View, Text } from 'react-native'
+import data from '../../fakeData/reportsData'
 
 export default function BarChart() {
     const[entireData,setEntireData]=useState(null)
@@ -13,7 +13,7 @@ export default function BarChart() {
     }, [])
     return (
         <View>
-            
+            <Text>Poop</Text>
         </View>
     )
 }
