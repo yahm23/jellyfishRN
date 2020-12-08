@@ -3,7 +3,7 @@ import { Text, View, Image, Dimensions, TouchableOpacity, StyleSheet, YellowBox 
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png';
 import DynamicPieChart from '../DynamicPieChart';
-import brain from '../brain';
+import brain from '../fakeData/brain';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 const windowWidth = Dimensions.get('window').width;

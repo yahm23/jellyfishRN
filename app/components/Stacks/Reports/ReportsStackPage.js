@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet,Dimensions } from 'react-native';
 import BackButton from '../../functional/BackButton';
 import { Chart, Line, Area, HorizontalAxis, VerticalAxis, Tooltip } from 'react-native-responsive-linechart'
-import { values } from '../../brain';
+import { values } from '../../fakeData/brain';
 
 
 export default function ReportsStackPage({ navigation, route }) {

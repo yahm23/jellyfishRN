@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Animated, View, ScrollView, Dimensions, StyleSheet, Image } from 'react-native';
-import brain from '../brain';
+import brain from '../fakeData/brain';
 import SearchBar from '../SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
