@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, Image, Dimensions, TouchableOpacity, StyleSheet, YellowBox } from 'react-native';
 // import SearchBar from '../../SearchBar';
 import SearchBar from '../SearchBar'
@@ -7,53 +7,64 @@ import JellyLogo from '../../../images/brand/Jellyfish-white.png';
 // import brain from '../fakeData/brain';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import BarChart from './BarChart';
+import data from '../../fakeData/reportsData'
+import { values } from '../../fakeData/brain';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function BarScreenScreen(props) {
+    const[entireData,setEntireData]=useState(null)
+    const[timeFrame,setTimeFrame]=useState('Day')
+    const[maxKWH,setMaxKWH]=useState(null)
+    const times = ['Hour','Day','Month','Year']
+    
+    useEffect(() => {
+        // Will need appropriate async function to fetch the data rather than just importing fake data.
+        setEntireData(data)
+        
+    }, [])
 
 
+    
+    
 
-    const [state, setState] = useState({
-        activeSlide: 0,
-        carouselItems: [
-            <BarChart/>,
-            <BarChart/>,
-            <BarChart/>
-        ]
-    });
+    // const Dots = ()=>{
+    //     return(
+    //         <View style={styles.dotsContainer}>
+    //             {times.map((value)=>{
+    //                 var active;
+    //                 if(value === timeFrame){
+    //                     active=true
+    //                 }else{
+    //                     active=false
+    //                 }
+    //                 return (<TouchableOpacity onPress={()=>{setTimeFrame(value)}} key={value} style={[styles.dots,active? styles.activeDot:null]}/>)
+    //             })}
+    //         </View>
+    //     )
+    // }
 
-    function renderItem({ item, index }) {
-        return (
-            <View style={styles.centerBox}>
-                {item}
+    const DotsLabels = ()=>{
+        return(
+            <View style={styles.dotsContainer}>
+                {times.map((value)=>{
+                    var active;
+                    if(value === timeFrame){
+                        active=true
+                    }else{
+                        active=false
+                    }
+                return (
+                    <TouchableOpacity onPress={()=>{setTimeFrame(value)}} key={value}>
+                        <View style={[styles.dots,active? styles.activeDot:null]}/>
+                        <Text style={[styles.label,active? styles.activeLabel:null]}>{value}</Text>
+                    </TouchableOpacity>)
+                })}
             </View>
-        )
+        ) 
     }
-
-    function getPagination() {
-        const { carouselItems, activeSlide } = state;
-        return (
-            <Pagination
-                dotsLength={carouselItems.length}
-                activeDotIndex={activeSlide}
-                containerStyle={{ backgroundColor: 'transparent', position: 'absolute', bottom: 0, left: 0, right: 0 }}
-                dotStyle={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: 5,
-                    marginHorizontal: 2,
-                    backgroundColor: 'rgba(255, 255, 255, 0.92)'
-                }}
-                inactiveDotStyle={{
-                    // Define styles for inactive dots here
-                }}
-                inactiveDotOpacity={0.4}
-                inactiveDotScale={0.4}
-            />
-        );
-    }
+    
     return (
         <View>
             <View style={styles.body}>
@@ -63,15 +74,11 @@ export default function BarScreenScreen(props) {
                         <SearchBar />
                     </View>
                 </View>
-                <Carousel
-                    data={state.carouselItems}
-                    renderItem={renderItem}
-                    inactiveSlideScale={1}
-                    sliderWidth={windowWidth}
-                    itemWidth={windowWidth}
-                    onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
-                />
-                {getPagination()}
+                <View style={styles.parentNav}>
+                    {/* <Dots/> */}
+                    <DotsLabels/>
+                </View>
+                
             </View>
         </View>
     );
@@ -93,13 +100,44 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center'
     },
+
     searchBarContainer: {
         marginTop: 30
     },
-    searchBar: {
-        borderRadius: 20
+
+    
+    parentNav:{
+        alignSelf:'center',
+        width:windowWidth * 0.75,
+        height:50,
+        // backgroundColor:'yellow'
+    }, 
+    dotsContainer:{
+        paddingVertical:10,
+        width:300,
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignContent:'center',
+        textAlign:'center',
     },
-    centerBox: {
-        flex: 1
+    dots:{
+        alignSelf:'center',
+        backgroundColor:'grey',
+        width:10,
+        height:10,
+        borderRadius:500,
+    },
+    activeDot:{
+        backgroundColor:'white'
+    },
+    label:{
+        paddingTop:15,
+        fontFamily:'GothamRounded-Medium',
+        color:'white'
+    },
+    activeLabel:{
+        color:'white'
     }
+    
 })
