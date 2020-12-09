@@ -40,6 +40,16 @@ export default function BarChart(props) {
         return maxBarHeight/input;
     }
 
+    const getOrdinalSuffix = (number) => {
+        if (number> 3 && number< 21) return 'th';
+        switch (number% 10) {
+            case 1:  return "st";
+            case 2:  return "nd";
+            case 3:  return "rd";
+            default: return "th";
+        }
+    };
+
     const BarCreator = (data) => {
 
         return (
@@ -50,12 +60,10 @@ export default function BarChart(props) {
                             <View style={{height:(maxBarHeight/maxData)*single.total_kWh, backgroundColor: 'black', width:45}}/>
                             <Text>{
                                 single.hour?
-                                single.hour:
-
-
+                                `${single.hour}:00`:
 
                                 single.day?
-                                single.day:
+                                `${single.day}${getOrdinalSuffix(single.day)}`:
 
                                 single.month?
                                 single.month:
