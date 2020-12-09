@@ -12,15 +12,16 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function BarChart(props) {
-    const[specificTimeData,setSpecificTimeData]=useState()
-    const[maxData,setMaxDataValue]=useState()
-    const[pixelPowerConversion,setpixelPowerConversion]=useState()
+    const[specificTimeData,setSpecificTimeData]=useState(null)
+    const[maxData,setMaxDataValue]=useState(null)
+    const[pixelPowerConversion,setpixelPowerConversion]=useState(null)
     
 
     useEffect(() => {
         setSpecificTimeData(props.specificTimeFrameData)
-        // setMaxDataValue(findDataMaxValue(specificTimeData))
-        // setpixelPowerConversion(calcPixelConversion())
+        setMaxDataValue(findDataMaxValue(specificTimeData))
+        setpixelPowerConversion(calcPixelConversion())
+
     }, [props])
 
     const maxBarHeight = windowHeight * 0.35 * 0.9

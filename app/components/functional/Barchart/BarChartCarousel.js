@@ -98,7 +98,11 @@ export default function BarChartCarousel(props) {
 
                 <Text>{props.timeFrame}</Text>
                 <View style={styles.container}>
-                <BarChart specificTimeFrameData = {getSpecificTimeFrameData(props.timeFrame)}/>
+                    {props.timeFrame?
+                        <BarChart specificTimeFrameData = {getSpecificTimeFrameData(props.timeFrame)}/>
+                        :
+                        null
+                    }
                     {/* <TouchableOpacity onPress={goForward}>
                         <Text>go to next slide</Text>
                     </TouchableOpacity> */}
