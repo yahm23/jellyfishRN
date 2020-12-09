@@ -41,22 +41,33 @@ export default function BarChart(props) {
     }
 
     const BarCreator = (data) => {
-        // return(
-        //     <View>
-        //         <View style={{height:120, backgroundColor: 'yellow', width:45}}/>
-        //         {data.map(()=>{
-        //             console.log('single value');
-        //             return <View style={{height:120, backgroundColor: 'black', width:45}}/>
-        //         })}
-        //     </View>
 
-        // )
         return (
-            <View style={{display:'flex',flexDirection:'row'}}>
+            <View style={{flexDirection:'row'}}>
                 {data.map((single)=>{
                     return (
-                        <View style={{paddingHorizontal:10, alignContent:'flex-end'}}>
+                        <View style={{paddingHorizontal:10, flex:0, justifyContent:'flex-end'}}>
                             <View style={{height:(maxBarHeight/maxData)*single.total_kWh, backgroundColor: 'black', width:45}}/>
+                            <Text>{
+                                single.hour?
+                                single.hour:
+
+
+
+                                single.day?
+                                single.day:
+
+                                single.month?
+                                single.month:
+
+                                single.year?
+                                single.year:
+
+                                null
+                                       
+                                
+                            }
+                            </Text>
                         </View>
                     )
                 })}
