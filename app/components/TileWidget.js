@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import questionMark from '../images/roomIcons/question-mark.png';
 import findIcon from '../components/iconGenerator';
-import arrowIcon from '../images/Tab_navigation_icons/right-arrow.png';
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const AppliancesTileWidget = (props) => {
     return (
@@ -18,7 +19,7 @@ const AppliancesTileWidget = (props) => {
                         </View>
                     </View>
                 </View>
-                <Image style={styles.arrow} source={arrowIcon} />
+                <FontAwesomeIcon style={styles.arrow} icon={faChevronRight} size={25} color={'white'} />
             </View>
         </TouchableOpacity>
     )
@@ -35,7 +36,7 @@ const ReportsTileWidget = (props) => {
                         <Text style={styles.details}>{props.kwH} kWh</Text>
                     </View>
                 </View>
-                <Image style={styles.arrow} source={arrowIcon} />
+                <FontAwesomeIcon style={styles.arrow} icon={faChevronRight} size={25} color={'white'} />
             </View>
         </TouchableOpacity>
     )

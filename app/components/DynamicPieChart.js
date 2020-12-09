@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { VictoryPie } from 'victory-native';
 import findIcon from './iconGenerator';
+import { faChevronUp, faChevronDown } from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export default function LabelledPieChart({ pieData }) {
 
@@ -54,8 +56,12 @@ export default function LabelledPieChart({ pieData }) {
                     labelComponent={<CustomLabel />}
                 />
                 <View style={styles.innerTextContainer}>
-                    <Text style={styles.innerText}>{totalValue} </Text>
-                    <Text style={styles.innerSubText}>kWh</Text>
+                    <FontAwesomeIcon style={styles.arrowGreen} icon={faChevronUp} size={35} color={'#00FF58'} />
+                    <View style={styles.flexContainer}>
+                        <Text style={styles.innerText}>{totalValue} </Text>
+                        <Text style={styles.innerSubText}>kWh</Text>
+                    </View>
+                    <FontAwesomeIcon style={styles.arrowRed} icon={faChevronDown} size={35} color={'transparent'} />
                 </View>
             </View>
         </View>
@@ -77,9 +83,13 @@ const styles = StyleSheet.create({
     },
     innerTextContainer: {
         position: 'absolute',
+        alignItems: 'center'
+    },
+    flexContainer: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: 10,
     },
     innerText: {
         color: 'white',
@@ -89,5 +99,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         opacity: 0.8
+    },
+    arrowRed: {
+        backgroundColor: 'transparent'
     }
 })

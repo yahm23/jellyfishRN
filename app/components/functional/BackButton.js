@@ -1,19 +1,21 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { abs } from 'react-native-reanimated';
-import arrowIcon from '../../images/Tab_navigation_icons/right-arrow.png';
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 
 export default function BackButton(props) {
     return (
-            <TouchableOpacity style={styles.backContainer} 
+        <TouchableOpacity style={styles.backContainer}
             onPress={() => {
                 props.onPressNav()
             }}
-            >
-                <Image style={styles.arrow} source={arrowIcon} />
-                <Text style={styles.backText}>Back</Text>
-            </TouchableOpacity>
+        >
+            {/* <Image style={styles.arrow} source={arrowIcon} /> */}
+            <FontAwesomeIcon style={styles.arrow} icon={faChevronRight} size={25} color={'white'} />
+            <Text style={styles.backText}>Back</Text>
+        </TouchableOpacity>
     )
 }
 
