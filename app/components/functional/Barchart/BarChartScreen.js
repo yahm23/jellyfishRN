@@ -6,7 +6,7 @@ import JellyLogo from '../../../images/brand/Jellyfish-white.png';
 // import DynamicPieChart from '../DynamicPieChart';
 // import brain from '../fakeData/brain';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import BarChart from './BarChart';
+import BarChartCarousel from './BarChartCarousel';
 import data from '../../fakeData/reportsData'
 import { values } from '../../fakeData/brain';
 
@@ -57,11 +57,10 @@ export default function BarScreenScreen(props) {
                         <SearchBar />
                     </View>
                 </View>
-
                 <View >
                     <View style={styles.barchartContainer}>
-                         <BarChart entireData={entireData} timeFrame={timeFrame}/> 
-                         </View>
+                        <BarChartCarousel entireData={entireData} timeFrame={timeFrame}/> 
+                        </View>
                     <View style={styles.parentNav}><DotsLabels/></View>
                 </View>
                 
