@@ -99,7 +99,7 @@ export default function BarChartCarousel(props) {
                 <Text>{props.timeFrame}</Text>
                 <View style={styles.container}>
                     {props.timeFrame?
-                        <BarChart specificTimeFrameData = {getSpecificTimeFrameData(props.timeFrame)}/>
+                        <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {getSpecificTimeFrameData(props.timeFrame)}/>
                         :
                         null
                     }
