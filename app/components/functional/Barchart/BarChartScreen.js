@@ -27,24 +27,6 @@ export default function BarScreenScreen(props) {
     }, [])
 
 
-    
-    
-
-    // const Barchart = ()=>{
-    //     return(
-    //         <View style={styles.dotsContainer}>
-    //             {times.map((value)=>{
-    //                 var active;
-    //                 if(value === timeFrame){
-    //                     active=true
-    //                 }else{
-    //                     active=false
-    //                 }
-    //                 return (<TouchableOpacity onPress={()=>{setTimeFrame(value)}} key={value} style={[styles.dots,active? styles.activeDot:null]}/>)
-    //             })}
-    //         </View>
-    //     )
-    // }
 
     const DotsLabels = ()=>{
         return(
@@ -78,7 +60,7 @@ export default function BarScreenScreen(props) {
 
                 <View >
                     <View style={styles.barchartContainer}>
-                         <BarChart timeFrame={timeFrame}/> 
+                         <BarChart entireData={entireData} timeFrame={timeFrame}/> 
                          </View>
                     <View style={styles.parentNav}><DotsLabels/></View>
                 </View>
