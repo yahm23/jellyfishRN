@@ -15,7 +15,6 @@ export default function LabelledPieChart({ pieData }) {
     })
 
     // Calculate total energy usage for center piechart
-    
     let totalValue = 0;
     graphicData.map(obj => {
         totalValue += obj.y
@@ -54,7 +53,10 @@ export default function LabelledPieChart({ pieData }) {
                     }}
                     labelComponent={<CustomLabel />}
                 />
-                <Text style={styles.innerText}>{totalValue}</Text>
+                <View style={styles.innerTextContainer}>
+                    <Text style={styles.innerText}>{totalValue} </Text>
+                    <Text style={styles.innerSubText}>kWh</Text>
+                </View>
             </View>
         </View>
     )
@@ -74,9 +76,19 @@ const styles = StyleSheet.create({
         borderWidth: (Platform.OS === 'ios') ? 0 : 6,
         borderColor: 'rgba(247,11,94,0.18)'
     },
-    innerText: {
+    innerTextContainer: {
         position: 'absolute',
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    innerText: {
         color: 'white',
         fontSize: 24
+    },
+    innerSubText: {
+        color: 'white',
+        fontSize: 16,
+        opacity: 0.8
     }
 })
