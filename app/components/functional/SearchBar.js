@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     },
     searchBody: {
         backgroundColor: '#272727',
-        paddingTop: (Platform.OS === 'ios') ? 15 : 0,
-        paddingBottom: (Platform.OS === 'ios') ? 15 : 0,
+        paddingTop: (Platform.OS === 'ios') ? 14 : 0,
+        paddingBottom: (Platform.OS === 'ios') ? 14 : 0,
         width: '90%',
         borderRadius: 12,
         justifyContent: 'center'
