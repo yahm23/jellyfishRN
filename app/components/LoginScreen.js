@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
         bottom: (Platform.OS === 'ios') ? 50 : 0,
         height: 80,
         width: '100%',
-        marginBottom: 100
+        marginBottom: 20
     },
     button: {
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 80,
+        height: 70,
         width: '92%',
         borderRadius: 10,
         backgroundColor: "#F70B5E"

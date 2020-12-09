@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     video: {
-        height: 120,
+        height: 110,
         width: '100%'
     }
 })

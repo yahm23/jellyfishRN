@@ -91,17 +91,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     topBox: {
-        height: 180
+
     },
     logo: {
-        marginTop: 40,
+        marginTop: 20,
         height: 35,
         width: 35,
         resizeMode: 'contain',
         alignSelf: 'center'
     },
     searchBarContainer: {
-        marginTop: 30
+        marginTop: 25
     },
     searchBar: {
         borderRadius: 20

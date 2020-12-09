@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         fontFamily:'GothamRounded-Medium',
         marginLeft: 30,
         color: 'white',
-        fontSize: 18
+        fontSize: 16
     },
     header: {
         marginLeft: 40,
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
         width:100,
-        paddingVertical:10,
-        paddingHorizontal:10,
+        paddingVertical: 8,
+        paddingHorizontal: 8,
         textAlign:'center',
-        borderRadius:8,
-        borderWidth:1,
+        borderRadius: 8,
+        borderWidth: 1,
         
     },
     active:{
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 
     },
     activeBoxs:{
-        paddingTop:10,
+        paddingTop: 10,
         flex: 0,
         justifyContent:'center',
         alignContent: 'center',
