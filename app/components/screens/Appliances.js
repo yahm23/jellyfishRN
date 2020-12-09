@@ -10,7 +10,7 @@ import { AppliancesTileWidget } from '../TileWidget';
 
 export default function Appliances({ navigation }) {
     const [scrollY, setScrollY] = useState(new Animated.Value(0))
-    const HEADER_EXPANDED_HEIGHT = 20
+    const HEADER_EXPANDED_HEIGHT = 5
     const HEADER_COLLAPSED_HEIGHT = 0
 
     const headerHeight = scrollY.interpolate({
@@ -44,9 +44,6 @@ export default function Appliances({ navigation }) {
                     source={JellyLogo} />
                 <FontAwesomeIcon icon={faPlus} size={30} color={'white'} style={styles.addIcon} />
                 <View style={styles.searchBarContainer}>
-                    {console.log("heroTitleOpacity")}
-                    {console.log(typeof heroTitleOpacity)}
-                    {console.log(heroTitleOpacity)}
                     <SearchBar />
                 </View>
             </Animated.View>
@@ -86,14 +83,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     logo: {
-        marginTop: 40,
         height: 35,
         width: 35,
         resizeMode: 'contain',
         alignSelf: 'center'
     },
     searchBarContainer: {
-        marginTop: 30
+        marginTop: 25
     },
     paragraph: {
         color: 'white',

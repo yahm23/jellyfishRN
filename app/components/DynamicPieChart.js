@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#272727',
         borderRadius: 200,
         justifyContent: 'center', alignItems: 'center',
-        marginTop: (Platform.OS === 'ios') ? 120 : 100,
         shadowColor: '#F70B5E',
         shadowRadius: 10,
         shadowOpacity: 0.6,

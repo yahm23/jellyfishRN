@@ -19,9 +19,9 @@ export default function BackButton(props) {
 
 const styles = StyleSheet.create({
     backContainer: {
-        height: '10%',
         zIndex: 99,
-        marginTop: 20,
+        top: 20,
+        left: 24,
         flexDirection: "row"
     },
     backText: {
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         left: 10
     },
     arrow: {
-        marginLeft: 25,
         height: 25,
         width: 25,
         transform: [{ rotate: '180deg' }]

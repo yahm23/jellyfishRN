@@ -16,12 +16,15 @@ export default function AppliancesStackPage({ navigation, route }) {
 
     return (
         <View style={styles.body}>
-            <BackButton onPressNav={()=>navigation.navigate('Appliances')}/>
-            <FontAwesomeIcon icon={faCog} size={30} color={'white'} style={styles.addIcon} />
-            <Text style={styles.header}>{route.params.name}</Text>
+            <View style={styles.topBox}>
+                <BackButton onPressNav={() => navigation.navigate('Appliances')} />
+                <FontAwesomeIcon icon={faCog} size={26} color={'white'} style={styles.addIcon} />
+                <Text style={styles.header}>{route.params.name}</Text>
+            </View>
             <View style={styles.centerBox}>
                 <DynamicPieChart pieData={pieDataArr} />
             </View>
+            <View style={styles.bottomBox}></View>
         </View>
     )
 }
@@ -33,7 +36,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     topBox: {
-        height: 180
+        height: 120
+    },
+    bottomBox: {
+        height: 70
     },
     backContainer: {
         marginTop: 20,
@@ -46,13 +52,16 @@ const styles = StyleSheet.create({
     },
     header: {
         color: 'white',
-        marginTop: 17,
+        top: 100,
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center'
     },
     centerBox: {
-        flex: 1
+        marginTop: 35,
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center'
     },
     addIcon: {
         position: 'absolute',

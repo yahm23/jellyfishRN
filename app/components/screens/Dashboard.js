@@ -27,7 +27,7 @@ export default function Dashboard(props) {
         carouselItems: [
             <DynamicPieChart pieData={pieDataArr} />,
             <DynamicPieChart pieData={pieDataArr} />,
-            <DynamicPieChart pieData={pieDataArr} />,
+            <DynamicPieChart pieData={pieDataArr} />
         ]
     });
 
@@ -45,7 +45,7 @@ export default function Dashboard(props) {
             <Pagination
                 dotsLength={carouselItems.length}
                 activeDotIndex={activeSlide}
-                containerStyle={{ backgroundColor: 'transparent', position: 'absolute', bottom: 0, left: 0, right: 0 }}
+                containerStyle={styles.paginationBottomContainer}
                 dotStyle={{
                     width: 10,
                     height: 10,
@@ -91,10 +91,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     topBox: {
-
+        height: 120
     },
     logo: {
-        marginTop: 20,
+        marginTop: 25,
         height: 35,
         width: 35,
         resizeMode: 'contain',
@@ -106,7 +106,14 @@ const styles = StyleSheet.create({
     searchBar: {
         borderRadius: 20
     },
+    paginationBottomContainer: {
+        backgroundColor: 'transparent',
+        height: 70
+    },
     centerBox: {
-        flex: 1
+        marginTop: 35,
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center'
     }
 })
