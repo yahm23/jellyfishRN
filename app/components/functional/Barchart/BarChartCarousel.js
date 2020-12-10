@@ -32,7 +32,7 @@ export default function BarChartCarousel(props) {
             setMaxIndex(changedArray.length)
             const singleArr = changedArray;
             setDisplayed(singleArr); 
-
+            setIndex(0)
         }
        
         console.log('Index is currently at ' + indexShown);
