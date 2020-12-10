@@ -8,6 +8,7 @@ import {
     Platform,
   } from 'react-native';
 import CarouselCustom from './CarouselCustom';
+import BarChart from './BarChart';
 
 export default function BarChartContainer(props) {
     const [entireData,setEntireData] = useState(null);
@@ -43,13 +44,28 @@ export default function BarChartContainer(props) {
         }
     }
 
+    function chunkArrayInGroups(arr, size) {
+        var myArray = [];
+        if(arr&& size){
+            for(var i = 0; i < arr.length; i += size) {
+            myArray.push(arr.slice(i, i+size));
+            }
+            return myArray;
+        }
+    }
+    const setChunkifiedArray = () =>{
 
+        var test =[1,2,3];
+        return test.map((value,index)=>{
+            return <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {chunkArrayInGroups(timeSpecificData,5)[0]}/>
+        })
 
+    }
     return (
         <View>
             {
                 entireData && timeSpecificData?
-                <CarouselCustom/>
+                <CarouselCustom displayedArray={setChunkifiedArray(timeSpecificData)}/>
                 :
                 <Text>Entire data or time specific data not loaded in yet</Text>
             }
