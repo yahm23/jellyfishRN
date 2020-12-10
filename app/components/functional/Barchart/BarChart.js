@@ -100,10 +100,11 @@ export default function BarChart(props) {
 const styles = StyleSheet.create({
     bars:{
         backgroundColor:'#8377D1',
-        borderRadius:5,
+        borderRadius:10,
         width:35
     },
     labels:{
+        textAlign:'center',
         paddingTop:15,
         fontFamily:'GothamRounded-Medium',
         color:'white'
