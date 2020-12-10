@@ -12,6 +12,7 @@ import BarChart from './BarChart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import CarouselCustom from './CarouselCustom';
+import { log } from 'react-native-reanimated';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -21,6 +22,7 @@ export default function BarChartCarousel(props) {
     const [entireDataGrouped, setEntireDataGroup] = useState(null)
 
     useEffect(() => {
+        // setEntireDataGroup(chunkArrayInGroups(props.entireData,5))
         setEntireData()
         
         // setChunkifiedArray()
@@ -76,18 +78,22 @@ export default function BarChartCarousel(props) {
     }
 
     async function setEntireData(){
-        await setEntireDataGroup(chunkArrayInGroups(props.entireData,5))
+        console.log((props.entireData))
+        var allData = props.entireData
+        await setEntireDataGroup(chunkArrayInGroups(allData,5))
     }
     
-    async function setChunkifiedArray (){
-        var grouped = entireDataGrouped
-        var firstEntry = grouped
+    const setChunkifiedArray = () =>{
+        // var grouped = props.entireData
+        // var firstEntry = grouped
+        // return [<Text>NEW TRIAL</Text>,<Text>NEW TRIAL</Text>]
+
         var test =[1,2,3];
 
         // console.log(firstEntry);
         return test.map((value,index)=>{
-            return <Text>NEW TRIAL</Text>
-            // return <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {entireDataGrouped[index]}/>
+            // return <Text>NEW TRIAL</Text>
+            return <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {chunkArrayInGroups((getSpecificTimeFrameData(props.timeframe)),5)[0]}/>
         })
         return grouped.map((value,index)=>{
             return <Text>NEW TRIAL</Text>
@@ -119,18 +125,20 @@ export default function BarChartCarousel(props) {
                     </TouchableOpacity>
                     {entireDataGrouped?
                     
-                        // <View>
-                        //     <Carousel
+                        <View>
+                        {/* //     <Carousel
                         //         data={state.carouselItems}
                         //         renderItem={renderItem}
                         //         inactiveSlideScale={1}
                         //         sliderWidth={windowWidth}
                         //         itemWidth={windowWidth}
                         //         onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
-                        //     />
-                        // </View>
+                        //     /> */}
+                        {console.log('Are we here')}
+                        {console.log(entireDataGrouped)}
+                            <CarouselCustom displayedArray={setChunkifiedArray()}/>
+                        </View>
                          
-                        <CarouselCustom displayedArray={entireDataGrouped}/>
                         :
                         <Text>NULL tern</Text>
                     } 

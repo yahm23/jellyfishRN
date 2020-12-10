@@ -9,6 +9,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import BarChartCarousel from './BarChartCarousel2';
 import data from '../../fakeData/reportsData'
 import { values } from '../../fakeData/brain';
+import BarChartContainer from './BarChartContainer';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -48,6 +49,27 @@ export default function BarScreenScreen(props) {
         ) 
     }
     
+    const getSpecificTimeFrameData = (timeframeInput) => {
+        if (entireData){
+            switch (timeframeInput) {
+                case "Hour":
+                return entireData.hours
+                
+                case "Day":
+                return entireData.days
+                
+                case "Month":
+                return entireData.months
+                
+                case "Year":
+                return entireData.years
+            }
+        }
+    }
+
+
+
+
     return (
         <View>
             <View style={styles.body}>
@@ -59,7 +81,8 @@ export default function BarScreenScreen(props) {
                 </View>
                 <View >
                     <View style={styles.barchartContainer}>
-                        <BarChartCarousel entireData={entireData} timeFrame={timeFrame}/> 
+                        {/* <BarChartCarousel entireData={entireData} timeFrame={timeFrame}/>  */}
+                        <BarChartContainer entireData={entireData} specificTimeData={getSpecificTimeFrameData(timeFrame)} timeFrame={timeFrame} />
                         </View>
                     <View style={styles.parentNav}><DotsLabels/></View>
                 </View>
