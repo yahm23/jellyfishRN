@@ -89,7 +89,7 @@ export default function BarChart(props) {
             {pixelPowerConversion && maxData ?
                     <View>
                     {/* {console.log(specificTimeData)} */}
-                    {console.log(maxData + ' kwh')}
+                    {/* {console.log(maxData + ' kwh')} */}
                         {/* <View style={{height:(maxBarHeight/maxData)*maxData, backgroundColor: 'black', width:45}}/> */}
                         {BarCreator(specificTimeData)}
                     </View>

@@ -14,46 +14,51 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function BarChartCarousel(props) {
-    
-    const ENTRIES1 = [
-        {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg',
-        },
-        {
-        title: 'Earlier this morning, NYC',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
-        },
-        {
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg',
-        },
-        {
-        title: 'Acrocorinth, Greece',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
-        },
-        {
-        title: 'The lone tree, majestic landscape of New Zealand',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
-        },
-    ];
+;
 
-    const [entries, setEntries] = useState([]);
+    const [displayedFrame, setDisplayed] = useState(null);
+    const [entireFrame, setEntireFrame] = useState(null);
+    const [indexShown, setIndex] = useState(0)
     const carouselRef = useRef(null);
+    
+    useEffect(() => {
+        if(props.entireData && props.timeFrame){
+            var array = getSpecificTimeFrameData(props.timeFrame);
+            var changedArray = chunkArrayInGroups(array,5)
+            
+            setEntireFrame(changedArray)
+            console.log(changedArray);
+
+            const singleArr = changedArray;
+            setDisplayed(singleArr); 
+
+        }
+
+    }, [props]);
 
     const goForward = () => {
+        console.log('moving');
+        setIndex(indexShown+1)
         carouselRef.current.snapToNext();
     };
 
-    const powerMaxMinCalculator = (data) =>{
+    
+    //USE THIS
+    function chunkArrayInGroups(arr, size) {
+        var myArray = [];
+        if(arr&& size){
+            for(var i = 0; i < arr.length; i += size) {
+            myArray.push(arr.slice(i, i+size));
+            }
+            return myArray;
+        }
+      }
 
+    const calculateSlideNumber = (input) => {
+        var ans;
+        ans = input/5
+        return Math.ceil(ans)
     }
-
     const getSpecificTimeFrameData = (timeframe) => {
         if (props.entireData){
             switch (timeframe) {
@@ -72,23 +77,20 @@ export default function BarChartCarousel(props) {
         }
     }
 
-    useEffect(() => {
-        setEntries(ENTRIES1);
-    }, []);
+    const shiftFrame = (data) => {
+        var dataSlides = calculateSlideNumber(data.length())
+    }
+
+    
 
     const renderItem = ({item, index}, parallaxProps) => {
         return (
           <View style={styles.item}>
-            <ParallaxImage
-              source={{uri: item.illustration}}
-              containerStyle={styles.imageContainer}
-              style={styles.image}
-              parallaxFactor={0.4}
-              {...parallaxProps}
-            />
-            {/* <Text style={styles.title} numberOfLines={2}>
-              {item.title}
-            </Text> */}
+            {props.timeFrame?
+                <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {displayedFrame[indexShown]}/>
+                :
+                null
+            }
           </View>
         );
       };
@@ -98,23 +100,23 @@ export default function BarChartCarousel(props) {
 
                 <Text>{props.timeFrame}</Text>
                 <View style={styles.container}>
-                    {props.timeFrame?
-                        <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {getSpecificTimeFrameData(props.timeFrame)}/>
-                        :
-                        null
-                    }
-                    {/* <TouchableOpacity onPress={goForward}>
+                    <TouchableOpacity onPress={goForward}>
                         <Text>go to next slide</Text>
-                    </TouchableOpacity> */}
-                    {/* <Carousel
+                    </TouchableOpacity>
+                    {entireFrame?
+                    
+                        <Carousel
                         ref={carouselRef}
                         sliderWidth={windowWidth}
                         sliderHeight={windowWidth}
                         itemWidth={windowWidth - 60}
-                        data={entries}
+                        data={entireFrame}
                         renderItem={renderItem}
                         // hasParallaxImages={true}
-                    /> */}
+                        />
+                        :
+                        null
+                    }
                 </View>
 
         </View>
