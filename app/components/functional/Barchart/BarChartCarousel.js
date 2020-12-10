@@ -18,7 +18,8 @@ export default function BarChartCarousel(props) {
 
     const [displayedFrame, setDisplayed] = useState(null);
     const [entireFrame, setEntireFrame] = useState(null);
-    const [indexShown, setIndex] = useState(0)
+    const [indexShown, setIndex] = useState(0);
+    const [maxIndex, setMaxIndex] = useState(null)
     const carouselRef = useRef(null);
     
     useEffect(() => {
@@ -28,18 +29,35 @@ export default function BarChartCarousel(props) {
             
             setEntireFrame(changedArray)
             console.log(changedArray);
-
+            setMaxIndex(changedArray.length)
             const singleArr = changedArray;
             setDisplayed(singleArr); 
 
         }
-
+       
+        console.log('Index is currently at ' + indexShown);
     }, [props]);
 
     const goForward = () => {
         console.log('moving');
-        setIndex(indexShown+1)
-        carouselRef.current.snapToNext();
+        if(indexShown===maxIndex -1 ){
+            null
+        }else if(indexShown < maxIndex -1 ){
+            setIndex(indexShown+1)
+            carouselRef.current.snapToNext();
+        }else{
+            setIndex(0)
+        }
+    };
+    const goBackwards = () => {
+        console.log('moving back');
+        // if(maxIndex< indexShown){
+        //     setIndex(0)
+        // } 
+        if(indexShown!=0){
+            setIndex(indexShown-1)
+            carouselRef.current.snapToNext();
+        }
     };
 
     
@@ -99,10 +117,13 @@ export default function BarChartCarousel(props) {
         <View style={styles.body}>
 
                 <Text>{props.timeFrame}</Text>
-                <View style={styles.container}>
                     <TouchableOpacity onPress={goForward}>
-                        <Text>go to next slide</Text>
+                        <Text>NEXT</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={goBackwards}>
+                        <Text>BACK</Text>
+                    </TouchableOpacity>
+                <View style={styles.container}>
                     {entireFrame?
                     
                         <Carousel

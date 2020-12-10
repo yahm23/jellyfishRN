@@ -25,7 +25,7 @@ export default function BarChart(props) {
 
     }, [props])
 
-    const maxBarHeight = windowHeight * 0.35 * 0.85
+    const maxBarHeight = windowHeight * 0.35 * 0.80
     
     const findDataMaxValue = (input) =>{
         if(input){
