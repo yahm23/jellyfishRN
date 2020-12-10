@@ -9,6 +9,9 @@ import {
   Platform,
 } from 'react-native';
 import BarChart from './BarChart';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -120,8 +123,8 @@ export default function BarChartCarousel(props) {
                     
                     
                 <View style={styles.container}>
-                    <TouchableOpacity style={{width:windowWidth*0.1}} onPress={goBackwards}>
-                        <Text>BACK</Text>
+                    <TouchableOpacity style={styles.Arrow} onPress={goBackwards}>
+                        <FontAwesomeIcon style={[styles.Arrow, styles.backArrow]} icon={faChevronRight} size={25} color={'white'} />
                     </TouchableOpacity>
 
                     {entireFrame?
@@ -143,8 +146,8 @@ export default function BarChartCarousel(props) {
                         null
                     }
                     
-                    <TouchableOpacity style={{width:windowWidth*0.1}} onPress={goForward}>
-                        <Text>NEXT</Text>
+                    <TouchableOpacity style={styles.Arrow} onPress={goForward}>
+                        <FontAwesomeIcon  icon={faChevronRight} size={25} color={'white'} />
                     </TouchableOpacity>
                 </View>
 
@@ -178,8 +181,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 8,
     },
-    image: {
-        ...StyleSheet.absoluteFillObject,
-        resizeMode: 'cover',
+    Arrow:{
+        flex:0,
+        justifyContent:'center',
+        alignItems:'center',
+        height: windowHeight*0.35,
     },
+    backArrow:{
+        transform: [{ rotate: '180deg'}]
+    }
+
+
 })
