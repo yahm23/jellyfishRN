@@ -17,26 +17,26 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function BarChartCarousel(props) {
-;
 
-    const [displayedFrame, setDisplayed] = useState(null);
+
+    const [allData, setAllData] = useState(null);
     const [entireFrame, setEntireFrame] = useState(null);
     const [indexShown, setIndex] = useState(0);
     const [maxIndex, setMaxIndex] = useState(null)
     const carouselRef = useRef(null);
     
     useEffect(() => {
-        if(props.entireData && props.timeFrame){
-            var array = getSpecificTimeFrameData(props.timeFrame);
+        // if(props.entireData && props.timeFrame){
+            var array = getSpecificTimeFrameData(props.entireData);
             var changedArray = chunkArrayInGroups(array,5)
-            
             setEntireFrame(changedArray)
-            console.log(changedArray);
-            setMaxIndex(changedArray.length)
-            const singleArr = changedArray;
-            setDisplayed(singleArr); 
+            console.log(array);
+            
+            // setMaxIndex(changedArray.length)
+            // const singleArr = changedArray;
+            // setDisplayed(singleArr); 
             setIndex(0)
-        }
+        // }
        
         console.log('Index is currently at ' + indexShown);
     }, [props]);
@@ -53,10 +53,6 @@ export default function BarChartCarousel(props) {
         }
     };
     const goBackwards = () => {
-        console.log('moving back');
-        // if(maxIndex< indexShown){
-        //     setIndex(0)
-        // } 
         if(indexShown!=0){
             setIndex(indexShown-1)
             carouselRef.current.snapToNext();
@@ -73,7 +69,7 @@ export default function BarChartCarousel(props) {
             }
             return myArray;
         }
-      }
+    }
 
     const calculateSlideNumber = (input) => {
         var ans;
@@ -98,23 +94,65 @@ export default function BarChartCarousel(props) {
         }
     }
 
-    const shiftFrame = (data) => {
-        var dataSlides = calculateSlideNumber(data.length())
+    
+    function renderItem({ item, index }) {
+        return (
+            <View>
+                {item}
+            </View>
+        )
     }
 
-    
+    const getChunkifiedArray = () => {
+        // var array = getSpecificTimeFrameData(props.timeFrame);
+        // var changedArray = chunkArrayInGroups(array,5)
+        // console.log('changedArray:');
+        // console.log(changedArray);
+        if(props.entireData && entireFrame){
+            return chunkArrayInGroups(getSpecificTimeFrameData(props.timeFrame),5).map((value,index)=>{
+                return <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {entireFrame[index]}/>
 
-    const renderItem = ({item, index}, parallaxProps) => {
-        return (
-          <View style={styles.item}>
-            {props.timeFrame?
-                <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {displayedFrame[indexShown]}/>
-                :
-                null
-            }
-          </View>
-        );
-      };
+            })
+        }
+        // var test =[1,2,3];
+
+        // return test.map(()=>{
+        //     return <Text>POOPOPO</Text>
+        // })
+    }
+
+    const [state, setState] = useState({
+        activeSlide: 0,
+        carouselItems: 
+            //  <Text>poop</Text>,
+            //  <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {props.timeFrame? getSpecificTimeFrameData(props.timeFrame).slice(0,5):null}/>
+            getChunkifiedArray()
+        
+            // ()=>{
+            //     var array = getSpecificTimeFrameData(props.timeFrame);
+            //     var changedArray = chunkArrayInGroups(array,5)
+            //     console.log(changedArray);
+            //     return changedArray.map((value,index)=>{
+            //         return <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {entireFrame[index]}/>
+
+            //     })
+            // }
+            
+        
+    });
+
+
+    // const renderItem = ({item, index}, parallaxProps) => {
+    //     return (
+    //       <View style={styles.item}>
+    //         {props.timeFrame?
+    //             <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {displayedFrame[indexShown]}/>
+    //             :
+    //             null
+    //         }
+    //       </View>
+    //     );
+    //   };
       
     return (
         <View style={styles.body}>
@@ -136,8 +174,10 @@ export default function BarChartCarousel(props) {
                             sliderWidth={windowWidth*0.8}
                             sliderHeight={windowWidth}
                             itemWidth={windowWidth*0.8}
-                            data={entireFrame}
+                            data={state.carouselItems}
+                            // data={entireFrame}
                             renderItem={renderItem}
+                            onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
                             // hasParallaxImages={true}
                             />
                         </View>

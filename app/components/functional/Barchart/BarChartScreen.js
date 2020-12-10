@@ -6,7 +6,7 @@ import JellyLogo from '../../../images/brand/Jellyfish-white.png';
 // import DynamicPieChart from '../DynamicPieChart';
 // import brain from '../fakeData/brain';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import BarChartCarousel from './BarChartCarousel';
+import BarChartCarousel from './BarChartCarousel2';
 import data from '../../fakeData/reportsData'
 import { values } from '../../fakeData/brain';
 
