@@ -57,8 +57,8 @@ export default function BarChart(props) {
                 {data.map((single)=>{
                     return (
                         <View style={{paddingHorizontal:10, flex:0, justifyContent:'flex-end'}}>
-                            <View style={{height:(maxBarHeight/maxData)*single.total_kWh, backgroundColor: 'black', width:35}}/>
-                            <Text>{
+                            <View style={[styles.bars,{height:(maxBarHeight/maxData)*single.total_kWh}]}/>
+                            <Text style={styles.labels}>{
                                 single.hour?
                                 `${single.hour}:00`:
 
@@ -88,9 +88,6 @@ export default function BarChart(props) {
         <View>
             {pixelPowerConversion && maxData ?
                     <View>
-                    {/* {console.log(specificTimeData)} */}
-                    {/* {console.log(maxData + ' kwh')} */}
-                        {/* <View style={{height:(maxBarHeight/maxData)*maxData, backgroundColor: 'black', width:45}}/> */}
                         {BarCreator(specificTimeData)}
                     </View>
                 :
@@ -99,3 +96,16 @@ export default function BarChart(props) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    bars:{
+        backgroundColor:'#8377D1',
+        borderRadius:5,
+        width:35
+    },
+    labels:{
+        paddingTop:15,
+        fontFamily:'GothamRounded-Medium',
+        color:'white'
+    }
+})
