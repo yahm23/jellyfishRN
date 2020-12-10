@@ -40,8 +40,8 @@ export default function BarScreenScreen(props) {
                     }
                 return (
                     <TouchableOpacity onPress={()=>{setTimeFrame(value)}} key={value}>
-                        <View style={[styles.dots,active? styles.activeDot:null]}/>
-                        <Text style={[styles.label,active? styles.activeLabel:null]}>{value}</Text>
+                        <View style={[styles.dots, active? styles.activeDot:null]}/>
+                        <Text style={[styles.label, active? styles.activeLabel:null]}>{value}</Text>
                     </TouchableOpacity>)
                 })}
             </View>
