@@ -25,25 +25,6 @@ export default function BarChartContainer(props) {
         setData()
     }, [props.specificTimeData])
 
-
-    const getSpecificTimeFrameData = (timeframe) => {
-        if (props.entireData){
-            switch (timeframe) {
-                case "Hour":
-                return props.entireData.hours
-                
-                case "Day":
-                return props.entireData.days
-                
-                case "Month":
-                return props.entireData.months
-                
-                case "Year":
-                return props.entireData.years
-            }
-        }
-    }
-
     function chunkArrayInGroups(arr, size) {
         var myArray = [];
         if(arr&& size){
@@ -56,8 +37,8 @@ export default function BarChartContainer(props) {
     const setChunkifiedArray = () =>{
 
         var test =[1,2,3];
-        return test.map((value,index)=>{
-            return <BarChart timeFrameName={props.timeFrame} specificTimeFrameData = {chunkArrayInGroups(timeSpecificData,5)[0]}/>
+        return timeSpecificData.map((value,index)=>{
+            return <BarChart specificTimeFrameData = {chunkArrayInGroups(timeSpecificData,5)[index]}/>
         })
 
     }
