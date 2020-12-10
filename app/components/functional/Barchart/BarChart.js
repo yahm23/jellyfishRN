@@ -66,7 +66,7 @@ export default function BarChart(props) {
                                 `${single.day}${getOrdinalSuffix(single.day)}`:
 
                                 single.month?
-                                single.month:
+                                single.month.slice(0,3):
 
                                 single.year?
                                 single.year:
