@@ -116,28 +116,36 @@ export default function BarChartCarousel(props) {
     return (
         <View style={styles.body}>
 
-                <Text>{props.timeFrame}</Text>
-                    <TouchableOpacity onPress={goForward}>
-                        <Text>NEXT</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={goBackwards}>
+                {/* <Text>{props.timeFrame}</Text> */}
+                    
+                    
+                <View style={styles.container}>
+                    <TouchableOpacity style={{width:windowWidth*0.1}} onPress={goBackwards}>
                         <Text>BACK</Text>
                     </TouchableOpacity>
-                <View style={styles.container}>
+
                     {entireFrame?
-                    
-                        <Carousel
-                        ref={carouselRef}
-                        sliderWidth={windowWidth}
-                        sliderHeight={windowWidth}
-                        itemWidth={windowWidth - 60}
-                        data={entireFrame}
-                        renderItem={renderItem}
-                        // hasParallaxImages={true}
-                        />
+                        // <View style={{width:'80%'}}>
+                        <View style={{}}>
+
+                            <Carousel
+                            ref={carouselRef}
+                            sliderWidth={windowWidth*0.8}
+                            sliderHeight={windowWidth}
+                            itemWidth={windowWidth*0.8}
+                            data={entireFrame}
+                            renderItem={renderItem}
+                            // hasParallaxImages={true}
+                            />
+                        </View>
+
                         :
                         null
                     }
+                    
+                    <TouchableOpacity style={{width:windowWidth*0.1}} onPress={goForward}>
+                        <Text>NEXT</Text>
+                    </TouchableOpacity>
                 </View>
 
         </View>
@@ -154,10 +162,14 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        flexDirection:'row'
     },
     item: {
         width: windowWidth*0.8,
+        flex:0,
+        justifyContent:'center',
         alignSelf:'center',
+        alignItems:'center',
         height: windowHeight*0.35,
     },
     imageContainer: {

@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         height:windowHeight*0.35,
         width:windowWidth*0.8,
-        backgroundColor:'beige'
+        // backgroundColor:'beige'
     }
     
 })

@@ -57,7 +57,7 @@ export default function BarChart(props) {
                 {data.map((single)=>{
                     return (
                         <View style={{paddingHorizontal:10, flex:0, justifyContent:'flex-end'}}>
-                            <View style={{height:(maxBarHeight/maxData)*single.total_kWh, backgroundColor: 'black', width:45}}/>
+                            <View style={{height:(maxBarHeight/maxData)*single.total_kWh, backgroundColor: 'black', width:35}}/>
                             <Text>{
                                 single.hour?
                                 `${single.hour}:00`:
