@@ -47,26 +47,28 @@ export default function BarChart(props) {
     const BarCreator = (data) => {
 
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                {data.map((single) => {
-                    return (
-                        <View style={{ paddingHorizontal: 10, flex: 0, justifyContent: 'flex-end' }}>
-                            <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh }]} />
-                            <Text style={styles.labels}>{
-                                single.hour ?
-                                    `${single.hour}:00` :
-                                    single.day ?
-                                        `${single.day}${getOrdinalSuffix(single.day)}` :
-                                        single.month ?
-                                            single.month.slice(0, 3) :
-                                            single.year ?
-                                                single.year : null
-                            }
-                            </Text>
-                        </View>
-                    )
-                })}
-            </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    {data.map((single) => {
+                        return (
+                            <View style={{ paddingHorizontal: 10, flex: 0, justifyContent: 'flex-end', alignItems: 'center' }}>
+                                <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
+                                    <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh }]} />
+                                </View>
+                                <Text style={styles.labels}>{
+                                    single.hour ?
+                                        `${single.hour}:00` :
+                                        single.day ?
+                                            `${single.day}${getOrdinalSuffix(single.day)}` :
+                                            single.month ?
+                                                single.month.slice(0, 3) :
+                                                single.year ?
+                                                    single.year : null
+                                }
+                                </Text>
+                            </View>
+                        )
+                    })}
+                </View>
         )
 
     }
@@ -84,12 +86,21 @@ const styles = StyleSheet.create({
     bars: {
         backgroundColor: '#8377D1',
         borderRadius: 10,
-        width: 35
+        width: 24
+    },
+    barPlaceholder: {
+        width: 24,
+        backgroundColor: '#272727',
+        borderRadius: 10,
+        flexDirection: 'column-reverse'
     },
     labels: {
         textAlign: 'center',
         paddingTop: 15,
         fontFamily: 'GothamRounded-Medium',
-        color: 'white'
+        color: 'white',
+        width: 44,
+        alignContent: 'center',
+        justifyContent: 'center'
     }
 })

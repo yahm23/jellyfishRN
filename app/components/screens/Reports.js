@@ -7,15 +7,14 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import BarChart from '../functional/Barchart_Test/Barchart';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 const times = ['hours', 'days', 'months', 'years'];
 
-export default function Reports(props) {
+export default function Reports() {
     const [timeFrame, setTimeFrame] = useState('days');
 
-    // Split data onto chunks of five
+    // Split and export data as chunks of five
     function createBarchart(arr) {
-        const size = 7;
+        const size = 5;
         let myArray = [];
         if (arr && size) {
             for (var i = 0; i < arr.length; i += size) {
@@ -42,6 +41,7 @@ export default function Reports(props) {
         )
     }
 
+    // Replace carousel data when timeframe has been selected
     const handlePress = (value) => {
         setTimeFrame(value);
         setState({
