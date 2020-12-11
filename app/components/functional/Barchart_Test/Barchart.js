@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
     Dimensions,
-    StyleSheet,
-    TouchableOpacity,
-    Platform,
+    StyleSheet
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+// ----------------------------------------------------------------------------------------------------------------------- //
+
 export default function BarChart(props) {
 
-    const [specificTimeData, setSpecificTimeData] = useState(null)
-    const [maxData, setMaxDataValue] = useState(null)
-    const [pixelPowerConversion, setpixelPowerConversion] = useState(null)
-
-
     useEffect(() => {
-        setSpecificTimeData(props.specificTimeFrameData)
-        setMaxDataValue(findDataMaxValue(props.specificTimeFrameData))
-        setpixelPowerConversion(calcPixelConversion(findDataMaxValue(props.specificTimeFrameData)))
 
     }, [props])
 
-    const maxBarHeight = windowHeight * 0.35 * 0.80
+    // Find max data -------------------------------------------------- //
 
     const findDataMaxValue = (input) => {
         if (input) {
@@ -37,9 +28,7 @@ export default function BarChart(props) {
         }
     }
 
-    const calcPixelConversion = (input) => {
-        return maxBarHeight / input;
-    }
+    // Get ordinal suffix --------------------------------------------- //
 
     const getOrdinalSuffix = (number) => {
         if (number > 3 && number < 21) return 'th';
@@ -51,28 +40,27 @@ export default function BarChart(props) {
         }
     };
 
+    const singleTimeFrameData = props.specificTimeFrameData;
+    const maxValue = findDataMaxValue(singleTimeFrameData);
+    const maxBarHeight = (windowHeight * 0.35) * 0.80;
+
     const BarCreator = (data) => {
 
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 {data.map((single) => {
                     return (
                         <View style={{ paddingHorizontal: 10, flex: 0, justifyContent: 'flex-end' }}>
-                            <View style={[styles.bars, { height: (maxBarHeight / maxData) * single.total_kWh }]} />
+                            <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh }]} />
                             <Text style={styles.labels}>{
                                 single.hour ?
                                     `${single.hour}:00` :
-
                                     single.day ?
                                         `${single.day}${getOrdinalSuffix(single.day)}` :
-
                                         single.month ?
                                             single.month.slice(0, 3) :
-
                                             single.year ?
-                                                single.year :
-
-                                                null
+                                                single.year : null
                             }
                             </Text>
                         </View>
@@ -85,13 +73,9 @@ export default function BarChart(props) {
 
     return (
         <View>
-            {pixelPowerConversion && maxData ?
-                <View>
-                    {BarCreator(specificTimeData)}
-                </View>
-                :
-                null
-            }
+            <View>
+                {BarCreator(singleTimeFrameData)}
+            </View>
         </View>
     )
 }

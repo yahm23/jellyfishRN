@@ -3,7 +3,7 @@ import React from 'react';
 import Dashboard from '../screens/Dashboard';
 import Appliances from '../screens/Appliances';
 // import Reports from '../screens/Reports';
-import Reports from '../functional/Barchart/BarChartScreen';
+import Reports from '../screens/Reports';
 import Offers from '../screens/Offers';
 import Account from '../screens/Account';
 import AppliancesStackPage from '../stacks/AppliancesStackPage';

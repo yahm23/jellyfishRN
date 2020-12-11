@@ -13,7 +13,6 @@ const Tab = createBottomTabNavigator();
 
 export default function AppContainer() {
     const [connected, setConnection] = useState(null);
-
     const [isSignedIn, setIsSignedIn] = useState('false');
 
     useEffect(() => {
