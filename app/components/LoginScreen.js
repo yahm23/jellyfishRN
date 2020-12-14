@@ -60,8 +60,6 @@ const styles = StyleSheet.create({
     }, 
     image: {
         flex: 1,
-        // position:'absolute',
-        // zIndex:10,
         resizeMode: "cover",
         justifyContent: "center"
     },

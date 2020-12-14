@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     dotsPosition: {
         width: '100%',
-        marginTop: 50,
+        marginTop: 20,
         flex: 0,
         alignItems: 'center'
     },
