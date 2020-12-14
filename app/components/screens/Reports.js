@@ -4,7 +4,7 @@ import SearchBar from '../functional/SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png';
 import reportsData from '../fakeData/reportsData';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import BarChart from '../functional/Barchart/Barchart';
+import BarChart from '../functional/Barchart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 
