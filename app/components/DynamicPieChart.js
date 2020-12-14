@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { VictoryPie } from 'victory-native';
 import findIcon from './iconGenerator';
@@ -6,6 +6,11 @@ import { faChevronUp, faChevronDown } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export default function LabelledPieChart({ pieData }) {
+
+    const [showArrow, setShowArrow] = useState({
+        topArrow: 'transparent',
+        bottomArrow: 'transparent'
+    });
 
     const graphicData = pieData.map(obj => {
         return (
@@ -21,6 +26,20 @@ export default function LabelledPieChart({ pieData }) {
     graphicData.map(obj => {
         totalValue += obj.y
     });
+
+    // Calculate whether energy usage is high or low for displaying arrow
+    // const calcAverage = (usage, expected) => {
+
+    //     if (usage !== expected) {
+    //         setShowArrow({topArrow: 'red', bottomArrow: 'transparent'})
+    //     }
+    //     else {
+    //         setShowArrow({topArrow: 'transparent', bottomArrow: 'red'})
+    //     }
+    // }
+
+    // // Too many re renders ???
+    // calcAverage(2000, 4000);
 
     const CustomLabel = (props) => {
         return (
@@ -56,12 +75,13 @@ export default function LabelledPieChart({ pieData }) {
                     labelComponent={<CustomLabel />}
                 />
                 <View style={styles.innerTextContainer}>
-                    <FontAwesomeIcon style={styles.arrowGreen} icon={faChevronUp} size={35} color={'#00FF58'} />
+                    <FontAwesomeIcon style={styles.arrowGreen} icon={faChevronUp} size={35} color={showArrow.topArrow} />
                     <View style={styles.flexContainer}>
                         <Text style={styles.innerText}>{totalValue} </Text>
                         <Text style={styles.innerSubText}>kWh</Text>
                     </View>
-                    <FontAwesomeIcon style={styles.arrowRed} icon={faChevronDown} size={35} color={'transparent'} />
+                    <FontAwesomeIcon style={styles.arrowRed} icon={faChevronDown} size={35} color={showArrow.bottomArrow} />
+                    {/* RED: #FA4747 */}
                 </View>
             </View>
         </View>
