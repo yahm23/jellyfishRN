@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import { View, Image, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import SearchBar from '../functional/SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png';
 import reportsData from '../fakeData/reportsData';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import BarChart from '../functional/Barchart_Test/Barchart';
+import BarChart from '../functional/Barchart/Barchart';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 
 const windowWidth = Dimensions.get('window').width;
 const times = ['hours', 'days', 'months', 'years'];
 
 export default function Reports() {
     const [timeFrame, setTimeFrame] = useState('days');
+    const carouselRef = useRef(null);
 
     // Split and export data as chunks of five
     function createBarchart(arr) {
@@ -21,8 +24,8 @@ export default function Reports() {
                 myArray.push(arr.slice(i, i + size));
             }
 
-            return myArray.map(arr => {
-                return <BarChart specificTimeFrameData={arr} />
+            return myArray.map((arr,index) => {
+                return <BarChart key={index} specificTimeFrameData={arr} />
             })
         }
     }
@@ -53,11 +56,11 @@ export default function Reports() {
     const DotsLabels = () => {
         return (
             <View style={styles.dotsContainer}>
-                {times.map(value => {
+                {times.map((value,index) => {
                     let active;
                     value === timeFrame ? active = true : active = false
                     return (
-                        <TouchableOpacity onPress={() => handlePress(value)} key={value}>
+                        <TouchableOpacity key={index} onPress={() => handlePress(value)} key={value}>
                             <View style={[styles.dots, active ? styles.activeDot : null]} />
                             <Text style={[styles.label, active ? styles.activeLabel : null]}>{CapitaliseString(value)}</Text>
                         </TouchableOpacity>
@@ -72,6 +75,14 @@ export default function Reports() {
         return capitalisedString;
     }
 
+    const goBackwards = () =>{
+        carouselRef.current.snapToPrev();
+    }
+    
+    const goForwards = () =>{
+        carouselRef.current.snapToNext();
+    }
+
     return (
         <View>
             <View style={styles.body}>
@@ -81,8 +92,14 @@ export default function Reports() {
                         <SearchBar />
                     </View>
                 </View>
-                <View srtyle={styles.centerBox}>
+                <View style={styles.centerBox}>
+
+                    <TouchableOpacity style={styles.Arrow} onPress={goBackwards}>
+                        <FontAwesomeIcon style={[styles.Arrow, styles.backArrow]} icon={faChevronRight} size={25} color={'white'} />
+                    </TouchableOpacity>
+
                     <Carousel
+                        ref={carouselRef}
                         data={state.carouselItems}
                         renderItem={renderItem}
                         inactiveSlideScale={1}
@@ -90,6 +107,11 @@ export default function Reports() {
                         itemWidth={windowWidth}
                         onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
                     />
+
+                    <TouchableOpacity style={styles.Arrow} onPress={goForwards}>
+                        <FontAwesomeIcon  icon={faChevronRight} size={25} color={'white'} />
+                    </TouchableOpacity>
+
                     <View style={styles.dotsPosition}><DotsLabels /></View>
                 </View>
             </View>
@@ -107,10 +129,10 @@ const styles = StyleSheet.create({
         height: 120
     },
     centerBox: {
-        marginTop: 35,
-        flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center'
+        marginTop: 15,
+        // flex: 1,
+        // justifyContent: 'center',
+        // alignContent: 'center'
     },
     logo: {
         marginTop: 25,
@@ -163,5 +185,14 @@ const styles = StyleSheet.create({
     },
     activeLabel: {
         color: 'white'
+    },
+    Arrow:{
+        flex:0,
+        justifyContent:'center',
+        alignItems:'center',
+        // height: windowHeight*0.35,
+    },
+    backArrow:{
+        transform: [{ rotate: '180deg'}]
     }
 })

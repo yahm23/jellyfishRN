@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect} from 'react';
 import {
     View,
     Text,
@@ -12,6 +12,7 @@ const windowHeight = Dimensions.get('window').height;
 // ----------------------------------------------------------------------------------------------------------------------- //
 
 export default function BarChart(props) {
+    
 
     useEffect(() => {
 
@@ -48,9 +49,9 @@ export default function BarChart(props) {
 
         return (
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    {data.map((single) => {
+                    {data.map((single,index) => {
                         return (
-                            <View style={{ paddingHorizontal: 10, flex: 0, justifyContent: 'flex-end', alignItems: 'center' }}>
+                            <View key={index} style={{ paddingHorizontal: 10, flex: 0, justifyContent: 'flex-end', alignItems: 'center' }}>
                                 <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
                                     <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh }]} />
                                 </View>
