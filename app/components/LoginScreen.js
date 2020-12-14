@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, ImageBackground, Text, View, TouchableOpacity, Image } from 'react-native';
 import logo from '../images/brand/full.png';
 import AsyncStorage from '@react-native-community/async-storage';
 import LoadingScreen from './LoadingScreen';
+// const background = { uri: "../../" };
+import background from '../images/jellybck.png';
 
 // Immediately reload the React Native Bundle
 export default function LoginScreen({ navigation }) {
@@ -24,21 +26,25 @@ export default function LoginScreen({ navigation }) {
             {isLoading ?
                 <LoadingScreen /> :
                 <View style={styles.body}>
-                    <Image source={logo} style={styles.logo} />
-                    <View style={styles.headerContainer}>
-                        <Text style={styles.header}>Understand your</Text>
-                        <Text style={styles.header}>home energy</Text>
-                    </View>
-                    <Text style={styles.paragraph}>
-                        Real-time, simple trend insights.
-                    </Text>
+                    <ImageBackground imageStyle={{opacity:0.1}} source={background} style={styles.image}>
+                        
+                    
+                        <Image source={logo} style={styles.logo} />
+                        <View style={styles.headerContainer}>
+                            <Text style={styles.header}>Understand your</Text>
+                            <Text style={styles.header}>home energy</Text>
+                        </View>
+                        <Text style={styles.paragraph}>
+                            Real-time, simple trend insights.
+                        </Text>
 
-                    <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.button} title='Get Started' onPress={() => LogIn()}>
-                            <Text style={styles.buttonText}>Get Started</Text>
-                        </TouchableOpacity>
-                        <Text style={styles.paragraph}>Need to order your Jellyfish kit?</Text>
-                    </View>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity style={styles.button} title='Get Started' onPress={() => LogIn()}>
+                                <Text style={styles.buttonText}>Get Started</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.paragraph}>Need to order your Jellyfish kit?</Text>
+                        </View>
+                    </ImageBackground>
                 </View>
             }
         </View>
@@ -48,8 +54,16 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     body: {
         height: '100%',
+        
         width: '100%',
         backgroundColor: '#1A1A1A',
+    }, 
+    image: {
+        flex: 1,
+        // position:'absolute',
+        // zIndex:10,
+        resizeMode: "cover",
+        justifyContent: "center"
     },
     logo: {
         marginTop: 120,

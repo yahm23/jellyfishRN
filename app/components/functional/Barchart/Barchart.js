@@ -48,11 +48,7 @@ export default function BarChart(props) {
     const BarCreator = (data) => {
 
         return (
-                <View style={{ 
-                    flexDirection: 'row',
-                     justifyContent: 'center'
-                     
-                }}>
+                <View style={{ flexDirection: 'row',justifyContent: 'center'}}>
                     {data.map((single,index) => {
                         return (
                             <View key={index} style={{ paddingHorizontal: 5, flex: 0, justifyContent: 'flex-end', alignItems: 'center' }}>
