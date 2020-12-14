@@ -98,22 +98,27 @@ export default function Reports() {
                         <FontAwesomeIcon style={[styles.Arrow, styles.backArrow]} icon={faChevronRight} size={25} color={'white'} />
                     </TouchableOpacity>
 
-                    <Carousel
+                    <View>
+                       <Carousel
                         ref={carouselRef}
                         data={state.carouselItems}
                         renderItem={renderItem}
                         inactiveSlideScale={1}
-                        sliderWidth={windowWidth}
-                        itemWidth={windowWidth}
+                        sliderWidth={windowWidth*0.8}
+                        itemWidth={windowWidth *0.8}
                         onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
-                    />
+                    /> 
+                    </View>
+                    
 
                     <TouchableOpacity style={styles.Arrow} onPress={goForwards}>
                         <FontAwesomeIcon  icon={faChevronRight} size={25} color={'white'} />
                     </TouchableOpacity>
 
-                    <View style={styles.dotsPosition}><DotsLabels /></View>
                 </View>
+
+
+                    <View style={styles.dotsPosition}><DotsLabels /></View>
             </View>
         </View>
     );
@@ -130,9 +135,10 @@ const styles = StyleSheet.create({
     },
     centerBox: {
         marginTop: 15,
-        // flex: 1,
-        // justifyContent: 'center',
-        // alignContent: 'center'
+        flexDirection:'row',
+        flex: 0,
+        justifyContent: 'center',
+        alignContent: 'center'
     },
     logo: {
         marginTop: 25,
@@ -149,9 +155,11 @@ const styles = StyleSheet.create({
         height: 70
     },
     barChartContainer: {
-        marginTop: 120,
+        marginTop: 25,
         justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        // backgroundColor:'yellow',
+        width:windowWidth*0.8
     },
     dotsPosition: {
         width: '100%',
