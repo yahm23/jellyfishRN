@@ -5,6 +5,7 @@ import {
     Dimensions,
     StyleSheet
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -51,8 +52,11 @@ export default function BarChart(props) {
                 <View style={{ flexDirection: 'row',justifyContent: 'center'}}>
                     {data.map((single,index) => {
                         return (
-                            <View key={index} style={{ paddingHorizontal: 5, flex: 0, justifyContent: 'flex-end', alignItems: 'center' }}>
-                                <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
+                            <View key={index} style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity style={{
+                                    paddingHorizontal: 5, flex: 0, justifyContent: 'center', alignItems: 'center' 
+                                    }}>
+                                    <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
                                     <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh }]} />
                                 </View>
                                 <Text style={styles.labels}>{
@@ -66,6 +70,8 @@ export default function BarChart(props) {
                                                     single.year : null
                                 }
                                 </Text>
+                                </TouchableOpacity>
+                                
                             </View>
                         )
                     })}
