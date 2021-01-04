@@ -63,7 +63,7 @@ export default function BarChart(props) {
                                     paddingHorizontal: 5, flex: 0, justifyContent: 'center', alignItems: 'center' 
                                     }}
 
-                                    onPress = {()=>props.setSpecificIndex(index)}
+                                    onPress = {()=>{}}
                                     >
                                     <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
                                     <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh,

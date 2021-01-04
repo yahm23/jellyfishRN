@@ -55,9 +55,10 @@ export default function Reports() {
     }
 
     // Replace carousel data when timeframe has been selected
-    const handlePress = async (value) => {
+    const handlePress = (value) => {
         setTimeFrame(value);
         setState({
+            activeSlide: 0,
             carouselItems: createBarchart(reportsData[value])
         })
     }
@@ -102,15 +103,14 @@ export default function Reports() {
                         <SearchBar />
                     </View>
                 </View>
-                <Text style={{color:'white'}}> Active Slide {state.activeSlide}</Text>
+                <Text style={{color:'white'}}>Active Slide {state.activeSlide}</Text>
                 <View style={styles.centerBox}>
 
                     <TouchableOpacity style={styles.Arrow} onPress={goBackwards}>
                         <FontAwesomeIcon style={[styles.Arrow, styles.backArrow]} icon={faChevronRight} size={25} color={'white'} />
                     </TouchableOpacity>
 
-                    <View key={timeFrame}> 
-                    {/* Key needed to force rerender */}
+                    <View key={timeFrame}>
                        <Carousel
                         ref={carouselRef}
                         data={state.carouselItems}
