@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { View, Image, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import SearchBar from '../functional/SearchBar';
 import JellyLogo from '../../images/brand/Jellyfish-white.png';
@@ -13,8 +13,17 @@ const times = ['hours', 'days', 'months', 'years'];
 
 export default function Reports() {
     const [timeFrame, setTimeFrame] = useState('days');
+    const [chunkIndex, setChunkIndex] = useState(0);
+    const [specificIndex,setSpecificIndex] = useState(0)
     const carouselRef = useRef(null);
 
+    useEffect(() => {
+    }, [timeFrame])
+
+    const changeSpecificIndex=(value)=>{
+        handlePress(timeFrame);
+        setSpecificIndex(value);
+    }
     // Split and export data as chunks of five
     function createBarchart(arr) {
         const size = 5;
@@ -23,12 +32,13 @@ export default function Reports() {
             for (var i = 0; i < arr.length; i += size) {
                 myArray.push(arr.slice(i, i + size));
             }
-
             return myArray.map((arr,index) => {
-                return <BarChart key={index} specificTimeFrameData={arr} />
+                // console.log(index);
+                return <BarChart setSpecificIndex={changeSpecificIndex} specificIndex={specificIndex} chunkIndex={chunkIndex} key={arr} specificTimeFrameData={arr} />
             })
         }
     }
+    
 
     // Update carousel items state when new button is pressed
     const [state, setState] = useState({
@@ -45,10 +55,9 @@ export default function Reports() {
     }
 
     // Replace carousel data when timeframe has been selected
-    const handlePress = (value) => {
+    const handlePress = async (value) => {
         setTimeFrame(value);
         setState({
-            ...state,
             carouselItems: createBarchart(reportsData[value])
         })
     }
@@ -86,19 +95,22 @@ export default function Reports() {
     return (
         <View>
             <View style={styles.body}>
+                
                 <View style={styles.topBox}>
                     <Image style={styles.logo} source={JellyLogo} />
                     <View style={styles.searchBarContainer}>
                         <SearchBar />
                     </View>
                 </View>
+                <Text style={{color:'white'}}> Active Slide {state.activeSlide}</Text>
                 <View style={styles.centerBox}>
 
                     <TouchableOpacity style={styles.Arrow} onPress={goBackwards}>
                         <FontAwesomeIcon style={[styles.Arrow, styles.backArrow]} icon={faChevronRight} size={25} color={'white'} />
                     </TouchableOpacity>
 
-                    <View>
+                    <View key={timeFrame}> 
+                    {/* Key needed to force rerender */}
                        <Carousel
                         ref={carouselRef}
                         data={state.carouselItems}
@@ -119,7 +131,17 @@ export default function Reports() {
 
 
                     <View style={styles.dotsPosition}><DotsLabels /></View>
+
+                    
+                    <TouchableOpacity
+                        onPress={()=>{
+                            console.log(specificIndex);
+                        }}
+                    >
+                        <Text style={{color:'white'}}>Log state</Text>
+                    </TouchableOpacity>
             </View>
+
         </View>
     );
 }

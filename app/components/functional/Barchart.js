@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     View,
     Text,
@@ -13,11 +13,11 @@ const windowHeight = Dimensions.get('window').height;
 // ----------------------------------------------------------------------------------------------------------------------- //
 
 export default function BarChart(props) {
-    
+    const [selectedBar,setSelectedBar] = useState(1)
 
     useEffect(() => {
-
-    }, [props])
+        setSelectedBar(props.specificIndex)
+    }, [props.specificIndex])
 
     // Find max data -------------------------------------------------- //
 
@@ -46,18 +46,29 @@ export default function BarChart(props) {
     const maxValue = findDataMaxValue(singleTimeFrameData);
     const maxBarHeight = (windowHeight * 0.35) * 0.80;
 
-    const BarCreator = (data) => {
+    const chunkIndex = props.chunkIndex
 
+    const handlePress = (value) => {
+        props.setSpecificIndex(value)
+
+    }
+    const BarCreator = (data) => {
         return (
                 <View style={{ flexDirection: 'row',justifyContent: 'center'}}>
+                    <Text style={{color:'white'}}>{selectedBar}</Text>
                     {data.map((single,index) => {
                         return (
                             <View key={index} style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
                                 <TouchableOpacity style={{
                                     paddingHorizontal: 5, flex: 0, justifyContent: 'center', alignItems: 'center' 
-                                    }}>
+                                    }}
+
+                                    onPress = {()=>props.setSpecificIndex(index)}
+                                    >
                                     <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
-                                    <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh }]} />
+                                    <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh,
+                                        backgroundColor:props.specificIndex == index? '#5EFC8D':'#8377D1' 
+                                    }]} />
                                 </View>
                                 <Text style={styles.labels}>{
                                     single.hour ?
@@ -82,6 +93,7 @@ export default function BarChart(props) {
 
     return (
         <View>
+
             <View>
                 {BarCreator(singleTimeFrameData)}
             </View>
@@ -91,7 +103,7 @@ export default function BarChart(props) {
 
 const styles = StyleSheet.create({
     bars: {
-        backgroundColor: '#8377D1',
+        // backgroundColor: '#8377D1',
         borderRadius: 10,
         width: 24
     },
