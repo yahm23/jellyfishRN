@@ -16,8 +16,8 @@ export default function BarChart(props) {
     const [selectedBar,setSelectedBar] = useState(1)
 
     useEffect(() => {
-        setSelectedBar(props.specificIndex)
-    }, [props.specificIndex])
+        // setSelectedBar(props.specificIndex)
+    }, [props.touchedBar])
 
     // Find max data -------------------------------------------------- //
 
@@ -49,12 +49,16 @@ export default function BarChart(props) {
     const chunkIndex = props.chunkIndex
 
     const handlePress = (value) => {
-        props.setSpecificIndex(value)
+        // props.setSpecificIndex(value)
+        props.setTouchedBar([props.testIndex,value])
+        console.log('Touched bar in child ['+props.touchedBar +']');
 
+        // console.log('active slide essentially '+props.testIndex);
+        // console.log('index essentially '+value);
     }
     const BarCreator = (data) => {
         return (
-                <View style={{ flexDirection: 'row',justifyContent: 'center'}}>
+                <View key={props.touchedBar[1]} style={{ flexDirection: 'row',justifyContent: 'center'}}>
                     <Text style={{color:'white'}}>{selectedBar}</Text>
                     {data.map((single,index) => {
                         return (
@@ -63,11 +67,13 @@ export default function BarChart(props) {
                                     paddingHorizontal: 5, flex: 0, justifyContent: 'center', alignItems: 'center' 
                                     }}
 
-                                    onPress = {()=>{}}
+                                    onPress = {()=>{handlePress(index)}}
                                     >
                                     <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
                                     <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh,
-                                        backgroundColor:props.specificIndex == index? '#5EFC8D':'#8377D1' 
+                                        backgroundColor: props.touchedBar[0] == props.testIndex && props.touchedBar[1] == index?
+                                                    '#5EFC8D':'#8377D1' 
+                                        // props.specificIndex == index?
                                     }]} />
                                 </View>
                                 <Text style={styles.labels}>{

@@ -14,14 +14,20 @@ const times = ['hours', 'days', 'months', 'years'];
 export default function Reports() {
     const [timeFrame, setTimeFrame] = useState('days');
     const [chunkIndex, setChunkIndex] = useState(0);
-    const [specificIndex,setSpecificIndex] = useState(0)
+    const [specificIndex,setSpecificIndex] = useState(0);
+    const [touchedBar, setTouchedBar] = useState([0,0])
+   // Update carousel items state when new button is pressed
+    const [state, setState] = useState({
+        activeSlide: 0,
+        carouselItems: createBarchart(reportsData[timeFrame])
+    });
     const carouselRef = useRef(null);
 
     useEffect(() => {
     }, [timeFrame])
 
     const changeSpecificIndex=(value)=>{
-        handlePress(timeFrame);
+        // handlePress(timeFrame);
         setSpecificIndex(value);
     }
     // Split and export data as chunks of five
@@ -33,18 +39,26 @@ export default function Reports() {
                 myArray.push(arr.slice(i, i + size));
             }
             return myArray.map((arr,index) => {
-                // console.log(index);
-                return <BarChart setSpecificIndex={changeSpecificIndex} specificIndex={specificIndex} chunkIndex={chunkIndex} key={arr} specificTimeFrameData={arr} />
+                let i =index
+                // console.log(i); 
+                return <BarChart 
+                            testIndex={i}
+                            touchedBar={touchedBar}
+                            setTouchedBar={setTouchedBar}
+                            key={arr}
+                            specificTimeFrameData={arr}
+
+                            // activeSlide={0} 
+                            // setSpecificIndex={changeSpecificIndex}
+                            // specificIndex={specificIndex}
+                            // chunkIndex={chunkIndex} 
+                            />
             })
         }
     }
     
 
-    // Update carousel items state when new button is pressed
-    const [state, setState] = useState({
-        activeSlide: 0,
-        carouselItems: createBarchart(reportsData[timeFrame])
-    });
+ 
 
     function renderItem({ item, index }) {
         return (
@@ -57,6 +71,8 @@ export default function Reports() {
     // Replace carousel data when timeframe has been selected
     const handlePress = (value) => {
         setTimeFrame(value);
+        // setTouchedBar([0,0])
+        timeFrame!=value? setTouchedBar([touchedBar[0],0]): null
         setState({
             activeSlide: 0,
             carouselItems: createBarchart(reportsData[value])
@@ -103,7 +119,9 @@ export default function Reports() {
                         <SearchBar />
                     </View>
                 </View>
-                <Text style={{color:'white'}}>Active Slide {state.activeSlide}</Text>
+                <Text style={{color:'white'}}>touchedBar {touchedBar[0]}+ {touchedBar[1]}</Text>
+                <Text style={{color:'white'}}>activeslide {state.activeSlide}</Text>
+                <Text style={{color:'white'}}>timeframe {timeFrame}</Text>
                 <View style={styles.centerBox}>
 
                     <TouchableOpacity style={styles.Arrow} onPress={goBackwards}>
@@ -116,8 +134,8 @@ export default function Reports() {
                         data={state.carouselItems}
                         renderItem={renderItem}
                         inactiveSlideScale={1}
-                        sliderWidth={windowWidth*0.8}
-                        itemWidth={windowWidth *0.8}
+                        sliderWidth={windowWidth * 0.8}
+                        itemWidth={windowWidth * 0.8}
                         onSnapToItem={(index) => setState({ ...state, activeSlide: index })}
                     /> 
                     </View>
