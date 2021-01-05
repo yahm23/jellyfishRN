@@ -17,10 +17,9 @@ export default function DataList(props) {
 
     const createSelectionTitle = () => {
         let specificTimeframe = entireData[timeFrame];
-
-        var myArray = ChunkArrayIntoGroups(specificTimeframe,5)
-
-        console.log(myArray[0][1]);
+        let chunkedArray = ChunkArrayIntoGroups(specificTimeframe,5)
+        // let selection = 
+        console.log(chunkedArray[0][1]);
         let selectedPeriod = specificTimeframe
     }
 

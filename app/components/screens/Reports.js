@@ -8,7 +8,7 @@ import BarChart from '../functional/Barchart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import DataList from '../functional/DataList';
-import {CapitaliseString} from '../functional/functions'
+import {CapitaliseString,ChunkArrayIntoGroups} from '../functional/functions'
 
 const windowWidth = Dimensions.get('window').width;
 const times = ['hours', 'days', 'months', 'years'];
@@ -29,15 +29,10 @@ export default function Reports() {
 
     // Split and export data as chunks of five
     function createBarchart(arr) {
-        const size = 5;
-        let myArray = [];
-        if (arr && size) {
-            for (var i = 0; i < arr.length; i += size) {
-                myArray.push(arr.slice(i, i + size));
-            }
-            return myArray.map((arr,index) => {
+        if (arr) {
+            var chunkedArray = ChunkArrayIntoGroups(arr,5)
+            return chunkedArray.map((arr,index) => {
                 let i =index
-                // console.log(i); 
                 return <BarChart 
                             testIndex={i}
                             touchedBar={touchedBar}
