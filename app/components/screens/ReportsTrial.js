@@ -7,6 +7,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import BarChart from '../functional/Barchart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+import BarchartIntermediate from '../functional/BarchartIntermediate';
 
 const windowWidth = Dimensions.get('window').width;
 const times = ['hours', 'days', 'months', 'years'];
@@ -19,12 +20,11 @@ export default function Reports() {
    // Update carousel items state when new button is pressed
     const [state, setState] = useState({
         activeSlide: 0,
-        useless:1,
         // const [state, setState] = useState({
         //     activeSlide: 0,
         //     carouselItems: createBarchart(reportsData[timeFrame])
         // });
-        carouselItems: createBarchart(reportsData[timeFrame])
+        carouselItems: <BarchartIntermediate arr={reportsData[timeFrame]}/>
     });
     const carouselRef = useRef(null);
 
@@ -55,7 +55,7 @@ export default function Reports() {
                             setTouchedBar={setTouchedBar}
                             key={touchedBar}
                             specificTimeFrameData={arr}
-                            handleTimePress={()=>setState({...state,useless:0})}
+                            handleTimePress={()=>setSpecificIndex(1)}
                             timeFrame={timeFrame}
                             // ref={carouselRef.current.snapToNext()}
 
@@ -89,7 +89,7 @@ export default function Reports() {
         timeFrame!=value? setTouchedBar([0,0]): null
         setState({
             activeSlide: 0,
-            carouselItems: createBarchart(reportsData[value])
+            carouselItems: <BarchartIntermediate arr={reportsData[value]}/>
         })
     }
 

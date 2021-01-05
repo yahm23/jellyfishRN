@@ -3,7 +3,8 @@ import {
     View,
     Text,
     Dimensions,
-    StyleSheet
+    StyleSheet,
+    Button
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -15,9 +16,9 @@ const windowHeight = Dimensions.get('window').height;
 export default function BarChart(props) {
     const [selectedBar,setSelectedBar] = useState(1)
 
-    useEffect(() => {
-        // setSelectedBar(props.specificIndex)
-    }, [props.touchedBar])
+    // useEffect(() => {
+    //     // setSelectedBar(props.specificIndex)
+    // }, [props.touchedBar])
 
     // Find max data -------------------------------------------------- //
 
@@ -50,16 +51,17 @@ export default function BarChart(props) {
 
     const handlePress = (value) => {
         // props.setSpecificIndex(value)
-        props.setTouchedBar([props.testIndex,value])
+        let activeSlide = props.testIndex
+        props.setTouchedBar([activeSlide,value])
+        props.handleTimePress()
         console.log('Touched bar in child ['+props.touchedBar +']');
 
-        // console.log('active slide essentially '+props.testIndex);
+        console.log('active slide essentially '+props.testIndex);
         // console.log('index essentially '+value);
     }
     const BarCreator = (data) => {
         return (
                 <View key={props.touchedBar[1]} style={{ flexDirection: 'row',justifyContent: 'center'}}>
-                    <Text style={{color:'white'}}>{selectedBar}</Text>
                     {data.map((single,index) => {
                         return (
                             <View key={index} style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
@@ -92,6 +94,8 @@ export default function BarChart(props) {
                             </View>
                         )
                     })}
+                    <Text style={{color:'white'}}>{props.touchedBar[0]}{props.touchedBar[1]}</Text>
+                    {/* <Button title="change tb" onPress={()=>{props.setTouchedBar([1,1])}}> </Button> */}
                 </View>
         )
 
@@ -99,10 +103,7 @@ export default function BarChart(props) {
 
     return (
         <View>
-
-            <View>
-                {BarCreator(singleTimeFrameData)}
-            </View>
+            {BarCreator(singleTimeFrameData)}
         </View>
     )
 }
