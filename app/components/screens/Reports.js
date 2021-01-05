@@ -7,15 +7,15 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import BarChart from '../functional/Barchart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
+import DataList from '../functional/DataList';
 
 const windowWidth = Dimensions.get('window').width;
 const times = ['hours', 'days', 'months', 'years'];
 
 export default function Reports() {
     const [timeFrame, setTimeFrame] = useState('days');
-    const [chunkIndex, setChunkIndex] = useState(0);
-    const [specificIndex,setSpecificIndex] = useState(0);
     const [touchedBar, setTouchedBar] = useState([0,0])
+
    // Update carousel items state when new button is pressed
     const [state, setState] = useState({
         activeSlide: 0,
@@ -26,14 +26,6 @@ export default function Reports() {
     useEffect(() => {
     }, [state])
 
-    const changeSpecificIndex=(value)=>{
-        // handleTimePress(timeFrame);
-        setSpecificIndex(value);
-    }
-
-    const selectBar = (value) => {
-        setTouchedBar(value)
-    }
     // Split and export data as chunks of five
     function createBarchart(arr) {
         const size = 5;
@@ -60,7 +52,6 @@ export default function Reports() {
         }
     }
 
- 
 
     function renderItem({ item, index }) {
         return (
@@ -82,8 +73,7 @@ export default function Reports() {
         }else{
             null
         }
-        // setTouchedBar([0,0])
-        // timeFrame!=value? setTouchedBar([0,0]): null
+
     }
 
     const DotsLabels = () => {
@@ -157,8 +147,9 @@ export default function Reports() {
 
                 </View>
                 <View style={styles.dotsPosition}><DotsLabels /></View>
+                
+                <DataList />
             </View>
-
         </View>
     );
 }
@@ -197,7 +188,6 @@ const styles = StyleSheet.create({
         marginTop: 25,
         justifyContent: 'center',
         alignContent: 'center',
-        // backgroundColor:'yellow',
         width:windowWidth*0.8
     },
     dotsPosition: {
@@ -237,7 +227,6 @@ const styles = StyleSheet.create({
         flex:0,
         justifyContent:'center',
         alignItems:'center',
-        // height: windowHeight*0.35,
     },
     backArrow:{
         transform: [{ rotate: '180deg'}]

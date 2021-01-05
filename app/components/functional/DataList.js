@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import { View, Image, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function DataList(props) {
 
@@ -8,10 +9,11 @@ export default function DataList(props) {
         setEntireBarData(props.entireBarData)
         
     }, [props.entireBarDataq])
+
     return (
         <View>
             <View>
-                <Text>{props.}</Text>
+                <Text>DATA LIST COMP</Text>
             </View>
         </View>
     )
