@@ -37,9 +37,9 @@ export default function AppContainer() {
                         style: {
                             backgroundColor: '#141414',
                             borderTopColor: '#141414',
-                            height: (Platform.OS === 'ios') ? 70 : 60,
+                            height: (Platform.OS === 'ios') ? 85 : 60,
                             padding: (Platform.OS === 'ios') ? 5 : 0,
-                            paddingBottom: (Platform.OS === 'ios') ? 12 : 7
+                            paddingBottom: (Platform.OS === 'ios') ? 30 : 7
                         }
                     }}>
                     <Tab.Screen name='Dashboard' component={DashboardStack} options={{

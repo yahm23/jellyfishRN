@@ -1,14 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Text, View, StyleSheet} from 'react-native';
+import Child from './Child';
 
 export default function Offers() {
+    const [state, setstate] = useState('initialState')
+    
+    
 
     return (
         <View style={styles.body}>
-            <Text style={styles.paragraph}>Offers</Text>
+            <Text style={styles.paragraph}>Offers// Testing</Text>
+           <Child text={state} setstate={setstate}/>
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     body: {

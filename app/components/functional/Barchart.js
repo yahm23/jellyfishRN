@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     View,
     Text,
     Dimensions,
-    StyleSheet
+    StyleSheet,
+    Button
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -12,11 +14,11 @@ const windowHeight = Dimensions.get('window').height;
 // ----------------------------------------------------------------------------------------------------------------------- //
 
 export default function BarChart(props) {
-    
+    const [selectedBar,setSelectedBar] = useState(1)
 
-    useEffect(() => {
-
-    }, [props])
+    // useEffect(() => {
+    //     // setSelectedBar(props.specificIndex)
+    // }, [props.touchedBar])
 
     // Find max data -------------------------------------------------- //
 
@@ -45,15 +47,36 @@ export default function BarChart(props) {
     const maxValue = findDataMaxValue(singleTimeFrameData);
     const maxBarHeight = (windowHeight * 0.35) * 0.80;
 
-    const BarCreator = (data) => {
+    const chunkIndex = props.chunkIndex
 
+    const handlePress = (value) => {
+        // props.setSpecificIndex(value)
+        let activeSlide = props.testIndex
+        props.setTouchedBar([activeSlide,value])
+        props.handleTimePress()
+        console.log('Touched bar in child ['+props.touchedBar +']');
+
+        console.log('active slide essentially '+props.testIndex);
+        // console.log('index essentially '+value);
+    }
+    const BarCreator = (data) => {
         return (
-                <View style={{ flexDirection: 'row',justifyContent: 'center'}}>
+                <View key={props.touchedBar[1]} style={{ flexDirection: 'row',justifyContent: 'center'}}>
                     {data.map((single,index) => {
                         return (
-                            <View key={index} style={{ paddingHorizontal: 5, flex: 0, justifyContent: 'flex-end', alignItems: 'center' }}>
-                                <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
-                                    <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh }]} />
+                            <View key={index} style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity style={{
+                                    paddingHorizontal: 5, flex: 0, justifyContent: 'center', alignItems: 'center' 
+                                    }}
+
+                                    onPress = {()=>{handlePress(index)}}
+                                    >
+                                    <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
+                                    <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh,
+                                        backgroundColor: props.touchedBar[0] == props.testIndex && props.touchedBar[1] == index?
+                                                    '#5EFC8D':'#8377D1' 
+                                        // props.specificIndex == index?
+                                    }]} />
                                 </View>
                                 <Text style={styles.labels}>{
                                     single.hour ?
@@ -66,9 +89,13 @@ export default function BarChart(props) {
                                                     single.year : null
                                 }
                                 </Text>
+                                </TouchableOpacity>
+                                
                             </View>
                         )
                     })}
+                    <Text style={{color:'white'}}>{props.touchedBar[0]}{props.touchedBar[1]}</Text>
+                    {/* <Button title="change tb" onPress={()=>{props.setTouchedBar([1,1])}}> </Button> */}
                 </View>
         )
 
@@ -76,16 +103,14 @@ export default function BarChart(props) {
 
     return (
         <View>
-            <View>
-                {BarCreator(singleTimeFrameData)}
-            </View>
+            {BarCreator(singleTimeFrameData)}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     bars: {
-        backgroundColor: '#8377D1',
+        // backgroundColor: '#8377D1',
         borderRadius: 10,
         width: 24
     },
