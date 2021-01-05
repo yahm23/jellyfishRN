@@ -14,11 +14,11 @@ const windowHeight = Dimensions.get('window').height;
 // ----------------------------------------------------------------------------------------------------------------------- //
 
 export default function BarChart(props) {
-    const [selectedBar,setSelectedBar] = useState(1)
+    const [touchedBar,setTouchedBar] = useState([0,0])
 
-    // useEffect(() => {
-    //     // setSelectedBar(props.specificIndex)
-    // }, [props.touchedBar])
+    useEffect(() => {
+        setTouchedBar(props.touchedBar)
+    }, [props.touchedBar])
 
     // Find max data -------------------------------------------------- //
 
@@ -50,18 +50,22 @@ export default function BarChart(props) {
     const chunkIndex = props.chunkIndex
 
     const handlePress = (value) => {
-        // props.setSpecificIndex(value)
-        let activeSlide = props.testIndex
-        props.setTouchedBar([activeSlide,value])
-        props.handleTimePress()
+        let activeSlide = props.testIndex;
+        let newBar = [activeSlide,value]
+
+        props.setTouchedBar(newBar)
+        setTouchedBar(newBar)
+
+        // props.handleTimePress()
         console.log('Touched bar in child ['+props.touchedBar +']');
 
         console.log('active slide essentially '+props.testIndex);
         // console.log('index essentially '+value);
     }
+
     const BarCreator = (data) => {
         return (
-                <View key={props.touchedBar[1]} style={{ flexDirection: 'row',justifyContent: 'center'}}>
+                <View key={touchedBar[1]} style={{ flexDirection: 'row',justifyContent: 'center'}}>
                     {data.map((single,index) => {
                         return (
                             <View key={index} style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
@@ -73,7 +77,7 @@ export default function BarChart(props) {
                                     >
                                     <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
                                     <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh,
-                                        backgroundColor: props.touchedBar[0] == props.testIndex && props.touchedBar[1] == index?
+                                        backgroundColor: touchedBar[0] == props.testIndex && touchedBar[1] == index?
                                                     '#5EFC8D':'#8377D1' 
                                         // props.specificIndex == index?
                                     }]} />
@@ -94,7 +98,7 @@ export default function BarChart(props) {
                             </View>
                         )
                     })}
-                    <Text style={{color:'white'}}>{props.touchedBar[0]}{props.touchedBar[1]}</Text>
+                    <Text style={{color:'white'}}>{touchedBar[0]}{touchedBar[1]}</Text>
                     {/* <Button title="change tb" onPress={()=>{props.setTouchedBar([1,1])}}> </Button> */}
                 </View>
         )

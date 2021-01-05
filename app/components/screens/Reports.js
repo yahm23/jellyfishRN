@@ -19,11 +19,6 @@ export default function Reports() {
    // Update carousel items state when new button is pressed
     const [state, setState] = useState({
         activeSlide: 0,
-        useless:1,
-        // const [state, setState] = useState({
-        //     activeSlide: 0,
-        //     carouselItems: createBarchart(reportsData[timeFrame])
-        // });
         carouselItems: createBarchart(reportsData[timeFrame])
     });
     const carouselRef = useRef(null);
@@ -35,6 +30,7 @@ export default function Reports() {
         // handleTimePress(timeFrame);
         setSpecificIndex(value);
     }
+
     const selectBar = (value) => {
         setTouchedBar(value)
     }
@@ -57,12 +53,8 @@ export default function Reports() {
                             specificTimeFrameData={arr}
                             handleTimePress={()=>setState({...state,useless:0})}
                             timeFrame={timeFrame}
-                            // ref={carouselRef.current.snapToNext()}
 
-                            // activeSlide={0} 
-                            // setSpecificIndex={changeSpecificIndex}
-                            // specificIndex={specificIndex}
-                            // chunkIndex={chunkIndex} 
+                            
                             />
             })
         }
