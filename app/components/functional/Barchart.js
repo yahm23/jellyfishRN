@@ -7,6 +7,7 @@ import {
     Button
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {GetOrdinalSuffix} from '../functional/functions'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -30,18 +31,6 @@ export default function BarChart(props) {
             return Math.max(...powerArray)
         }
     }
-
-    // Get ordinal suffix --------------------------------------------- //
-
-    const getOrdinalSuffix = (number) => {
-        if (number > 3 && number < 21) return 'th';
-        switch (number % 10) {
-            case 1: return "st";
-            case 2: return "nd";
-            case 3: return "rd";
-            default: return "th";
-        }
-    };
 
     const singleTimeFrameData = props.specificTimeFrameData;
     const maxValue = findDataMaxValue(singleTimeFrameData);
@@ -82,7 +71,7 @@ export default function BarChart(props) {
                                     single.hour ?
                                         `${single.hour}:00` :
                                         single.day ?
-                                            `${single.day}${getOrdinalSuffix(single.day)}` :
+                                            `${single.day}${GetOrdinalSuffix(single.day)}` :
                                             single.month ?
                                                 single.month.slice(0, 3) :
                                                 single.year ?
@@ -94,8 +83,7 @@ export default function BarChart(props) {
                             </View>
                         )
                     })}
-                    {/* <Text style={{color:'white'}}>{touchedBar[0]}{touchedBar[1]}</Text> */}
-                    {/* <Button title="change tb" onPress={()=>{props.setTouchedBar([1,1])}}> </Button> */}
+                    
                 </View>
         )
 
@@ -110,7 +98,6 @@ export default function BarChart(props) {
 
 const styles = StyleSheet.create({
     bars: {
-        // backgroundColor: '#8377D1',
         borderRadius: 10,
         width: 24
     },

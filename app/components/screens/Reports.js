@@ -94,7 +94,6 @@ export default function Reports() {
         )
     }
 
-
     const goBackwards = () =>{
         carouselRef.current.snapToPrev();
     }
@@ -144,7 +143,7 @@ export default function Reports() {
                 </View>
                 <View style={styles.dotsPosition}><DotsLabels /></View>
                 
-                <DataList timeFrame={timeFrame} />
+                <DataList entireData={reportsData} timeFrame={timeFrame} selected={touchedBar}/>
             </View>
     );
 }

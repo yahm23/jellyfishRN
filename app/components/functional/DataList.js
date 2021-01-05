@@ -1,22 +1,34 @@
 import React, { useState,useEffect } from 'react'
-import { View, Image, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
-import {CapitaliseString} from '../functional/functions'
+import { View, Image, Text, Button, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import {CapitaliseString,ChunkArrayIntoGroups} from '../functional/functions'
 
 export default function DataList(props) {
 
-    const [entireBarData,setEntireBarData]= useState(null)
     const [timeFrame,setTimeFrame]= useState(props.timeFrame)
+    const [selected,setSelected]= useState(props.selected)
+    const [entireData,setEntireData]= useState(props.entireData)
 
     useEffect(() => {
         setTimeFrame(props.timeFrame)
-        setEntireBarData(props.entireBarData)
-        
-    }, [props.entireBarDataq])
+        setEntireData(props.entireData)
+        setSelected(props.selected)
+
+    }, [props.selected])
+
+    const createSelectionTitle = () => {
+        let specificTimeframe = entireData[timeFrame];
+
+        var myArray = ChunkArrayIntoGroups(specificTimeframe,5)
+
+        console.log(myArray[0][1]);
+        let selectedPeriod = specificTimeframe
+    }
 
     return (
         <View style={styles.body}>
             <View style={styles.centerBox}>
                 <Text style={{color:'white'}}>{CapitaliseString(timeFrame)}</Text>
+                <Button onPress={()=>createSelectionTitle()} title="LOG"></Button>
             </View>
         </View>
     )
