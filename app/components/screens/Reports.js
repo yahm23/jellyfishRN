@@ -8,6 +8,7 @@ import BarChart from '../functional/Barchart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import DataList from '../functional/DataList';
+import {CapitaliseString} from '../functional/functions'
 
 const windowWidth = Dimensions.get('window').width;
 const times = ['hours', 'days', 'months', 'years'];
@@ -93,10 +94,6 @@ export default function Reports() {
         )
     }
 
-    const CapitaliseString = (string) =>{
-        var capitalisedString = string.charAt(0).toUpperCase() + string.slice(1)
-        return capitalisedString;
-    }
 
     const goBackwards = () =>{
         carouselRef.current.snapToPrev();
@@ -107,7 +104,6 @@ export default function Reports() {
     }
 
     return (
-        <View>
             <View style={styles.body}>
                 
                 <View style={styles.topBox}>
@@ -148,9 +144,8 @@ export default function Reports() {
                 </View>
                 <View style={styles.dotsPosition}><DotsLabels /></View>
                 
-                <DataList />
+                <DataList timeFrame={timeFrame} />
             </View>
-        </View>
     );
 }
 
