@@ -17,7 +17,7 @@ export default function BarChart(props) {
     const [touchedBar,setTouchedBar] = useState([0,0])
 
     useEffect(() => {
-        setTouchedBar(props.touchedBar)
+        // setTouchedBar(props.touchedBar)
     }, [props.touchedBar])
 
     // Find max data -------------------------------------------------- //
@@ -56,11 +56,8 @@ export default function BarChart(props) {
         props.setTouchedBar(newBar)
         setTouchedBar(newBar)
 
-        // props.handleTimePress()
-        console.log('Touched bar in child ['+props.touchedBar +']');
-
-        console.log('active slide essentially '+props.testIndex);
-        // console.log('index essentially '+value);
+        // console.log('Touched bar in child ['+props.touchedBar +']');
+        // console.log('active slide essentially '+props.testIndex);
     }
 
     const BarCreator = (data) => {
@@ -79,7 +76,6 @@ export default function BarChart(props) {
                                     <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh,
                                         backgroundColor: touchedBar[0] == props.testIndex && touchedBar[1] == index?
                                                     '#5EFC8D':'#8377D1' 
-                                        // props.specificIndex == index?
                                     }]} />
                                 </View>
                                 <Text style={styles.labels}>{
@@ -98,7 +94,7 @@ export default function BarChart(props) {
                             </View>
                         )
                     })}
-                    <Text style={{color:'white'}}>{touchedBar[0]}{touchedBar[1]}</Text>
+                    {/* <Text style={{color:'white'}}>{touchedBar[0]}{touchedBar[1]}</Text> */}
                     {/* <Button title="change tb" onPress={()=>{props.setTouchedBar([1,1])}}> </Button> */}
                 </View>
         )

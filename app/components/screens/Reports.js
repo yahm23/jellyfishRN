@@ -49,7 +49,7 @@ export default function Reports() {
                             testIndex={i}
                             touchedBar={touchedBar}
                             setTouchedBar={setTouchedBar}
-                            key={touchedBar}
+                            key={timeFrame}
                             specificTimeFrameData={arr}
                             handleTimePress={()=>setState({...state,useless:0})}
                             timeFrame={timeFrame}
@@ -69,20 +69,21 @@ export default function Reports() {
             </View>
         )
     }
-    const timePressFunc = () => {
-        // handleTimePress(timeFrame) 
-        console.log('Hello');
-        setState({...state})
-    }
+
     // Replace carousel data when timeframe has been selected
-    const handleTimePress = (value) => {
-        setTimeFrame(value);
+    const handleTimePress = async (value) => {
+        if(timeFrame!=value){
+            setTimeFrame(value);
+            setTouchedBar([0,0])
+            setState({
+                activeSlide: 0,
+                carouselItems: createBarchart(reportsData[value])
+            })
+        }else{
+            null
+        }
         // setTouchedBar([0,0])
-        timeFrame!=value? setTouchedBar([0,0]): null
-        setState({
-            activeSlide: 0,
-            carouselItems: createBarchart(reportsData[value])
-        })
+        // timeFrame!=value? setTouchedBar([0,0]): null
     }
 
     const DotsLabels = () => {
@@ -155,18 +156,7 @@ export default function Reports() {
                     </TouchableOpacity>
 
                 </View>
-
-
-                    <View style={styles.dotsPosition}><DotsLabels /></View>
-
-                    
-                    <TouchableOpacity
-                        onPress={()=>{
-                            console.log(specificIndex);
-                        }}
-                    >
-                        <Text style={{color:'white'}}>Log state</Text>
-                    </TouchableOpacity>
+                <View style={styles.dotsPosition}><DotsLabels /></View>
             </View>
 
         </View>
