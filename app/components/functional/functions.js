@@ -27,5 +27,12 @@ export const GetMonthName= (monthNum) =>{
     var selectedMonthName = months[monthNum-1];
     return selectedMonthName;
 }
+export const ExtractDataFromChunked=(entireData,chunkNum, arrayOfindex)=>{
+    let chunkedArray = ChunkArrayIntoGroups(entireData,chunkNum)
+    let firstIndex = arrayOfindex[0]
+    let secondIndex = arrayOfindex[1]
+    let selection = chunkedArray[firstIndex][secondIndex];
+    return selection
+}
 
 // export default CapitaliseString;

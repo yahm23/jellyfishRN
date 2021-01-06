@@ -69,6 +69,7 @@ export default function Reports() {
         )
     }
 
+
     const goBackwards = () =>{
         carouselRef.current.snapToPrev();
  
@@ -84,13 +85,13 @@ export default function Reports() {
                 
                 <View style={styles.topBox}>
                     <Image style={styles.logo} source={JellyLogo} />
-                    <View style={styles.searchBarContainer}>
+                    {/* <View style={styles.searchBarContainer}>
                         <SearchBar />
-                    </View>
+                    </View> */}
                 </View>
-                <Text style={{color:'white'}}>touchedBar {touchedBar[0]}+ {touchedBar[1]}</Text>
+                {/* <Text style={{color:'white'}}>touchedBar {touchedBar[0]}+ {touchedBar[1]}</Text>
                 <Text style={{color:'white'}}>activeslide {index}</Text>
-                <Text style={{color:'white'}}>timeframe {timeFrame}</Text>
+                <Text style={{color:'white'}}>timeframe {timeFrame}</Text> */}
                 <View style={styles.centerBox}>
 
                     <TouchableOpacity style={styles.Arrow} onPress={goBackwards}>
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A'
     },
     topBox: {
-        height: 120
+        height: 70
     },
     centerBox: {
         marginTop: 15,

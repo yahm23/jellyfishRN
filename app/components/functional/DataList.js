@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { View, Image, Text, Button, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
-import {CapitaliseString, ChunkArrayIntoGroups , GetMonthName, GetOrdinalSuffix} from '../functional/functions'
+import {CapitaliseString, ChunkArrayIntoGroups , ExtractDataFromChunked, GetMonthName, GetOrdinalSuffix} from '../functional/functions'
 
 export default function DataList(props) {
 
@@ -15,14 +15,11 @@ export default function DataList(props) {
 
     }, [props.selected])
 
+   
+
     const createSelectionTitle = () => {
-        let specificTimeframe = entireData[timeFrame];
-        let chunkedArray = ChunkArrayIntoGroups(specificTimeframe,5)
 
-        let firstIndex = selected[0]
-        let secondIndex = selected[1]
-
-        let selection = chunkedArray[firstIndex][secondIndex];
+        let selection = ExtractDataFromChunked(entireData[timeFrame], 5 , [selected[0],selected[1]])
 
         let ordinalDay = selection.day? `${selection.day}${GetOrdinalSuffix(selection.day)}` : null;
         let captilisedMonth = selection.month? `${CapitaliseString((GetMonthName(selection.month)))}` : null;
@@ -37,11 +34,12 @@ export default function DataList(props) {
                                     selection.year : null
         return title;
     }
-
+    
     return (
         <View style={styles.body}>
             <View style={styles.centerBox}>
                 <Text style={styles.titleDate}>{createSelectionTitle()}</Text>
+                <Text style={styles.titleDate}>{}</Text>
                 {/* <Button onPress={()=>createSelectionTitle()} title="LOG"></Button> */}
             </View>
         </View>
