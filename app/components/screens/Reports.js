@@ -18,39 +18,13 @@ const times = ['hours', 'days', 'months', 'years'];
 export default function Reports() {
     const [timeFrame, setTimeFrame] = useState('days');
     const [index, setIndex] = useState(0);
-    // const [timeSpecificData, setTimeSpecificData] = useState(reportsData['days']);
     const [touchedBar, setTouchedBar] = useState([0,0])
 
-   // Update carousel items state when new button is pressed
-    const [state, setState] = useState({
-        activeSlide: 0,
-        carouselItems: createBarchart(reportsData[timeFrame])
-        // carouselItems: <BarchartIntermediate arr={reportsData[timeFrame]}/>
-    });
+
     const carouselRef = useRef(null);
 
     useEffect(() => {
-    }, [state])
-
-    // Split and export data as chunks of five
-    function createBarchart(arr) {
-        if (arr) {
-            var chunkedArray = ChunkArrayIntoGroups(arr,5)
-            return chunkedArray.map((arr,index) => {
-                let i =index
-                return <BarChart 
-                            testIndex={i}
-                            touchedBar={touchedBar}
-                            setTouchedBar={setTouchedBar}
-                            key={timeFrame}
-                            specificTimeFrameData={arr}
-                            // handleTimePress={()=>setState({...state})}
-                            timeFrame={timeFrame}
-                            
-                            />
-            })
-        }
-    }
+    }, [])
 
 
     function renderItem({ item, index }) {
@@ -64,7 +38,6 @@ export default function Reports() {
                     specificTimeFrameData={item}
                     timeFrame={timeFrame}
                 />
-
             </View>
         )
     }
@@ -122,7 +95,7 @@ export default function Reports() {
                     </View>
                 </View>
                 <Text style={{color:'white'}}>touchedBar {touchedBar[0]}+ {touchedBar[1]}</Text>
-                <Text style={{color:'white'}}>activeslide {state.activeSlide}</Text>
+                <Text style={{color:'white'}}>activeslide {index}</Text>
                 <Text style={{color:'white'}}>timeframe {timeFrame}</Text>
                 <View style={styles.centerBox}>
 
@@ -141,7 +114,7 @@ export default function Reports() {
                         extraData={touchedBar}
                         onSnapToItem={(index) => {
                             setTouchedBar({...touchedBar})
-                            setState({ ...state, activeSlide: index })
+                            setIndex(index)
                         }}
                     /> 
                     </View>
