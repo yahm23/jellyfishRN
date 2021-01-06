@@ -9,9 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import DataList from '../functional/DataList';
 import {CapitaliseString,ChunkArrayIntoGroups} from '../functional/functions'
-import BarchartIntermediate from '../functional/BarchartIntermediate';
-import Child from './Child';
-// import {BarchartIntermediate} from ''
+
 const windowWidth = Dimensions.get('window').width;
 const times = ['hours', 'days', 'months', 'years'];
 
@@ -48,10 +46,6 @@ export default function Reports() {
         if(timeFrame!=value){
             setTimeFrame(value);
             setTouchedBar([0,0])
-            setState({
-                activeSlide: 0,
-                carouselItems: createBarchart(reportsData[value])
-            })
         }else{
             null
         }

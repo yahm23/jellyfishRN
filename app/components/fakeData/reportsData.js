@@ -23,7 +23,7 @@ const data = {
     ],
     months:[
         {
-            month:'January',
+            month:1,
             year:2020,
             total_kWh:4000,
             devices:[
@@ -34,7 +34,7 @@ const data = {
             ]
         },
         {
-            month:'February',
+            month:2,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -45,7 +45,7 @@ const data = {
             ]
         },
         {
-            month:'March',
+            month:3,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -56,7 +56,7 @@ const data = {
             ]
         },
         {
-            month:'April',
+            month:4,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -67,7 +67,7 @@ const data = {
             ]
         },
         {
-            month:'May',
+            month:5,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -78,7 +78,7 @@ const data = {
             ]
         },
         {
-            month:'June',
+            month:6,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -89,7 +89,7 @@ const data = {
             ]
         },
         {
-            month:'July',
+            month:7,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -100,7 +100,7 @@ const data = {
             ]
         },
         {
-            month:'August',
+            month:8,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -111,7 +111,7 @@ const data = {
             ]
         },
         {
-            month:'September',
+            month:9,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -122,7 +122,7 @@ const data = {
             ]
         },
         {
-            month:'October',
+            month:10,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -133,7 +133,7 @@ const data = {
             ]
         },
         {
-            month:'November',
+            month:11,
             year:2020,
             total_kWh:1000,
             devices:[
@@ -144,7 +144,7 @@ const data = {
             ]
         },
         {
-            month:'December',
+            month:12,
             year:2020,
             total_kWh:1000,
             devices:[
