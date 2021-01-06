@@ -20,7 +20,7 @@ export const ChunkArrayIntoGroups = (inputArray,size) => {
     return returnArray
 };
 
-export const getMonthName= (monthNum) =>{
+export const GetMonthName= (monthNum) =>{
     var months = [ "January", "February", "March", "April", "May", "June", 
            "July", "August", "September", "October", "November", "December" ];
 

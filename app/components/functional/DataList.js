@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { View, Image, Text, Button, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
-import {CapitaliseString, ChunkArrayIntoGroups , GetOrdinalSuffix} from '../functional/functions'
+import {CapitaliseString, ChunkArrayIntoGroups , GetMonthName, GetOrdinalSuffix} from '../functional/functions'
 
 export default function DataList(props) {
 
@@ -25,24 +25,24 @@ export default function DataList(props) {
         let selection = chunkedArray[firstIndex][secondIndex];
 
         let ordinalDay = selection.day? `${selection.day}${GetOrdinalSuffix(selection.day)}` : null;
-        let captilisedMonth = selection.month? `${selection.month}${CapitaliseString(selection.month)}` : null;
+        let captilisedMonth = selection.month? `${CapitaliseString((GetMonthName(selection.month)))}` : null;
 
         let title = selection.hour ?
-                        `${selection.hour}:00 ${ordinalDay} of ${captilisedMonth}` :
+                        `${selection.hour}:00 ${ordinalDay} of ${captilisedMonth} ${selection.year}` :
                         selection.day ?
-                            `${ordinalDay}` :
+                            `${ordinalDay} of ${captilisedMonth} ${selection.year}` :
                             selection.month ?
-                                selection.month.slice(0, 3) :
+                                `${captilisedMonth} ${selection.year}` :
                                 selection.year ?
                                     selection.year : null
-        console.log(title);
+        return title;
     }
 
     return (
         <View style={styles.body}>
             <View style={styles.centerBox}>
-                <Text style={{color:'white'}}>{CapitaliseString(timeFrame)}</Text>
-                <Button onPress={()=>createSelectionTitle()} title="LOG"></Button>
+                <Text style={{color:'white'}}>{createSelectionTitle()}</Text>
+                {/* <Button onPress={()=>createSelectionTitle()} title="LOG"></Button> */}
             </View>
         </View>
     )

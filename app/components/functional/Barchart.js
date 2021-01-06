@@ -7,7 +7,7 @@ import {
     Button
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {getMonthName, GetOrdinalSuffix} from '../functional/functions'
+import {GetMonthName, GetOrdinalSuffix} from '../functional/functions'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -73,7 +73,7 @@ export default function BarChart(props) {
                                         single.day ?
                                             `${single.day}${GetOrdinalSuffix(single.day)}` :
                                             single.month ?
-                                                getMonthName(single.month).slice(0, 3) :
+                                            GetMonthName(single.month).slice(0, 3) :
                                                 single.year ?
                                                     single.year : null
                                 }
