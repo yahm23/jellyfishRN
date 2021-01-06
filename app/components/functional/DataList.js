@@ -28,9 +28,9 @@ export default function DataList(props) {
         let captilisedMonth = selection.month? `${CapitaliseString((GetMonthName(selection.month)))}` : null;
 
         let title = selection.hour ?
-                        `${selection.hour}:00 ${ordinalDay} of ${captilisedMonth} ${selection.year}` :
+                        `${selection.hour}:00 ${ordinalDay} ${captilisedMonth} ${selection.year}` :
                         selection.day ?
-                            `${ordinalDay} of ${captilisedMonth} ${selection.year}` :
+                            `${ordinalDay} ${captilisedMonth} ${selection.year}` :
                             selection.month ?
                                 `${captilisedMonth} ${selection.year}` :
                                 selection.year ?
@@ -41,7 +41,7 @@ export default function DataList(props) {
     return (
         <View style={styles.body}>
             <View style={styles.centerBox}>
-                <Text style={{color:'white'}}>{createSelectionTitle()}</Text>
+                <Text style={styles.titleDate}>{createSelectionTitle()}</Text>
                 {/* <Button onPress={()=>createSelectionTitle()} title="LOG"></Button> */}
             </View>
         </View>
@@ -62,4 +62,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center'
     },
+    titleDate:{
+        color:'#5EFC8D',
+        fontSize:24,
+        fontFamily: 'GothamRounded-Bold',
+        
+
+    }
 })
