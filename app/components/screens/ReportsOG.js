@@ -18,7 +18,6 @@ const times = ['hours', 'days', 'months', 'years'];
 export default function Reports() {
     const [timeFrame, setTimeFrame] = useState('days');
     const [index, setIndex] = useState(0);
-    // const [timeSpecificData, setTimeSpecificData] = useState(reportsData['days']);
     const [touchedBar, setTouchedBar] = useState([0,0])
 
    // Update carousel items state when new button is pressed
@@ -56,14 +55,7 @@ export default function Reports() {
     function renderItem({ item, index }) {
         return (
             <View key={item} style={styles.barChartContainer}>
-                <BarChart
-                    testIndex={index}
-                    touchedBar={touchedBar}
-                    setTouchedBar={setTouchedBar}
-                    key={timeFrame}
-                    specificTimeFrameData={item}
-                    timeFrame={timeFrame}
-                />
+                {item}
 
             </View>
         )
@@ -133,7 +125,7 @@ export default function Reports() {
                     <View key={timeFrame}>
                        <Carousel
                         ref={carouselRef}
-                        data={ChunkArrayIntoGroups(reportsData[timeFrame],5)}
+                        data={state.carouselItems}
                         renderItem={renderItem}
                         // inactiveSlideScale={1}
                         sliderWidth={windowWidth * 0.8}

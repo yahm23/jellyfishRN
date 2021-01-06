@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { View, Image, Text, Button, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
-import {CapitaliseString,ChunkArrayIntoGroups} from '../functional/functions'
+import {CapitaliseString, ChunkArrayIntoGroups , GetOrdinalSuffix} from '../functional/functions'
 
 export default function DataList(props) {
 
@@ -22,9 +22,20 @@ export default function DataList(props) {
         let firstIndex = selected[0]
         let secondIndex = selected[1]
 
-        let selection = chunkedArray[firstIndex][secondIndex]
+        let selection = chunkedArray[firstIndex][secondIndex];
 
-        // console.log(selection);
+        let ordinalDay = selection.day? `${selection.day}${GetOrdinalSuffix(selection.day)}` : null;
+        let captilisedMonth = selection.month? `${selection.month}${CapitaliseString(selection.month)}` : null;
+
+        let title = selection.hour ?
+                        `${selection.hour}:00 ${ordinalDay} of ${captilisedMonth}` :
+                        selection.day ?
+                            `${ordinalDay}` :
+                            selection.month ?
+                                selection.month.slice(0, 3) :
+                                selection.year ?
+                                    selection.year : null
+        console.log(title);
     }
 
     return (

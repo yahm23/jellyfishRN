@@ -18,7 +18,7 @@ export default function BarChart(props) {
     const [touchedBar,setTouchedBar] = useState([0,0])
 
     useEffect(() => {
-        // setTouchedBar(props.touchedBar)
+        setTouchedBar([props.touchedBar[0],props.touchedBar[1]])
     }, [props.touchedBar])
 
     // Find max data -------------------------------------------------- //
@@ -63,7 +63,7 @@ export default function BarChart(props) {
                                     >
                                     <View style={[styles.barPlaceholder, { height: maxBarHeight }]}>
                                     <View style={[styles.bars, { height: (maxBarHeight / maxValue) * single.total_kWh,
-                                        backgroundColor: touchedBar[0] == props.testIndex && touchedBar[1] == index?
+                                        backgroundColor: props.touchedBar[0] == props.testIndex && props.touchedBar[1] == index?
                                                     '#5EFC8D':'#8377D1' 
                                     }]} />
                                 </View>
@@ -79,6 +79,7 @@ export default function BarChart(props) {
                                 }
                                 </Text>
                                 </TouchableOpacity>
+                                <Text>{props.touchedBar[0]} {props.touchedBar[1]}</Text>
                                 
                             </View>
                         )
