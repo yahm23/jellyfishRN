@@ -1,12 +1,19 @@
 import React, { useState,useEffect } from 'react'
 import { View, Image, Text, Button, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import {CapitaliseString, ChunkArrayIntoGroups , ExtractDataFromChunked, GetMonthName, GetOrdinalSuffix} from '../functional/functions'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPlus } from '@fortawesome/pro-light-svg-icons';
+// import greenDown from '../images/indicators/GreenTriangle.png'
+import redUp from '../../images/indicators/RedTriangle.png'
+
 
 export default function DataList(props) {
 
     const [timeFrame,setTimeFrame]= useState(props.timeFrame)
     const [selected,setSelected]= useState(props.selected)
     const [entireData,setEntireData]= useState(props.entireData)
+    const [priceKWh,setPriceKWh]= useState(15.4) // this will need to be fetched for the user based on their provider etc
+    
 
     useEffect(() => {
         setTimeFrame(props.timeFrame)
@@ -34,12 +41,28 @@ export default function DataList(props) {
                                     selection.year : null
         return title;
     }
+
+    const createInformationSubheading = () =>{
+        let selection = ExtractDataFromChunked(entireData[timeFrame], 5 , [selected[0],selected[1]])
+        console.log(selection.total_kWh);
+        return `${selection.total_kWh} kWh | £${selection.total_kWh*priceKWh/100} `
+    }
     
+
+
     return (
         <View style={styles.body}>
             <View style={styles.centerBox}>
                 <Text style={styles.titleDate}>{createSelectionTitle()}</Text>
-                <Text style={styles.titleDate}>{}</Text>
+                <Text style={styles.stats}>{createInformationSubheading()}</Text>
+                
+                {/* <FontAwesomeIcon icon={faPlus} size={30} color={'white'} style={styles.addIcon} />
+
+                <Image source={{
+          url: 'https://reactnative.dev/img/tiny_logo.png',
+        }}/> */}
+                <Image source={redUp} style={styles.logo} />
+
                 {/* <Button onPress={()=>createSelectionTitle()} title="LOG"></Button> */}
             </View>
         </View>
@@ -55,16 +78,24 @@ const styles = StyleSheet.create({
     },
     centerBox: {
         marginTop: 15,
-        flexDirection:'row',
+        // flexDirection:'row',
         flex: 0,
         justifyContent: 'center',
+        alignSelf: 'center',
         alignContent: 'center'
     },
     titleDate:{
         color:'#5EFC8D',
         fontSize:24,
         fontFamily: 'GothamRounded-Bold',
-        
+    },
+    stats:{
+        color:'#D0D0D0',
+        alignSelf: 'center',
+        marginTop:20,
+        fontSize:18,
+        alignContent: 'center',
+        fontFamily: 'GothamRounded-Medium',
 
     }
 })

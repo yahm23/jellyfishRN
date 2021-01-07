@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import LoadingScreen from './LoadingScreen';
 // const background = { uri: "../../" };
 import background from '../images/jellybck.png';
-
 // Immediately reload the React Native Bundle
 export default function LoginScreen({ navigation }) {
 
